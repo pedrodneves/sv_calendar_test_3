@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=8" />
+  <link rel="stylesheet" href="./styles.css?v=9" />
 </head>
 
 <body>
@@ -47,6 +47,7 @@
           </select>
           <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
           <button class="clear-btn" onclick="clearFilters()" title="Clear search and filters">Clear</button>
+          <button id="copyLinkBtn" class="clear-btn" onclick="copyShareLink()" title="Copy a link to this filtered view">Copy link</button>
         </div>
       </div>
 
@@ -149,6 +150,10 @@
 
       populateNetworkFilter();
       populateTypeFilter();
+
+      // Restore any filters/view/date from a shared link. Must run after
+      // the dropdowns are populated so their option values exist.
+      applyStateFromURL();
 
       document.getElementById('updated').textContent =
         '↻ Last loaded: ' + new Date().toLocaleString();
@@ -271,6 +276,102 @@
     function parseDateKey(key) {
       const [y, m, d] = key.split('-').map(Number);
       return new Date(y, m - 1, d);
+    }
+
+    /* ---------------------------------------------------------
+       SHAREABLE URL STATE
+       The current filters, view, and viewed date are mirrored into the
+       URL's query string so the address bar always describes what's on
+       screen. A "Copy link" button copies that URL. Opening a shared
+       link restores the same view.
+
+       Params: search, network, type, view (month|week|day|list), date.
+       Empty/default values are omitted to keep links short.
+       --------------------------------------------------------- */
+
+    // Write current state into the URL without reloading or adding history.
+    function syncURL() {
+      const params = new URLSearchParams();
+
+      const search = document.getElementById('search').value.trim();
+      const network = document.getElementById('networkFilter').value;
+      const type = document.getElementById('typeFilter').value;
+
+      if (search) params.set('search', search);
+      if (network) params.set('network', network);
+      if (type) params.set('type', type);
+
+      // View: 'list' takes precedence when list mode is on.
+      const view = listMode ? 'list' : currentView;
+      if (view !== 'month') params.set('view', view);   // month is the default
+
+      // Always record the viewed date so the link lands on the right period.
+      params.set('date', dateKey(currentDate));
+
+      const query = params.toString();
+      const newUrl = window.location.pathname + (query ? '?' + query : '');
+      // replaceState: updates the address bar silently, no history spam.
+      history.replaceState(null, '', newUrl);
+    }
+
+    // Read state from the URL and apply it. Called once on load, AFTER the
+    // filter dropdowns are populated (so their options exist to be set).
+    function applyStateFromURL() {
+      const params = new URLSearchParams(window.location.search);
+
+      const search = params.get('search');
+      if (search) document.getElementById('search').value = search;
+
+      // Only set a dropdown if the value is actually one of its options,
+      // so a stale/bad link can't leave a filter in an impossible state.
+      const network = params.get('network');
+      const netSel = document.getElementById('networkFilter');
+      if (network && [...netSel.options].some(o => o.value === network)) {
+        netSel.value = network;
+      }
+
+      const type = params.get('type');
+      const typeSel = document.getElementById('typeFilter');
+      if (type && [...typeSel.options].some(o => o.value === type)) {
+        typeSel.value = type;
+      }
+
+      const view = params.get('view');
+      if (view === 'list') {
+        listMode = true;
+      } else if (['month', 'week', 'day'].includes(view)) {
+        currentView = view;
+        listMode = false;
+      }
+
+      const date = params.get('date');
+      if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        currentDate = parseDateKey(date);
+      }
+    }
+
+    // Copy the current (state-bearing) URL to the clipboard, with a brief
+    // "Copied!" confirmation on the button itself.
+    function copyShareLink() {
+      syncURL();   // make sure the URL is current before copying
+      const url = window.location.href;
+      const btn = document.getElementById('copyLinkBtn');
+
+      const confirm = () => {
+        if (!btn) return;
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      };
+
+      // Modern clipboard API, with a legacy fallback for older browsers.
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(confirm).catch(() => {
+          window.prompt('Copy this link:', url);
+        });
+      } else {
+        window.prompt('Copy this link:', url);
+      }
     }
 
     // Monday-based start of the week containing `date`.
@@ -857,6 +958,11 @@
        header, active buttons) accordingly.
        --------------------------------------------------------- */
     function render() {
+      // Mirror the current filters/view/date into the URL so it's always
+      // shareable. Every state change ends in render(), so this one call
+      // keeps the address bar in sync everywhere.
+      syncURL();
+
       const root = document.getElementById('viewRoot');
       const weekdayHeader = document.getElementById('weekdayHeader');
       root.className = '';
