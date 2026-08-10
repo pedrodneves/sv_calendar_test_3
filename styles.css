@@ -103,7 +103,7 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
   min-width: 0;
   order: 1;
 }
-.filter-group #search { flex: 1 1 240px; min-width: 180px; }
+.filter-group #search { flex: 1 1 200px; min-width: 150px; }
 .filter-group #networkFilter { flex: 0 1 auto; min-width: 150px; }
 .filter-group .type-filter-cell { flex: 0 1 auto; }
 
@@ -206,6 +206,17 @@ select::-ms-expand { display: none; }
   font-weight: 900;
   font-size: 16px;
   padding: 0;
+}
+
+/* Clear button: resets search + filters. Sits after the "i", styled to
+   match the other toolbar buttons but sized to its text. */
+.clear-btn {
+  flex: 0 0 auto;
+  align-self: stretch;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 .info-btn:hover { border-color: var(--purple-soft); color: var(--purple-soft); }
 

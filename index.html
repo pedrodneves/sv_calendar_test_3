@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=7" />
+  <link rel="stylesheet" href="./styles.css?v=8" />
 </head>
 
 <body>
@@ -46,6 +46,7 @@
             <option value="">All activity types</option>
           </select>
           <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
+          <button class="clear-btn" onclick="clearFilters()" title="Clear search and filters">Clear</button>
         </div>
       </div>
 
@@ -1189,6 +1190,15 @@
 
     function goToday() {
       currentDate = new Date();
+      render();
+    }
+
+    // Reset the search box and both filter dropdowns, then re-render so
+    // the full unfiltered schedule is shown again.
+    function clearFilters() {
+      document.getElementById('search').value = '';
+      document.getElementById('networkFilter').value = '';
+      document.getElementById('typeFilter').value = '';
       render();
     }
 
