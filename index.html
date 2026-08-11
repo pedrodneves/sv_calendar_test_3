@@ -310,8 +310,23 @@
 
       const query = params.toString();
       const newUrl = window.location.pathname + (query ? '?' + query : '');
-      // replaceState: updates the address bar silently, no history spam.
-      history.replaceState(null, '', newUrl);
+
+      // Discrete actions push a new history entry (so Back returns to the
+      // previous state); everything else replaces silently. The flag is
+      // consumed on each call.
+      if (pendingHistoryPush) {
+        history.pushState(null, '', newUrl);
+        pendingHistoryPush = false;
+      } else {
+        history.replaceState(null, '', newUrl);
+      }
+    }
+
+    // Set before a render() that should be undoable with the Back button.
+    let pendingHistoryPush = false;
+    function renderWithHistory() {
+      pendingHistoryPush = true;
+      render();
     }
 
     // Read state from the URL and apply it. Called once on load, AFTER the
@@ -319,28 +334,34 @@
     function applyStateFromURL() {
       const params = new URLSearchParams(window.location.search);
 
-      const search = params.get('search');
-      if (search) document.getElementById('search').value = search;
+      // Absent params reset to DEFAULT (empty search/filter, Month view),
+      // not left stale — essential for the Back button to correctly return
+      // to a state where something had been cleared.
 
-      // Only set a dropdown if the value is actually one of its options,
-      // so a stale/bad link can't leave a filter in an impossible state.
+      // Search: absent → empty box.
+      document.getElementById('search').value = params.get('search') || '';
+
+      // Network filter: absent or invalid → "all" (empty value).
       const network = params.get('network');
       const netSel = document.getElementById('networkFilter');
-      if (network && [...netSel.options].some(o => o.value === network)) {
-        netSel.value = network;
-      }
+      netSel.value =
+        (network && [...netSel.options].some(o => o.value === network)) ? network : '';
 
+      // Type filter: absent or invalid → "all".
       const type = params.get('type');
       const typeSel = document.getElementById('typeFilter');
-      if (type && [...typeSel.options].some(o => o.value === type)) {
-        typeSel.value = type;
-      }
+      typeSel.value =
+        (type && [...typeSel.options].some(o => o.value === type)) ? type : '';
 
+      // View: absent → Month (default). 'list' toggles list mode.
       const view = params.get('view');
       if (view === 'list') {
         listMode = true;
       } else if (['month', 'week', 'day'].includes(view)) {
         currentView = view;
+        listMode = false;
+      } else {
+        currentView = 'month';
         listMode = false;
       }
 
@@ -1468,7 +1489,7 @@
 
       const prev = document.createElement('button');
       prev.textContent = '←';
-      prev.onclick = () => { currentDate.setMonth(month - 1); render(); };
+      prev.onclick = () => { currentDate.setMonth(month - 1); renderWithHistory(); };
 
       const titleEl = document.createElement('div');
       titleEl.className = 'mini-title';
@@ -1477,7 +1498,7 @@
 
       const next = document.createElement('button');
       next.textContent = '→';
-      next.onclick = () => { currentDate.setMonth(month + 1); render(); };
+      next.onclick = () => { currentDate.setMonth(month + 1); renderWithHistory(); };
 
       header.appendChild(prev);
       header.appendChild(titleEl);
@@ -1538,12 +1559,12 @@
       } else { // day
         currentDate.setDate(currentDate.getDate() + direction);
       }
-      render();
+      renderWithHistory();
     }
 
     function goToday() {
       currentDate = new Date();
-      render();
+      renderWithHistory();
     }
 
     // Reset the search box and both filter dropdowns, then re-render so
@@ -1555,20 +1576,20 @@
       // Reset also returns to the default Month view (leaving List/Week/Day).
       currentView = 'month';
       listMode = false;
-      render();
+      renderWithHistory();
     }
 
     // Switch Month/Week/Day (also leaves list mode).
     function setView(view) {
       currentView = view;
       listMode = false;
-      render();
+      renderWithHistory();
     }
 
     // Toggle the List (agenda) mode on/off.
     function toggleListMode() {
       listMode = !listMode;
-      render();
+      renderWithHistory();
     }
 
     // Jump to a specific date. By default this opens Day view;
@@ -1576,7 +1597,7 @@
     function jumpToDate(key, keepList = false) {
       currentDate = parseDateKey(key);
       if (!keepList) { listMode = false; currentView = 'day'; }
-      render();
+      renderWithHistory();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1609,9 +1630,18 @@
     /* ---------------------------------------------------------
        EVENT LISTENERS
        --------------------------------------------------------- */
+    // Search typing replaces the URL silently (no history per keystroke).
     document.getElementById('search').addEventListener('input', render);
-    document.getElementById('networkFilter').addEventListener('change', render);
-    document.getElementById('typeFilter').addEventListener('change', render);
+    // Changing a filter is a discrete action → push a history entry.
+    document.getElementById('networkFilter').addEventListener('change', renderWithHistory);
+    document.getElementById('typeFilter').addEventListener('change', renderWithHistory);
+
+    // Browser Back/Forward: re-apply the state the URL now describes, then
+    // render without touching history (plain render → replaceState).
+    window.addEventListener('popstate', () => {
+      applyStateFromURL();
+      render();
+    });
 
     // Re-render on resize so the month view's mobile labels update.
     window.addEventListener('resize', render);
