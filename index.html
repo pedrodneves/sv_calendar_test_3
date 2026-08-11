@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=9" />
+  <link rel="stylesheet" href="./styles.css?v=10" />
 </head>
 
 <body>
@@ -1163,7 +1163,14 @@
         const dateEl = document.createElement('div');
         dateEl.className = 'agenda-date';
         dateEl.textContent = longDate(key);
-        block.appendChild(dateEl);
+
+        // Header row so the Splice "i" for this day sits at the right of
+        // the date heading, matching the other views.
+        const dateRow = document.createElement('div');
+        dateRow.className = 'agenda-date-row';
+        dateRow.appendChild(dateEl);
+        dateRow.appendChild(buildSpliceMarker(key));
+        block.appendChild(dateRow);
 
         renderGroupedByType(block, eventsOnDate(key), { showConnected: true });
         agenda.appendChild(block);

@@ -766,6 +766,15 @@ select::-ms-expand { display: none; }
   margin-bottom: 12px;
 }
 
+/* List view date header row: date on the left, Splice "i" aligned right. */
+.agenda-date-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.agenda-date-row .agenda-date { margin-bottom: 0; }
+.agenda-date-row .splice-marker { margin-left: auto; }
+
 /* ---- Footer ------------------------------------------------ */
 .footer-meta {
   display: flex;
