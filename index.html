@@ -46,7 +46,7 @@
             <option value="">All activity types</option>
           </select>
           <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
-          <button class="clear-btn" onclick="clearFilters()" title="Clear search and filters">Reset</button>
+          <button class="clear-btn" onclick="clearFilters()" title="Reset search, filters, and view">Reset</button>
           <button id="copyLinkBtn" class="clear-btn" onclick="copyShareLink()" title="Copy a link to this filtered view">Copy link</button>
         </div>
       </div>
@@ -1552,6 +1552,9 @@
       document.getElementById('search').value = '';
       document.getElementById('networkFilter').value = '';
       document.getElementById('typeFilter').value = '';
+      // Reset also returns to the default Month view (leaving List/Week/Day).
+      currentView = 'month';
+      listMode = false;
       render();
     }
 
