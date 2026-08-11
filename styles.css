@@ -396,6 +396,25 @@ select::-ms-expand { display: none; }
   visibility: visible;
 }
 
+/* When pinned open (clicked), the tooltip becomes interactive so its
+   DAR links can be clicked. Hover-only tooltips stay pass-through. */
+.splice-tooltip.pinned {
+  pointer-events: auto;
+}
+
+/* Clickable DAR rows: pointer cursor + subtle hover highlight. Only
+   active when the tooltip is pinned (otherwise pointer-events: none). */
+.splice-dar-link {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 1px 4px;
+  margin: 0 -4px;
+  transition: background 0.12s;
+}
+.splice-tooltip.pinned .splice-dar-link:hover {
+  background: rgba(124, 77, 255, 0.25);
+}
+
 /* Header sits above the network rows, separated by a hairline rule. */
 .splice-tooltip-header {
   font-size: 11px;
