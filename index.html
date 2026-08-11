@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=10" />
+  <link rel="stylesheet" href="./styles.css?v=11" />
 </head>
 
 <body>
@@ -513,9 +513,13 @@
     // "DevNet upgrades to Splice 0.7.1" -> "0.7.1"; null if not a match.
     function parseSpliceVersion(event) {
       const title = String(event.title || '');
-      // Require the "upgrades to Splice" phrasing so we don't pick up
-      // titles that merely mention a version in another context.
-      const match = title.match(/upgrades?\s+to\s+splice\s+(\d+(?:\.\d+)*)/i);
+      // Only "<Network> Validators upgrade to Splice N" events set the
+      // version. The negative lookbehind (?<!not\s) excludes the
+      // "SV nodes (not Validators) upgrade..." case where "Validators" is
+      // negated. "Validators remain on..." is not matched (no "upgrade to"),
+      // so a version naturally carries forward until the next real upgrade.
+      const match = title.match(
+        /(?<!not\s)validators\s+upgrade\s+to\s+splice\s+(\d+(?:\.\d+)*)/i);
       return match ? match[1] : null;
     }
 
@@ -598,7 +602,7 @@
         name.textContent = network;
         const ver = document.createElement('span');
         ver.className = 'splice-tooltip-ver';
-        ver.textContent = 'Splice ' + version;
+        ver.textContent = 'Validators must upgrade to ' + version;
         row.appendChild(name);
         row.appendChild(ver);
         tip.appendChild(row);
@@ -652,8 +656,8 @@
       marker.addEventListener('mouseleave', hideSpliceTooltip);
 
       // Accessibility: expose the same information to screen readers.
-      marker.setAttribute('aria-label', 'Current Splice versions. ' +
-        rows.map(([n, v]) => `${n}: Splice ${v}`).join(', '));
+      marker.setAttribute('aria-label', 'Validators must upgrade to. ' +
+        rows.map(([n, v]) => `${n}: ${v}`).join(', '));
 
       return marker;
     }
