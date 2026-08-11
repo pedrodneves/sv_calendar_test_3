@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=14" />
+  <link rel="stylesheet" href="./styles.css?v=15" />
 </head>
 
 <body>
@@ -583,39 +583,53 @@
 
     // Pull component/version pairs out of a DAR event's description.
     // Returns an array of [component, version], or [] if none found.
-    // Parse a DAR event's description into per-network component lists.
-    // Handles two shapes:
-    //  (a) Sectioned description with "DevNet:", "TestNet:", "MainNet:"
-    //      labels, each followed by its components (the June 16 all-in-one
-    //      event). Networks are read out of the text.
-    //  (b) A single-network tagged event (e.g. Aug 10 TestNet), where the
-    //      whole description belongs to event.network.
-    // Returns { DevNet: [[comp, ver], ...], ... } — only networks found.
-    // Unlabeled events with no event.network (e.g. the June 23 list) yield
-    // {} and are ignored, since they can't be attributed to a network.
-    function parseDarByNetwork(event) {
-      const type = String(event.type || '').toLowerCase();
-      const title = String(event.title || '').toLowerCase();
-      // Must be a DAR-versions event.
-      if (!type.includes('dar') && !title.includes('.dar') &&
-          !title.includes('dar version')) return {};
+    /* ---------------------------------------------------------
+       DAR VERSION INDEX
+       The Monday board expresses minimum ".dar" component versions in TWO
+       different shapes, so we build a per-day index once, then carry the
+       latest set forward per network.
 
+       Format A (June 16 style): a single event whose DESCRIPTION contains
+         "DevNet:\n amulet 0.1.19 ...\n TestNet:\n ...".
+
+       Format B (June 30 / July 7 / July 14 style): many sibling events on
+         the SAME DAY, each with an empty description — a "DevNet:" header
+         event, then separate events titled "amulet 0.1.20",
+         "amuletNameService 0.1.21", etc., then "TestNet:", and so on.
+         Components belong to the most recent network-header event seen in
+         document order that day.
+
+       Also handles a single network-tagged event whose description holds
+       the list (Aug 10 TestNet). Unlabeled component lists with no network
+       context are ignored.
+       --------------------------------------------------------- */
+
+    // Recognise a "DevNet:" / "TestNet:" / "MainNet:" header (title only).
+    function darNetworkHeader(title) {
+      const m = String(title || '').trim().match(/^(DevNet|TestNet|MainNet)\s*:?\s*$/i);
+      return m ? normalizeNetwork(m[1]) : null;
+    }
+
+    // Recognise a bare "component 0.1.20" title → [comp, ver] or null.
+    function darComponentTitle(title) {
+      const m = String(title || '').trim().match(/^([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)\s*$/);
+      return m ? [m[1], m[2]] : null;
+    }
+
+    // Extract per-network component lists from a single description (Format
+    // A / Aug 10). Returns { DevNet: [[c,v]...], ... } or {}.
+    function darFromDescription(event) {
       const desc = String(event.description || '');
       if (!desc) return {};
-
       const compRe = /([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)/g;
       const result = {};
-
-      // Find any "DevNet:/TestNet:/MainNet:" section labels.
       const netRe = /(DevNet|TestNet|MainNet)\s*:/gi;
       const labels = [];
       let m;
       while ((m = netRe.exec(desc)) !== null) {
         labels.push({ net: normalizeNetwork(m[1]), start: m.index, end: netRe.lastIndex });
       }
-
       if (labels.length) {
-        // Sectioned: components between one label and the next belong to it.
         for (let i = 0; i < labels.length; i++) {
           const segEnd = (i + 1 < labels.length) ? labels[i + 1].start : desc.length;
           const seg = desc.slice(labels[i].end, segEnd);
@@ -626,21 +640,63 @@
           if (pairs.length) result[labels[i].net] = pairs;
         }
       } else if (event.network) {
-        // Single tagged network: whole description is its component list.
         const pairs = [];
         let c;
         while ((c = compRe.exec(desc)) !== null) pairs.push([c[1], c[2]]);
         if (pairs.length) result[normalizeNetwork(event.network)] = pairs;
       }
-
       return result;
     }
 
+    // Build { dateKey: { DevNet:[[c,v]...], TestNet:[...], MainNet:[...] } }
+    // across the whole schedule, merging both formats. Cached after first
+    // build since allEvents doesn't change within a render session.
+    let _darIndex = null;
+    function buildDarIndex() {
+      if (_darIndex) return _darIndex;
+      const index = {};
+
+      // Walk events in document order so Format B header→component grouping
+      // works. Track the current network header within each day.
+      let currentDay = null;
+      let currentNet = null;
+
+      allEvents.forEach(event => {
+        const dayKey = eventDatePart(event);
+        if (dayKey !== currentDay) { currentDay = dayKey; currentNet = null; }
+
+        // Format A / Aug 10: description carries the whole thing.
+        const fromDesc = darFromDescription(event);
+        if (Object.keys(fromDesc).length) {
+          index[dayKey] = index[dayKey] || {};
+          Object.entries(fromDesc).forEach(([net, pairs]) => {
+            index[dayKey][net] = (index[dayKey][net] || []).concat(pairs);
+          });
+          return;
+        }
+
+        // Format B: header event sets the current network for the day.
+        const header = darNetworkHeader(event.title);
+        if (header) { currentNet = header; return; }
+
+        // Format B: component-title event → attach to current network.
+        const comp = darComponentTitle(event.title);
+        if (comp && currentNet) {
+          index[dayKey] = index[dayKey] || {};
+          index[dayKey][currentNet] = (index[dayKey][currentNet] || []);
+          index[dayKey][currentNet].push(comp);
+        }
+      });
+
+      _darIndex = index;
+      return index;
+    }
+
     // For a given day, the current DAR set per network: the most recent
-    // DAR event (on or before that day) that has data for that network,
-    // carried forward. Returns { DevNet: { components: [...], dateKey },
-    // ... } with components: [] when a network has no DAR data yet.
+    // DAR entry (on or before that day) that has data for that network,
+    // carried forward. Returns { DevNet: { components, dateKey }, ... }.
     function currentDarVersions(key) {
+      const index = buildDarIndex();
       const target = parseDateKey(key);
       const result = {};
 
@@ -649,19 +705,17 @@
         let bestComponents = [];
         let bestKey = null;
 
-        allEvents.forEach(event => {
-          const byNet = parseDarByNetwork(event);
-          const components = byNet[network];
-          if (!components || !components.length) return;
+        Object.keys(index).forEach(dayKey => {
+          const pairs = index[dayKey][network];
+          if (!pairs || !pairs.length) return;
 
-          const eventKey = eventDatePart(event);
-          const eventDate = parseDateKey(eventKey);
+          const eventDate = parseDateKey(dayKey);
           if (eventDate > target) return;
 
           if (bestDate === null || eventDate > bestDate) {
             bestDate = eventDate;
-            bestComponents = components;
-            bestKey = eventKey;   // remember which day it came from
+            bestComponents = pairs;
+            bestKey = dayKey;
           }
         });
 
