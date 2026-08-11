@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=11" />
+  <link rel="stylesheet" href="./styles.css?v=12" />
 </head>
 
 <body>
@@ -513,12 +513,20 @@
     // "DevNet upgrades to Splice 0.7.1" -> "0.7.1"; null if not a match.
     function parseSpliceVersion(event) {
       const title = String(event.title || '');
-      // Only "<Network> Validators upgrade to Splice N" events set the
-      // version. The negative lookbehind (?<!not\s) excludes the
-      // "SV nodes (not Validators) upgrade..." case where "Validators" is
-      // negated. "Validators remain on..." is not matched (no "upgrade to"),
-      // so a version naturally carries forward until the next real upgrade.
-      const match = title.match(
+
+      // Format A: "<Network>: Validators must upgrade to 0.7.x" (and the
+      // LSU variant "...validators must upgrade to >= 0.6.5 before the LSU").
+      // The version token allows an 'x' segment (e.g. 0.7.x), and an
+      // optional ">=" before the number is stripped. The (?<!not\s)
+      // lookbehind still guards against a negated "not Validators".
+      let match = title.match(
+        /(?<!not\s)validators\s+must\s+upgrade\s+to\s+>?=?\s*(\d+(?:\.[\dx]+)*)/i);
+      if (match) return match[1];
+
+      // Format B: the existing weekly "<Network> Validators upgrade to
+      // Splice N". "Validators remain on..." is not matched (no "upgrade
+      // to"), so a version carries forward until the next real upgrade.
+      match = title.match(
         /(?<!not\s)validators\s+upgrade\s+to\s+splice\s+(\d+(?:\.\d+)*)/i);
       return match ? match[1] : null;
     }
