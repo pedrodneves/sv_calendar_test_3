@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=12" />
+  <link rel="stylesheet" href="./styles.css?v=13" />
 </head>
 
 <body>
@@ -569,6 +569,69 @@
     }
 
     /* ---------------------------------------------------------
+       CURRENT DAR VERSIONS (per network, carry-forward)
+       Parallel to currentSpliceVersions, but for the minimum Splice
+       ".dar" component versions. These come from network-tagged events
+       of type "Minimum Splice Dar versions", whose description lists
+       component/version pairs (amulet 0.1.22, wallet 0.1.23, ...).
+
+       Only network-tagged DAR events are used (the untagged, all-in-one
+       description events are intentionally ignored — too inconsistent to
+       attribute reliably). Like Splice versions, the most recent DAR set
+       on or before a day carries forward until the next one supersedes it.
+       --------------------------------------------------------- */
+
+    // Pull component/version pairs out of a DAR event's description.
+    // Returns an array of [component, version], or [] if none found.
+    function parseDarComponents(event) {
+      const type = String(event.type || '').toLowerCase();
+      // Must be a DAR-versions event (by activity type).
+      if (!type.includes('dar')) return [];
+
+      const desc = String(event.description || '');
+      const pairs = [];
+      // Match "componentName 0.1.22" style lines.
+      const re = /([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)/g;
+      let m;
+      while ((m = re.exec(desc)) !== null) {
+        pairs.push([m[1], m[2]]);
+      }
+      return pairs;
+    }
+
+    // For a given day, the current DAR component set per network (latest
+    // tagged DAR event on or before that day). Networks with no DAR data
+    // get an empty array.
+    function currentDarVersions(key) {
+      const target = parseDateKey(key);
+      const result = {};
+
+      SPLICE_NETWORKS.forEach(network => {
+        let bestDate = null;
+        let bestComponents = [];
+
+        allEvents.forEach(event => {
+          if (normalizeNetwork(event.network) !== network) return;
+
+          const components = parseDarComponents(event);
+          if (!components.length) return;          // not a DAR event / no data
+
+          const eventDate = parseDateKey(eventDatePart(event));
+          if (eventDate > target) return;
+
+          if (bestDate === null || eventDate > bestDate) {
+            bestDate = eventDate;
+            bestComponents = components;
+          }
+        });
+
+        result[network] = bestComponents;          // [] if none
+      });
+
+      return result;
+    }
+
+    /* ---------------------------------------------------------
        SHARED TOOLTIP (attached to <body>)
        Day cells clip their overflow, so a tooltip placed *inside* a
        cell gets cut off. Instead we use ONE tooltip element attached
@@ -616,6 +679,34 @@
         tip.appendChild(row);
       });
 
+      // DAR section: one line per network that has DAR data, showing the
+      // component count. Full lists are in the Day view. Networks with no
+      // DAR data are omitted (data is sparse — only some are tagged).
+      const darRows = JSON.parse(marker.dataset.dar || '[]');
+      const darWithData = darRows.filter(([, count]) => count > 0);
+
+      if (darWithData.length) {
+        const darHeader = document.createElement('div');
+        darHeader.className = 'splice-tooltip-header';
+        darHeader.textContent = 'Minimum DAR versions:';
+        tip.appendChild(darHeader);
+
+        darWithData.forEach(([network, count]) => {
+          const row = document.createElement('div');
+          row.className = 'splice-tooltip-row';
+          const name = document.createElement('span');
+          name.className = 'splice-tooltip-net ' + networkClass(network);
+          name.textContent = network;
+          const val = document.createElement('span');
+          val.className = 'splice-tooltip-ver';
+          // e.g. "6 DAR versions (see day)"
+          val.textContent = count + ' DAR versions (see day)';
+          row.appendChild(name);
+          row.appendChild(val);
+          tip.appendChild(row);
+        });
+      }
+
       // Make it measurable, then position relative to the marker.
       tip.classList.add('visible');
       const m = marker.getBoundingClientRect();
@@ -654,14 +745,25 @@
       const rows = SPLICE_NETWORKS.map(network =>
         [network, versions[network] || '—']);
 
+      // DAR data per network: [network, componentCount]. Full lists live
+      // in the Day view; the tooltip only shows a count summary.
+      const dar = currentDarVersions(key);
+      const darRows = SPLICE_NETWORKS.map(network =>
+        [network, dar[network] ? dar[network].length : 0]);
+
       const marker = document.createElement('div');
       marker.className = 'splice-marker';
       marker.textContent = 'i';
       marker.dataset.versions = JSON.stringify(rows);
+      marker.dataset.dar = JSON.stringify(darRows);
 
       // Instant show/hide via the shared tooltip.
       marker.addEventListener('mouseenter', () => showSpliceTooltip(marker));
       marker.addEventListener('mouseleave', hideSpliceTooltip);
+
+      // Clicking the "i" must NOT open the Day view — the marker sits
+      // inside a click-to-open day cell, so stop the click from bubbling.
+      marker.addEventListener('click', event => event.stopPropagation());
 
       // Accessibility: expose the same information to screen readers.
       marker.setAttribute('aria-label', 'Validators must upgrade to. ' +
