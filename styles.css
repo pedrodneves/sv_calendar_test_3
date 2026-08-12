@@ -445,6 +445,22 @@ select::-ms-expand { display: none; }
 .splice-tooltip-net.mainnet { color: #4caf7d; }
 .splice-tooltip-ver { color: var(--text); }
 
+/* Release-notes footer link at the bottom of the tooltip. Separated from
+   the version rows by a hairline rule, only clickable when pinned. */
+.splice-tooltip-link {
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(201, 156, 255, 0.2);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--purple-soft);
+  text-decoration: none;
+}
+.splice-tooltip.pinned .splice-tooltip-link:hover {
+  text-decoration: underline;
+}
+
 
 .day.outside { opacity: 0.35; }
 
