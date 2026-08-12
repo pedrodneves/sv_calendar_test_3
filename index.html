@@ -1644,9 +1644,12 @@
       document.getElementById('search').value = '';
       document.getElementById('networkFilter').value = '';
       document.getElementById('typeFilter').value = '';
-      // Reset also returns to the default Month view (leaving List/Week/Day).
+      // Reset also returns to the default Month view (leaving List/Week/Day)
+      // AND jumps back to today, so Reset always lands on the current month
+      // rather than whatever month you'd navigated to.
       currentView = 'month';
       listMode = false;
+      currentDate = new Date();
       renderWithHistory();
     }
 
