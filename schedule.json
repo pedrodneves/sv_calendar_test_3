@@ -1,75 +1,5 @@
 [
   {
-    "title": "DevNet upgrades to Splice 0.7.1",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "",
-    "status": "Approved",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general"
-  },
-  {
-    "title": "TestNet upgrades to Splice 0.7.0",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general"
-  },
-  {
-    "title": "MainNet upgrades to Splice 0.6.14",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "",
-    "status": "Approved",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general"
-  },
-  {
-    "title": "TestNet Breaking API Change",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "Deprecated TransferCommand functionality removed from validator app from TestNet. If you see validator logs involving TransferCommandSendTrigger you are still using it and should migrate to token standard transfers before this date.",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Other Network Configuration Change",
-    "category": "general"
-  },
-  {
-    "title": "TestNet: Miniimum Dar Versions",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "TestNet Minimum Splice dar versions: \namulet   0.1.22\namuletNameService  0.1.23\ndsoGovernance   0.1.28\nvalidatorLifecycle   0.1.8\nwallet   0.1.23\nwalletPayments   0.1.22",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Minimum Splice Dar versions",
-    "category": "general"
-  },
-  {
-    "title": "TestNet: Traffic-based app rewards (CIP-104) goes live",
-    "start": "2026-08-11",
-    "end": "2026-08-11",
-    "description": "",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Other Network Configuration Change",
-    "category": "general"
-  },
-  {
-    "title": "TestNet: Daml Models from Splice 0.6.12 take effect",
-    "start": "2026-08-11",
-    "end": "2026-08-11",
-    "description": "",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Splice Daml Model Effectivity",
-    "category": "general"
-  },
-  {
     "title": "DevNet upgrades to Splice 0.7.2",
     "start": "2026-08-17",
     "end": "2026-08-17",
@@ -117,6 +47,16 @@
     "status": "Approved",
     "network": "DevNet",
     "type": "Minimum Splice Versions",
+    "category": "general"
+  },
+  {
+    "title": "DevNet New Daml models effective (0.7)",
+    "start": "2026-08-18",
+    "end": "2026-08-18",
+    "description": "Specific dar versions to be confirmed",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Splice Daml Model Effectivity",
     "category": "general"
   },
   {
@@ -170,13 +110,33 @@
     "category": "general"
   },
   {
+    "title": "DevNet Breaking Config Changes (0.7)",
+    "start": "2026-08-25",
+    "end": "2026-08-25",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Other Network Configuration Change",
+    "category": "general"
+  },
+  {
     "title": "TestNet: Topology Freeze 9am US Eastern / 1300 UTC (starts Aug 25, 24 hours before LSU)",
     "start": "2026-08-25",
     "end": "2026-08-25",
     "description": "",
     "status": "Approved",
     "network": "TestNet",
-    "type": "Other Network Configuration Change",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general"
+  },
+  {
+    "title": "TestNet New Daml models effective (0.7)",
+    "start": "2026-08-25",
+    "end": "2026-08-25",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "TestNet",
+    "type": "Splice Daml Model Effectivity",
     "category": "general"
   },
   {
@@ -230,6 +190,26 @@
     "category": "general"
   },
   {
+    "title": "TestNet Breaking Config Changes (0.7)",
+    "start": "2026-09-01",
+    "end": "2026-09-01",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "TestNet",
+    "type": "Other Network Configuration Change",
+    "category": "general"
+  },
+  {
+    "title": "MainNet new Daml models effective (0.7)",
+    "start": "2026-09-01",
+    "end": "2026-09-01",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "MainNet",
+    "type": "Splice Daml Model Effectivity",
+    "category": "general"
+  },
+  {
     "title": "MainNet Topology Freeze 9am US Eastern / 1300 UTC",
     "start": "2026-09-04",
     "end": "2026-09-04",
@@ -280,6 +260,16 @@
     "category": "general"
   },
   {
+    "title": "MainNet breaking config change (0.7)",
+    "start": "2026-09-08",
+    "end": "2026-09-08",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "MainNet",
+    "type": "Other Network Configuration Change",
+    "category": "general"
+  },
+  {
     "title": "DevNet upgrades to Splice 0.8.1",
     "start": "2026-09-14",
     "end": "2026-09-14",
@@ -307,6 +297,16 @@
     "status": "Approved",
     "network": "MainNet",
     "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "DevNet: Daml Models supporting Token Standard V1 Expire (are unvetted)",
+    "start": "2026-09-15",
+    "end": "2026-09-15",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Other Network Configuration Change",
     "category": "general"
   },
   {
@@ -347,6 +347,26 @@
     "status": "Approved",
     "network": "DevNet",
     "type": "Minimum Splice Versions",
+    "category": "general"
+  },
+  {
+    "title": "DevNet Topology Freeze",
+    "start": "2026-09-22",
+    "end": "2026-09-22",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general"
+  },
+  {
+    "title": "DevNet New Daml models effective (0.8)",
+    "start": "2026-09-22",
+    "end": "2026-09-22",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Splice Daml Model Effectivity",
     "category": "general"
   },
   {
@@ -447,6 +467,36 @@
     "status": "Approved",
     "network": "MainNet",
     "type": "Minimum Splice Versions",
+    "category": "general"
+  },
+  {
+    "title": "DevNet Upgrades to Splice 0.9.0",
+    "start": "2026-10-05",
+    "end": "2026-10-05",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "TestNet Upgrades to Splice 0.8.3",
+    "start": "2026-10-05",
+    "end": "2026-10-05",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "MainNet upgrades to Splice 0.8.2",
+    "start": "2026-10-05",
+    "end": "2026-10-05",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
     "category": "general"
   },
   {
@@ -7726,6 +7776,76 @@
     "description": "Deprecated TransferCommand functionality removed from validator app from DevNet. If you see validator logs involving TransferCommandSendTrigger you are still using it and should migrate to token standard transfers before this date.",
     "status": "Approved",
     "network": "DevNet",
+    "type": "Other Network Configuration Change",
+    "category": "general"
+  },
+  {
+    "title": "TestNet upgrades to Splice 0.7.0",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "TestNet Breaking API Change",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "Deprecated TransferCommand functionality removed from validator app from TestNet. If you see validator logs involving TransferCommandSendTrigger you are still using it and should migrate to token standard transfers before this date.",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Other Network Configuration Change",
+    "category": "general"
+  },
+  {
+    "title": "TestNet: Miniimum Dar Versions",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "TestNet Minimum Splice dar versions: \namulet   0.1.22\namuletNameService  0.1.23\ndsoGovernance   0.1.28\nvalidatorLifecycle   0.1.8\nwallet   0.1.23\nwalletPayments   0.1.22",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Minimum Splice Dar versions",
+    "category": "general"
+  },
+  {
+    "title": "DevNet upgrades to Splice 0.7.1",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "",
+    "status": "Approved",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "MainNet upgrades to Splice 0.6.14",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "",
+    "status": "Approved",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general"
+  },
+  {
+    "title": "TestNet: Daml Models from Splice 0.6.12 take effect",
+    "start": "2026-08-11",
+    "end": "2026-08-11",
+    "description": "",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Splice Daml Model Effectivity",
+    "category": "general"
+  },
+  {
+    "title": "TestNet: Traffic-based app rewards (CIP-104) goes live",
+    "start": "2026-08-11",
+    "end": "2026-08-11",
+    "description": "",
+    "status": "Approved",
+    "network": "TestNet",
     "type": "Other Network Configuration Change",
     "category": "general"
   }
