@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=16" />
+  <link rel="stylesheet" href="./styles.css?v=17" />
 </head>
 
 <body>
@@ -895,21 +895,18 @@
       marker.dataset.dar = JSON.stringify(darRows);
 
       // Hover shows the tooltip; click "pins" it open so its DAR links
-      // become clickable (a plain hover tooltip vanishes the moment the
-      // mouse leaves the "i", before you could reach a row).
-      marker.addEventListener('mouseenter', () => {
-        if (!spliceTooltipPinned) showSpliceTooltip(marker);
-      });
-      marker.addEventListener('mouseleave', () => {
-        if (!spliceTooltipPinned) hideSpliceTooltip();
-      });
-
-      // Clicking the "i": pin the tooltip open, and stop the click from
-      // bubbling to the day cell (which would otherwise open Day view).
+      // Click-only: the tooltip appears when the "i" is clicked and closes
+      // on a second click (or a click elsewhere — see the document handler).
+      // No hover behaviour. stopPropagation keeps the click from bubbling to
+      // the day cell, which would otherwise open the Day view.
       marker.addEventListener('click', event => {
         event.stopPropagation();
-        spliceTooltipPinned = true;
-        showSpliceTooltip(marker);
+        if (spliceTooltipPinned) {
+          hideSpliceTooltip();          // second click closes it
+        } else {
+          spliceTooltipPinned = true;
+          showSpliceTooltip(marker);
+        }
       });
 
       // Accessibility: expose the same information to screen readers.
