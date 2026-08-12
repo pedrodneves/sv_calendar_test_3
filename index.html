@@ -962,34 +962,46 @@
        after it. Returns the counterpart event or null.
        --------------------------------------------------------- */
     function findConnectedEvent(event) {
-      const type = event.type || '';
-      if (!type.toLowerCase().includes('lsu') && !/protocol upgrades/i.test(type)) {
-        return null;
-      }
+      // PREFERRED: authoritative pairing via Monday's "Dependent On" column,
+      // published as a `dependsOn` array of item IDs. The relationship is
+      // bidirectional — this event may point at its partner, or the partner
+      // may point at this event — so we check both directions by `id`.
+      const byDependency = findByDependency_(event);
+      if (byDependency) return byDependency;
 
-      const network = normalizeNetwork(event.network);
+      // FALLBACK (for events with no dependency set, e.g. older data):
+      // infer the Freeze <-> LSU pairing from titles and dates. Roles come
+      // from the TITLE (the board types these events inconsistently), the
+      // pairing is directional (a Freeze precedes its LSU by ~1 day), capped
+      // to 3 days, and both events must share a network.
       const isFreeze = /freeze/i.test(event.title || '');
       const isLSU = /\bLSU\b/i.test(event.title || '');
-      const thisDate = eventDatePart(event);
+      if (!isFreeze && !isLSU) return null;
 
-      // Candidate partners: same network + type, opposite role.
+      const network = normalizeNetwork(event.network);
+      if (!network) return null;
+
+      const thisDate = eventDatePart(event);
+      const thisTime = parseDateKey(thisDate).getTime();
+      const MAX_GAP_DAYS = 3;
+      const MS_PER_DAY = 86400000;
+
       const candidates = allEvents.filter(e => {
         if (e === event) return false;
         if (normalizeNetwork(e.network) !== network) return false;
-        if ((e.type || '') !== type) return false;
 
         const otherFreeze = /freeze/i.test(e.title || '');
         const otherLSU = /\bLSU\b/i.test(e.title || '');
+        const otherTime = parseDateKey(eventDatePart(e)).getTime();
+        if (Math.abs(otherTime - thisTime) / MS_PER_DAY > MAX_GAP_DAYS) return false;
 
-        if (isFreeze && otherLSU) return true;   // freeze -> its LSU
-        if (isLSU && otherFreeze) return true;    // LSU -> its freeze
+        if (isFreeze && otherLSU) return otherTime >= thisTime;
+        if (isLSU && otherFreeze) return otherTime <= thisTime;
         return false;
       });
 
       if (!candidates.length) return null;
 
-      // Pick the closest partner in time (freeze looks forward,
-      // LSU looks backward, but "closest date" works for both).
       candidates.sort((a, b) => {
         const da = Math.abs(parseDateKey(eventDatePart(a)) - parseDateKey(thisDate));
         const db = Math.abs(parseDateKey(eventDatePart(b)) - parseDateKey(thisDate));
@@ -997,6 +1009,29 @@
       });
 
       return candidates[0];
+    }
+
+    // Authoritative pairing using the published `dependsOn` item IDs.
+    // Checks both directions: this event depending on another, or another
+    // event depending on this one. Returns the partner event or null.
+    function findByDependency_(event) {
+      const myId = event.id != null ? String(event.id) : null;
+      const myDeps = Array.isArray(event.dependsOn) ? event.dependsOn.map(String) : [];
+
+      // Direction 1: this event lists a dependency → find that event by id.
+      if (myDeps.length) {
+        const partner = allEvents.find(e => e.id != null && myDeps.includes(String(e.id)));
+        if (partner) return partner;
+      }
+
+      // Direction 2: some other event depends on THIS one.
+      if (myId) {
+        const partner = allEvents.find(e =>
+          Array.isArray(e.dependsOn) && e.dependsOn.map(String).includes(myId));
+        if (partner) return partner;
+      }
+
+      return null;
     }
 
     /* ---------------------------------------------------------
