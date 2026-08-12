@@ -251,6 +251,20 @@
       return new Date(guess.getTime() - offset * 60000);
     }
 
+    // Format a viewer-local UTC offset for a given instant as "UTC+1",
+    // "UTC-4", "UTC+5:30", or "UTC+0". Uses getTimezoneOffset(), which
+    // returns minutes WEST of UTC (so it's negated), evaluated at that
+    // specific instant so the viewer's own daylight-saving is handled.
+    function utcOffsetLabel(date) {
+      const offsetMin = -date.getTimezoneOffset();   // e.g. Lisbon summer -> +60
+      const sign = offsetMin >= 0 ? '+' : '-';
+      const abs = Math.abs(offsetMin);
+      const hours = Math.floor(abs / 60);
+      const mins = abs % 60;
+      // Only show minutes when the zone has a half/quarter-hour offset.
+      return 'UTC' + sign + hours + (mins ? ':' + String(mins).padStart(2, '0') : '');
+    }
+
     function timeLabel(event) {
       const t = eventTimePart(event);
       if (!t) return '';
@@ -259,11 +273,14 @@
       // then format it in the viewer's local zone (browser default).
       const instant = easternWallClockToDate(eventDatePart(event), t);
 
-      return instant.toLocaleTimeString(undefined, {
+      const time = instant.toLocaleTimeString(undefined, {
         hour: '2-digit',
         minute: '2-digit',
         hour12: false   // 24-hour format (e.g. "14:00", not "2:00 PM")
       });
+
+      // Append the viewer's local UTC offset, e.g. "14:00 (UTC+1)".
+      return time + ' (' + utcOffsetLabel(instant) + ')';
     }
 
     // Build a "YYYY-MM-DD" key for a Date object (local time).
