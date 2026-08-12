@@ -425,6 +425,12 @@ select::-ms-expand { display: none; }
   border-bottom: 1px solid rgba(201, 156, 255, 0.2);
 }
 
+/* Extra breathing room above the second header (the DAR one) — the first
+   header sits flush at the top, so only a non-first header gets it. */
+.splice-tooltip-header:not(:first-child) {
+  padding-top: 8px;
+}
+
 .splice-tooltip-row {
   display: flex;
   justify-content: space-between;
