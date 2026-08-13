@@ -49,7 +49,7 @@
   },
   {
     "id": "12560030068",
-    "title": "DevNet: Validators must upgrade to 0.7.x",
+    "title": "DevNet: Validators must upgrade to 0.7.0",
     "start": "2026-08-17",
     "end": "2026-08-17",
     "description": "",
@@ -61,25 +61,13 @@
   },
   {
     "id": "12560030070",
-    "title": "DevNet New Daml models effective (0.7)",
+    "title": "MainNet: Daml Models from Splice 0.6.12 take effect",
     "start": "2026-08-18",
     "end": "2026-08-18",
     "description": "Specific dar versions to be confirmed",
-    "status": "To Be Confirmed",
-    "network": "DevNet",
-    "type": "Splice Daml Model Effectivity",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12674949596",
-    "title": "MainNet: Traffic-based app rewards (CIP-104) goes live",
-    "start": "2026-08-18",
-    "end": "2026-08-18",
-    "description": "",
     "status": "Approved",
     "network": "MainNet",
-    "type": "Other Network Configuration Change",
+    "type": "Splice Daml Model Effectivity",
     "category": "general",
     "dependsOn": []
   },
@@ -132,6 +120,18 @@
     "dependsOn": []
   },
   {
+    "id": "12674949596",
+    "title": "MainNet: Traffic-based app rewards (CIP-104) goes live",
+    "start": "2026-08-25",
+    "end": "2026-08-25",
+    "description": "",
+    "status": "Approved",
+    "network": "MainNet",
+    "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
     "id": "12560030160",
     "title": "DevNet Breaking Config Changes (0.7)",
     "start": "2026-08-25",
@@ -145,11 +145,11 @@
   },
   {
     "id": "12559962705",
-    "title": "TestNet: Topology Freeze 9am US Eastern / 1300 UTC (starts Aug 25, 24 hours before LSU)",
+    "title": "TestNet: Topology Freeze CANCELLED",
     "start": "2026-08-25",
     "end": "2026-08-25",
     "description": "",
-    "status": "Approved",
+    "status": "To Be Confirmed",
     "network": "TestNet",
     "type": "Protocol Upgrades (LSU)",
     "category": "general",
@@ -169,11 +169,11 @@
   },
   {
     "id": "12559975423",
-    "title": "TestNet LSU (0.7) (+ adopt CantonBFT-based synchronizers)",
+    "title": "TestNet LSU (0.7 Required) CANCELLED",
     "start": "2026-08-26 14:00",
     "end": "2026-08-26 14:00",
     "description": "",
-    "status": "Approved",
+    "status": "To Be Confirmed",
     "network": "TestNet",
     "type": "Protocol Upgrades (LSU)",
     "category": "general",
@@ -253,11 +253,11 @@
   },
   {
     "id": "12266306148",
-    "title": "MainNet Topology Freeze 9am US Eastern / 1300 UTC",
+    "title": "MainNet Topology Freeze CANCELLED",
     "start": "2026-09-04",
     "end": "2026-09-04",
     "description": "",
-    "status": "Approved",
+    "status": "To Be Confirmed",
     "network": "MainNet",
     "type": "Protocol Upgrades (LSU)",
     "category": "general",
@@ -265,11 +265,11 @@
   },
   {
     "id": "12675008989",
-    "title": "MainNet LSU (0.7 Required) : Adopt CantonBFT-based synchronizers",
+    "title": "MainNet LSU (0.7 Required) : CANCELLED",
     "start": "2026-09-05",
     "end": "2026-09-05",
     "description": "",
-    "status": "Approved",
+    "status": "To Be Confirmed",
     "network": "MainNet",
     "type": "Protocol Upgrades (LSU)",
     "category": "general",
@@ -625,7 +625,7 @@
   },
   {
     "id": "12559967045",
-    "title": "MainNet Topology Freeze",
+    "title": "MainNet Topology Freeze (October 2026)",
     "start": "2026-10-09",
     "end": "2026-10-09",
     "description": "",
@@ -637,7 +637,7 @@
   },
   {
     "id": "12559992496",
-    "title": "MainNet LSU (0.8)",
+    "title": "MainNet LSU (0.8) (October 2026)",
     "start": "2026-10-10",
     "end": "2026-10-10",
     "description": "",
@@ -912,6 +912,30 @@
     "dependsOn": []
   },
   {
+    "id": "12690828085",
+    "title": "MainNet: Topology Freeze (November 2026)",
+    "start": "2026-11-06",
+    "end": "2026-11-06",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "MainNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12690942087",
+    "title": "MainNet: Logical Synchronizer Upgrade (November 2026)",
+    "start": "2026-11-07",
+    "end": "2026-11-07",
+    "description": "",
+    "status": "To Be Confirmed",
+    "network": "MainNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
     "id": "12690806399",
     "title": "DevNet upgrades to Splice 0.10.1",
     "start": "2026-11-09",
@@ -956,30 +980,6 @@
     "status": "To Be Confirmed",
     "network": "MainNet",
     "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12690828085",
-    "title": "MainNet: Topology Freeze (November 2026)",
-    "start": "2026-11-13",
-    "end": "2026-11-13",
-    "description": "",
-    "status": "To Be Confirmed",
-    "network": "MainNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12690942087",
-    "title": "MainNet: Logical Synchronizer Upgrade (November 2026)",
-    "start": "2026-11-14",
-    "end": "2026-11-14",
-    "description": "",
-    "status": "To Be Confirmed",
-    "network": "MainNet",
-    "type": "Protocol Upgrades (LSU)",
     "category": "general",
     "dependsOn": []
   },
@@ -9360,18 +9360,6 @@
     "dependsOn": []
   },
   {
-    "id": "12747221304",
-    "title": "TestNet: Miniimum Dar Versions",
-    "start": "2026-08-10",
-    "end": "2026-08-10",
-    "description": "TestNet Minimum Splice dar versions: \namulet   0.1.22\namuletNameService  0.1.23\ndsoGovernance   0.1.28\nvalidatorLifecycle   0.1.8\nwallet   0.1.23\nwalletPayments   0.1.22",
-    "status": "Approved",
-    "network": "TestNet",
-    "type": "Minimum Splice Dar versions",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12560019130",
     "title": "DevNet upgrades to Splice 0.7.1",
     "start": "2026-08-10",
@@ -9380,6 +9368,18 @@
     "status": "Approved",
     "network": "DevNet",
     "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12747221304",
+    "title": "TestNet: Miniimum Dar Versions",
+    "start": "2026-08-10",
+    "end": "2026-08-10",
+    "description": "TestNet Minimum Splice dar versions: \namulet   0.1.22\namuletNameService  0.1.23\ndsoGovernance   0.1.28\nvalidatorLifecycle   0.1.8\nwallet   0.1.23\nwalletPayments   0.1.22",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Minimum Splice Dar versions",
     "category": "general",
     "dependsOn": []
   },
