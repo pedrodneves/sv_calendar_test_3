@@ -60,6 +60,30 @@
     "dependsOn": []
   },
   {
+    "id": "12798054170",
+    "title": "TestNet: Validators must upgrade to 0.6.12",
+    "start": "2026-08-17",
+    "end": "2026-08-17",
+    "description": "",
+    "status": "Approved",
+    "network": "TestNet",
+    "type": "Minimum Splice Versions",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12798073791",
+    "title": "MainNet: Validators must upgrade to 0.6.12",
+    "start": "2026-08-17",
+    "end": "2026-08-17",
+    "description": "",
+    "status": "Approved",
+    "network": "MainNet",
+    "type": "Minimum Splice Versions",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
     "id": "12560030070",
     "title": "MainNet: Daml Models from Splice 0.6.12 take effect",
     "start": "2026-08-18",
