@@ -349,7 +349,7 @@
   },
   {
     "id": "12559980593",
-    "title": "DevNet Topology Freeze",
+    "title": "DevNet Topology Freeze (0.8 Required) (September 2026)",
     "start": "2026-09-22",
     "end": "2026-09-22",
     "description": "",
@@ -373,7 +373,7 @@
   },
   {
     "id": "12559980625",
-    "title": "DevNet LSU (0.8)",
+    "title": "DevNet LSU (0.8 Required) (September 2026)",
     "start": "2026-09-23",
     "end": "2026-09-23",
     "description": "",
@@ -457,7 +457,7 @@
   },
   {
     "id": "12559980652",
-    "title": "TestNet Topology Freeze",
+    "title": "TestNet Topology Freeze (0.8 Required) (September 2026)",
     "start": "2026-09-29",
     "end": "2026-09-29",
     "description": "",
@@ -469,7 +469,7 @@
   },
   {
     "id": "12559980656",
-    "title": "TestNet LSU (0.8)",
+    "title": "TestNet LSU (0.8 Required) (September 2026)",
     "start": "2026-09-30",
     "end": "2026-09-30",
     "description": "",
@@ -553,7 +553,7 @@
   },
   {
     "id": "12559967045",
-    "title": "MainNet Topology Freeze (October 2026)",
+    "title": "MainNet Topology Freeze (0.8 Required) (October 2026)",
     "start": "2026-10-09",
     "end": "2026-10-09",
     "description": "",
@@ -565,7 +565,7 @@
   },
   {
     "id": "12559992496",
-    "title": "MainNet LSU (0.8) (October 2026)",
+    "title": "MainNet LSU (0.8 Required) (October 2026)",
     "start": "2026-10-10",
     "end": "2026-10-10",
     "description": "",
@@ -673,7 +673,7 @@
   },
   {
     "id": "12690882257",
-    "title": "DevNet: Topology Freeze begins",
+    "title": "DevNet: Topology Freeze begins (0.9.x Required) (October 2026)",
     "start": "2026-10-20",
     "end": "2026-10-20",
     "description": "",
@@ -685,7 +685,7 @@
   },
   {
     "id": "12690805352",
-    "title": "DevNet: Logical Synchronizer Upgrade",
+    "title": "DevNet: Logical Synchronizer Upgrade (0.9.x Required) (October 2026)",
     "start": "2026-10-21",
     "end": "2026-10-21",
     "description": "",
@@ -757,7 +757,7 @@
   },
   {
     "id": "12690806082",
-    "title": "TestNet: Topology Freeze (October 2026)",
+    "title": "TestNet: Topology Freeze (0.9.x Required) (October 2026)",
     "start": "2026-10-27",
     "end": "2026-10-27",
     "description": "",
@@ -769,7 +769,7 @@
   },
   {
     "id": "12690774841",
-    "title": "TestNet: Logical Synchronizer Upgrade",
+    "title": "TestNet: Logical Synchronizer Upgrade (0.9.x Required) (October 2026)",
     "start": "2026-10-28",
     "end": "2026-10-28",
     "description": "",
@@ -841,7 +841,7 @@
   },
   {
     "id": "12690828085",
-    "title": "MainNet: Topology Freeze (November 2026)",
+    "title": "MainNet: Topology Freeze (0.9.x Required) (November 2026)",
     "start": "2026-11-06",
     "end": "2026-11-06",
     "description": "",
@@ -853,7 +853,7 @@
   },
   {
     "id": "12690942087",
-    "title": "MainNet: Logical Synchronizer Upgrade (November 2026)",
+    "title": "MainNet: Logical Synchronizer Upgrade (0.9.x Required) (November 2026)",
     "start": "2026-11-07",
     "end": "2026-11-07",
     "description": "",
@@ -961,7 +961,7 @@
   },
   {
     "id": "12690828896",
-    "title": "DevNet: Topology Freeze (November 2026)",
+    "title": "DevNet: Topology Freeze (0.10.x Required) (November 2026)",
     "start": "2026-11-17",
     "end": "2026-11-17",
     "description": "",
@@ -973,7 +973,7 @@
   },
   {
     "id": "12690956490",
-    "title": "DevNet: Logical Synchronizer Upgrade (November 2026)",
+    "title": "DevNet: Logical Synchronizer Upgrade (0.10.x Required) (November 2026)",
     "start": "2026-11-18",
     "end": "2026-11-18",
     "description": "",
@@ -1045,7 +1045,7 @@
   },
   {
     "id": "12690867545",
-    "title": "TestNet: Topology Freeze (November 2026)",
+    "title": "TestNet: Topology Freeze (0.10.x Required) (November 2026)",
     "start": "2026-11-24",
     "end": "2026-11-24",
     "description": "",
@@ -1057,7 +1057,7 @@
   },
   {
     "id": "12690957127",
-    "title": "TestNet: Logical Synchronizer Upgrade (November 2026)",
+    "title": "TestNet: Logical Synchronizer Upgrade (0.10.x Required) (November 2026)",
     "start": "2026-11-25",
     "end": "2026-11-25",
     "description": "",
@@ -1141,7 +1141,7 @@
   },
   {
     "id": "12690943575",
-    "title": "MainNet: Topology Freeze (December 2026)",
+    "title": "MainNet: Topology Freeze (0.10.x Required) (December 2026)",
     "start": "2026-12-11",
     "end": "2026-12-11",
     "description": "",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": "12690852435",
-    "title": "MainNet: Logical Synchronizer Upgrade (December 2026)",
+    "title": "MainNet: Logical Synchronizer Upgrade (0.10.x Required) (December 2026)",
     "start": "2026-12-12",
     "end": "2026-12-12",
     "description": "",
