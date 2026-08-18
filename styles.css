@@ -584,6 +584,34 @@ select::-ms-expand { display: none; }
   border-left-style: dashed;
 }
 
+/* Cancelled events: bright orange-red, overriding the network color so
+   they clearly read as no-longer-happening. Placed after the network
+   rules so it wins on equal specificity. Applies even when the event is
+   also "To Be Confirmed" — cancellation is the more important signal. */
+.event.cancelled,
+.event.cancelled.devnet,
+.event.cancelled.testnet,
+.event.cancelled.mainnet {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: #ff5722;
+  border-left: 4px solid #ff5722;
+}
+
+/* If a cancelled event is also TBC, keep the dashed border but don't let
+   the TBC grayscale wash out the orange-red — cancellation reads first. */
+.event.cancelled.tbc {
+  filter: none;
+  opacity: 0.85;
+}
+
+/* Explicit "Cancelled" status tag — orange-red to match the card. */
+.tag.cancelled-tag {
+  background: rgba(255, 87, 34, 0.25);
+  border-color: #ff5722;
+  color: #ffd5c9;
+  font-style: italic;
+}
+
 /* Explicit "To Be Confirmed" status tag */
 .tag.tbc-tag {
   background: rgba(148, 163, 184, 0.25);
