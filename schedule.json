@@ -1,7 +1,7 @@
 [
   {
     "id": "12560030070",
-    "title": "MainNet: Daml Models from Splice 0.6.12 take effect",
+    "title": "MainNet: Daml Models introduced by Splice 0.6.12 take effect",
     "start": "2026-08-18",
     "end": "2026-08-18",
     "description": "Specific dar versions to be confirmed",
@@ -61,7 +61,7 @@
   },
   {
     "id": "12560030160",
-    "title": "DevNet Breaking Config Changes (0.7)",
+    "title": "DevNet Breaking Config Changes (0.7.x Required)",
     "start": "2026-08-25",
     "end": "2026-08-25",
     "description": "",
@@ -73,7 +73,7 @@
   },
   {
     "id": "12559962705",
-    "title": "TestNet: Topology Freeze",
+    "title": "TestNet: Topology Freeze (0.7.x Required) (August 2026)",
     "start": "2026-08-25",
     "end": "2026-08-25",
     "description": "",
@@ -84,20 +84,8 @@
     "dependsOn": []
   },
   {
-    "id": "12559975421",
-    "title": "TestNet New Daml models effective (0.7)",
-    "start": "2026-08-25",
-    "end": "2026-08-25",
-    "description": "",
-    "status": "To Be Confirmed",
-    "network": "TestNet",
-    "type": "Splice Daml Model Effectivity",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559975423",
-    "title": "TestNet LSU (0.7 Required)",
+    "title": "TestNet LSU (0.7.x Required) (August 2026)",
     "start": "2026-08-26 14:00",
     "end": "2026-08-26 14:00",
     "description": "",
@@ -157,25 +145,13 @@
   },
   {
     "id": "12559993034",
-    "title": "TestNet Breaking Config Changes (0.7)",
+    "title": "TestNet Breaking Config Changes (0.7.x Required)",
     "start": "2026-09-01",
     "end": "2026-09-01",
     "description": "",
     "status": "To Be Confirmed",
     "network": "TestNet",
     "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559975642",
-    "title": "MainNet new Daml models effective (0.7)",
-    "start": "2026-09-01",
-    "end": "2026-09-01",
-    "description": "",
-    "status": "To Be Confirmed",
-    "network": "MainNet",
-    "type": "Splice Daml Model Effectivity",
     "category": "general",
     "dependsOn": []
   },
@@ -193,7 +169,7 @@
   },
   {
     "id": "12675008989",
-    "title": "MainNet LSU (0.7 Required)",
+    "title": "MainNet LSU (0.7.x Required)",
     "start": "2026-09-05",
     "end": "2026-09-05",
     "description": "",
@@ -241,7 +217,7 @@
   },
   {
     "id": "12559998077",
-    "title": "MainNet breaking config change (0.7)",
+    "title": "MainNet breaking config change (0.7.x Required)",
     "start": "2026-09-08",
     "end": "2026-09-08",
     "description": "",
@@ -349,7 +325,7 @@
   },
   {
     "id": "12559980593",
-    "title": "DevNet Topology Freeze (0.8 Required) (September 2026)",
+    "title": "DevNet Topology Freeze (0.8.x Required) (September 2026)",
     "start": "2026-09-22",
     "end": "2026-09-22",
     "description": "",
@@ -361,7 +337,7 @@
   },
   {
     "id": "12559980594",
-    "title": "DevNet New Daml models effective (0.8)",
+    "title": "DevNet New Daml models introduced by Splice 0.8.x take effect",
     "start": "2026-09-22",
     "end": "2026-09-22",
     "description": "",
@@ -373,7 +349,7 @@
   },
   {
     "id": "12559980625",
-    "title": "DevNet LSU (0.8 Required) (September 2026)",
+    "title": "DevNet LSU (0.8.x Required) (September 2026)",
     "start": "2026-09-23",
     "end": "2026-09-23",
     "description": "",
@@ -433,7 +409,7 @@
   },
   {
     "id": "12559980630",
-    "title": "DevNet breaking config change (0.8)",
+    "title": "DevNet breaking config change (0.8.x Required)",
     "start": "2026-09-29",
     "end": "2026-09-29",
     "description": "",
@@ -445,7 +421,7 @@
   },
   {
     "id": "12559980632",
-    "title": "TestNet New Daml models effective (0.8)",
+    "title": "TestNet: Daml models introduced by Splice 0.8.x take effect",
     "start": "2026-09-29",
     "end": "2026-09-29",
     "description": "",
@@ -457,7 +433,7 @@
   },
   {
     "id": "12559980652",
-    "title": "TestNet Topology Freeze (0.8 Required) (September 2026)",
+    "title": "TestNet Topology Freeze (0.8.x Required) (September 2026)",
     "start": "2026-09-29",
     "end": "2026-09-29",
     "description": "",
@@ -469,7 +445,7 @@
   },
   {
     "id": "12559980656",
-    "title": "TestNet LSU (0.8 Required) (September 2026)",
+    "title": "TestNet LSU (0.8.x Required) (September 2026)",
     "start": "2026-09-30",
     "end": "2026-09-30",
     "description": "",
@@ -529,7 +505,7 @@
   },
   {
     "id": "12559980658",
-    "title": "TestNet breaking config change (Splice 0.8)",
+    "title": "TestNet breaking config change (Splice 0.8.x Required)",
     "start": "2026-10-06",
     "end": "2026-10-06",
     "description": "",
@@ -541,7 +517,7 @@
   },
   {
     "id": "12559967044",
-    "title": "MainNet new Daml models effective (0.8)",
+    "title": "MainNet: Daml models introduced by Splice 0.8.x take effect",
     "start": "2026-10-06",
     "end": "2026-10-06",
     "description": "",
@@ -553,7 +529,7 @@
   },
   {
     "id": "12559967045",
-    "title": "MainNet Topology Freeze (0.8 Required) (October 2026)",
+    "title": "MainNet Topology Freeze (0.8.x Required) (October 2026)",
     "start": "2026-10-09",
     "end": "2026-10-09",
     "description": "",
@@ -661,7 +637,7 @@
   },
   {
     "id": "12690784582",
-    "title": "DevNet: Daml models for Splice 0.9.x take effect",
+    "title": "DevNet: Daml models introduced by Splice 0.9.x take effect",
     "start": "2026-10-20",
     "end": "2026-10-20",
     "description": "",
@@ -745,7 +721,7 @@
   },
   {
     "id": "12690776372",
-    "title": "TestNet: New Daml models from Splice 0.9.x take effect",
+    "title": "TestNet: Daml models introduced by Splice 0.9.x take effect",
     "start": "2026-10-27",
     "end": "2026-10-27",
     "description": "",
@@ -817,7 +793,7 @@
   },
   {
     "id": "12690806166",
-    "title": "TestNet: Breaking configuration changes from Splice 0.9.x take effect",
+    "title": "TestNet: Breaking configuration changes introduced by Splice 0.9.x take effect",
     "start": "2026-11-03",
     "end": "2026-11-03",
     "description": "",
@@ -1160,18 +1136,6 @@
     "status": "To Be Confirmed",
     "network": "MainNet",
     "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12690885403",
-    "title": "All Networks: Pause all network-wide changes until 2027-01-11",
-    "start": "2026-12-15",
-    "end": "2026-12-15",
-    "description": "",
-    "status": "To Be Confirmed",
-    "network": "All",
-    "type": "Other Network Configuration Change",
     "category": "general",
     "dependsOn": []
   },
@@ -9373,7 +9337,7 @@
   },
   {
     "id": "12560030068",
-    "title": "DevNet: Validators must upgrade to 0.7.0",
+    "title": "DevNet: Validators must upgrade to 0.7.x",
     "start": "2026-08-17",
     "end": "2026-08-17",
     "description": "",
