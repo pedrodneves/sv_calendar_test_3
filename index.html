@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=18" />
+  <link rel="stylesheet" href="./styles.css?v=19" />
 </head>
 
 <body>
@@ -1156,8 +1156,14 @@
       // relying on color alone.
       const isTBC = String(event.status || '').trim().toLowerCase() === 'to be confirmed';
 
+      // Cancelled events (status "Cancelled" in the board) get a bright
+      // orange-red treatment that overrides the normal network color so
+      // they clearly read as no-longer-happening.
+      const isCancelled = String(event.status || '').trim().toLowerCase() === 'cancelled';
+
       eventDiv.className = colorClass ? `event ${colorClass}` : 'event';
       if (isTBC) eventDiv.classList.add('tbc');
+      if (isCancelled) eventDiv.classList.add('cancelled');
 
       // Title
       const title = document.createElement('div');
@@ -1176,6 +1182,15 @@
         tbcTag.className = 'tag tbc-tag';
         tbcTag.textContent = 'To Be Confirmed';
         meta.appendChild(tbcTag);
+      }
+
+      // "Cancelled" tag — explicit text status so cancellation is clear
+      // even without relying on color.
+      if (isCancelled) {
+        const cancelTag = document.createElement('span');
+        cancelTag.className = 'tag cancelled-tag';
+        cancelTag.textContent = 'Cancelled';
+        meta.appendChild(cancelTag);
       }
 
       // Time tag — shown only for events that have an actual time
