@@ -73,7 +73,7 @@
   },
   {
     "id": "12559962705",
-    "title": "TestNet: Topology Freeze CANCELLED",
+    "title": "TestNet: Topology Freeze",
     "start": "2026-08-25",
     "end": "2026-08-25",
     "description": "",
@@ -97,7 +97,7 @@
   },
   {
     "id": "12559975423",
-    "title": "TestNet LSU (0.7 Required) CANCELLED",
+    "title": "TestNet LSU (0.7 Required)",
     "start": "2026-08-26 14:00",
     "end": "2026-08-26 14:00",
     "description": "",
@@ -181,7 +181,7 @@
   },
   {
     "id": "12266306148",
-    "title": "MainNet Topology Freeze CANCELLED",
+    "title": "MainNet Topology Freeze",
     "start": "2026-09-04",
     "end": "2026-09-04",
     "description": "",
@@ -193,7 +193,7 @@
   },
   {
     "id": "12675008989",
-    "title": "MainNet LSU (0.7 Required) : CANCELLED",
+    "title": "MainNet LSU (0.7 Required)",
     "start": "2026-09-05",
     "end": "2026-09-05",
     "description": "",
