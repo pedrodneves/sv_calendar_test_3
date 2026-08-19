@@ -1,17 +1,5 @@
 [
   {
-    "id": "12560030070",
-    "title": "MainNet: Daml Models introduced by Splice 0.6.12 take effect",
-    "start": "2026-08-18",
-    "end": "2026-08-18",
-    "description": "Specific dar versions to be confirmed",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Splice Daml Model Effectivity",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12560030157",
     "title": "DevNet upgrades to Splice 0.7.4",
     "start": "2026-08-24",
@@ -9392,6 +9380,18 @@
     "status": "Confirmed",
     "network": "MainNet",
     "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12560030070",
+    "title": "MainNet: Daml Models introduced by Splice 0.6.12 take effect",
+    "start": "2026-08-18",
+    "end": "2026-08-18",
+    "description": "Specific dar versions to be confirmed",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Splice Daml Model Effectivity",
     "category": "general",
     "dependsOn": []
   }
