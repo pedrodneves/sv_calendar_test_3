@@ -1,977 +1,1861 @@
-/* =============================================================
-   SV Operations Schedule — stylesheet
-   Extracted from the original inline <style> block and extended
-   with the new Week / Day / List views and connected-event UI.
-   ============================================================= */
-
-/* ---- Theme tokens (colors, shared values) ------------------ */
-:root {
-  --bg: #03030a;                       /* page base color */
-  --panel: #10091f;                    /* panel/card base color */
-  --purple: #7c4dff;                   /* primary accent */
-  --purple-soft: #c99cff;              /* lighter accent (labels/headings) */
-  --green: #43d17a;                    /* "source" pill accent */
-  --text: #f7f4ff;                     /* main text color */
-  --muted: #cdb8ef;                    /* secondary/muted text */
-  --border: rgba(124, 77, 255, 0.65);  /* standard panel border */
-}
-
-/* Universal box-sizing so padding never breaks layout widths */
-* { box-sizing: border-box; }
-
-/* ---- Page shell -------------------------------------------- */
-body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  /* Layered gradient: soft purple glow top-left + vertical fade */
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.22), transparent 35%),
-    linear-gradient(180deg, #03030a 0%, #070711 100%);
-  color: var(--text);
-  padding: 28px 20px;
-}
-
-/* Centered content column */
-.page { max-width: 1500px; margin: 0 auto; }
-
-/* ---- Header ------------------------------------------------- */
-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
-.subtitle { margin-top: 8px; color: var(--muted); }
-
-/* Right-hand cluster in the header: source pill + list-view toggle */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Green "Source: monday.com" pill */
-.source-pill {
-  border: 1px solid var(--green);
-  color: var(--green);
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 13px;
-  white-space: nowrap;
-}
-
-/* Purple List-view / Calendar-view toggle pill (top-right) */
-.view-toggle-pill {
-  border: 1px solid var(--purple);
-  background: var(--purple);
-  color: #ffffff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.view-toggle-pill:hover { filter: brightness(1.1); }
-
-/* ---- Controls bar ------------------------------------------ */
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
-  padding: 16px 18px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
-}
-
-/* Each row is its own flex line. */
-.toolbar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-/* Row 1: nav on the left, view switcher pushed to the right. */
-.toolbar-row-top { justify-content: space-between; }
-.nav-group { display: flex; gap: 8px; }
-
-/* Row 2: search grows, filters sit beside it. */
-.toolbar-row-filters #search { flex: 1 1 220px; min-width: 160px; }
-.toolbar-row-filters #networkFilter { flex: 0 1 auto; min-width: 150px; }
-.toolbar-row-filters .type-filter-cell { flex: 0 1 auto; }
-
-/* Row 3: utility actions, right-aligned, with a divider above. */
-.toolbar-row-actions {
-  justify-content: flex-end;
-  gap: 8px;
-  border-top: 1px solid rgba(124, 77, 255, 0.18);
-  padding-top: 12px;
-}
-
-/* Action buttons (Reset / Copy link / Subscribe) with leading icons. */
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 10px;
-  background: transparent;
-  border: 1px solid rgba(201, 156, 255, 0.25);
-  color: #a89cc0;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
-}
-.action-btn:hover {
-  border-color: var(--purple-soft);
-  color: var(--purple-soft);
-  background: rgba(124, 77, 255, 0.1);
-}
-.action-btn .action-ic { width: 15px; height: 15px; flex: 0 0 auto; }
-
-/* Subscribe is the primary action — a touch of accent. */
-.action-btn-primary {
-  background: rgba(124, 77, 255, 0.18);
-  border-color: rgba(201, 156, 255, 0.5);
-  color: var(--purple-soft);
-}
-.action-btn-primary:hover {
-  background: rgba(124, 77, 255, 0.3);
-  border-color: var(--purple-soft);
-}
-
-.btn-ic { opacity: 0.8; }
-
-/* On phones, let the action buttons stretch and center rather than crowd
-   the right edge. */
-@media (max-width: 560px) {
-  .toolbar-row-top { flex-direction: column; align-items: stretch; }
-  .nav-group, .view-switcher { justify-content: space-between; }
-  .nav-group button, .view-switcher button { flex: 1 1 auto; }
-  .toolbar-row-actions { justify-content: center; }
-}
-
-button, input, select {
-  background: #0c0a18;
-  border: 1px solid rgba(201, 156, 255, 0.45);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 12px 14px;
-  font-size: 15px;
-}
-
-button { cursor: pointer; }
-input::placeholder { color: #9b8bb7; }
-
-/* Replace the native dropdown arrow with a custom chevron so we can
-   position it with a proper gap from the right border. The native
-   arrow can't be moved with padding, so we hide it and draw our own
-   as an SVG background image. */
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Chevron drawn in the muted purple; sits 14px from the right edge.
-     Right padding keeps the option text from overlapping it. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23cdb8ef' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 38px;
-}
-/* Hide the arrow on IE/legacy Edge too */
-select::-ms-expand { display: none; }
-
-/* View switcher (Month / Week / Day) grouped on the right */
-.view-switcher {
-  display: inline-flex;
-  gap: 6px;
-}
-
-.view-switcher button {
-  padding: 10px 16px;
-  font-weight: 700;
-}
-
-/* Currently active view button */
-.view-switcher button.active {
-  background: var(--purple);
-  border-color: var(--purple);
-  color: #ffffff;
-}
-
-/* Activity-type dropdown paired with its info button */
-.type-filter-cell {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  min-width: 0;
-}
-.type-filter-cell select { flex: 1 1 auto; min-width: 0; }
-
-/* Round info (i) button — sized to match the input row height */
-.info-btn {
-  flex: 0 0 auto;
-  width: 44px;
-  align-self: stretch;
-  border-radius: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-style: italic;
-  font-weight: 900;
-  font-size: 16px;
-  padding: 0;
-}
-
-/* Clear button: resets search + filters. Sits after the "i", styled to
-   match the other toolbar buttons but sized to its text. */
-.clear-btn {
-  flex: 0 0 auto;
-  align-self: stretch;
-  border-radius: 12px;
-  padding: 0 16px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.info-btn:hover { border-color: var(--purple-soft); color: var(--purple-soft); }
-
-/* Info popover (hidden until toggled) — centered modal */
-.info-popover {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(560px, calc(100vw - 40px));
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
-  padding: 26px 30px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.98), rgba(8, 8, 18, 0.98));
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-  z-index: 50;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-.info-popover.hidden { display: none; }
-.info-popover h3 { margin: 0 0 8px; padding-right: 28px; color: var(--purple-soft); font-size: 22px; font-weight: 900; }
-.info-popover ul { margin: 8px 0 0; padding-left: 18px; }
-.info-popover li { margin-bottom: 4px; }
-
-/* Secondary heading inside the popover (e.g. "Activity Types") */
-.info-popover .info-section-title {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(201, 156, 255, 0.22);
-}
-
-/* Activity-type definition list */
-.activity-types { margin: 14px 0 0; }
-.activity-types dt {
-  color: var(--text);
-  font-weight: 800;
-  font-size: 15px;
-  margin-top: 16px;
-}
-.activity-types dt:first-child { margin-top: 0; }
-.activity-types dd {
-  margin: 4px 0 0;
-  color: var(--muted);
-}
-
-/* Close (x) button inside the info popover */
-.info-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border-radius: 8px;
-  font-size: 20px;
-  line-height: 1;
-  font-weight: 700;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid rgba(201, 156, 255, 0.3);
-}
-.info-close:hover { color: var(--text); background: rgba(201, 156, 255, 0.12); }
-
-/* Dim backdrop behind the modal */
-.info-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(3, 3, 10, 0.6);
-  z-index: 49;
-}
-.info-backdrop.hidden { display: none; }
-
-/* ---- Period title (month / week range / single day) -------- */
-.month-title {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 900;
-  margin: 20px 0 18px;
-}
-
-/* ---- Month grid -------------------------------------------- */
-.weekdays,
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.weekdays { margin-bottom: 10px; }
-
-.weekday {
-  color: var(--purple-soft);
-  font-weight: 900;
-  text-align: center;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-}
-
-.day {
-  height: 300px;
-  border: 1px solid rgba(124, 77, 255, 0.7);
-  border-radius: 14px;
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.18), transparent 45%),
-    linear-gradient(135deg, #1a0f34, #070812);
-  padding: 12px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;   /* anchor for the top-right Splice "i" marker */
-}
-
-/* ---- Splice version marker --------------------------------- */
-/* Small "i" pinned to the top-right of every day cell, aligned with
-   the day number. The tooltip itself lives on <body> (see
-   .splice-tooltip below) so it is never clipped by the cell. */
-.splice-marker {
-  /* Lives in a flex header row beside the day number, so the browser
-     aligns them on one line. margin-left:auto pushes it to the right. */
-  flex: 0 0 auto;
-  margin-left: auto;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 156, 255, 0.6);
-  background: rgba(124, 77, 255, 0.18);
-  color: var(--purple-soft);
-  font-size: 12px;
-  font-weight: 800;
-  font-style: italic;
-  line-height: 16px;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  z-index: 5;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-/* Header row: day number left, Splice "i" right, vertically aligned. */
-.day-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  position: sticky;
-  top: 0;
-}
-.day-header .day-number { margin-bottom: 0; }
-}
-
-.splice-marker:hover {
-  background: rgba(124, 77, 255, 0.4);
-  border-color: var(--purple-soft);
-}
-
-/* ---- Shared Splice tooltip (attached to <body>) ------------ */
-/* One element, position: fixed, floats above the whole calendar so no
-   day cell can clip it. Toggled via the .visible class from JS. */
-.splice-tooltip {
-  position: fixed;
-  z-index: 9999;
-  min-width: 150px;
-  padding: 8px 11px;
-  background: #0f1225;
-  border: 1px solid rgba(201, 156, 255, 0.4);
-  border-radius: 8px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
-  white-space: nowrap;
-  pointer-events: none;   /* never intercepts the mouse */
-  opacity: 0;
-  visibility: hidden;     /* instant hide; no fade delay */
-}
-
-.splice-tooltip.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* When pinned open (clicked), the tooltip becomes interactive so its
-   DAR links can be clicked. Hover-only tooltips stay pass-through. */
-.splice-tooltip.pinned {
-  pointer-events: auto;
-}
-
-/* Clickable DAR rows: pointer cursor + subtle hover highlight. Only
-   active when the tooltip is pinned (otherwise pointer-events: none). */
-.splice-dar-link {
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 1px 4px;
-  margin: 0 -4px;
-  transition: background 0.12s;
-}
-.splice-tooltip.pinned .splice-dar-link:hover {
-  background: rgba(124, 77, 255, 0.25);
-}
-
-/* Header sits above the network rows, separated by a hairline rule. */
-.splice-tooltip-header {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--purple-soft);
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid rgba(201, 156, 255, 0.2);
-}
-
-/* Extra breathing room above the second header (the DAR one) — the first
-   header sits flush at the top, so only a non-first header gets it. */
-.splice-tooltip-header:not(:first-child) {
-  padding-top: 8px;
-}
-
-.splice-tooltip-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  font-size: 11px;
-  line-height: 1.75;
-}
-
-.splice-tooltip-net { font-weight: 700; }
-.splice-tooltip-net.devnet  { color: #6ea8ff; }
-.splice-tooltip-net.testnet { color: #e6c34a; }
-.splice-tooltip-net.mainnet { color: #4caf7d; }
-.splice-tooltip-ver { color: var(--text); }
-
-/* Release-notes footer link at the bottom of the tooltip. Separated from
-   the version rows by a hairline rule, only clickable when pinned. */
-.splice-tooltip-link {
-  display: block;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(201, 156, 255, 0.2);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--purple-soft);
-  text-decoration: none;
-}
-.splice-tooltip.pinned .splice-tooltip-link:hover {
-  text-decoration: underline;
-}
-
-
-.day.outside { opacity: 0.35; }
-
-.day.today {
-  border-color: var(--purple-soft);
-  box-shadow: 0 0 18px rgba(201, 156, 255, 0.25);
-}
-
-/* Clickable day cells (Month + Week views) open the Day view */
-.day.clickable { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
-.day.clickable:hover {
-  border-color: var(--purple-soft);
-  box-shadow: 0 0 16px rgba(201, 156, 255, 0.28);
-}
-
-.day-number {
-  font-weight: 900;
-  color: var(--purple-soft);
-  margin-bottom: 10px;
-}
-
-/* ---- Week view --------------------------------------------- */
-/* Week view reuses .weekdays + .calendar but makes each column
-   taller and lets it grow with content. */
-.calendar.week-grid .day {
-  height: auto;
-  min-height: 420px;
-}
-
-/* ---- Day view ---------------------------------------------- */
-/* A single wide panel with events grouped by activity type. */
-.day-view {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.15), transparent 45%),
-    linear-gradient(135deg, #14092b, #070812);
-  padding: 22px 24px;
-}
-
-.day-view .day-view-heading {
-  color: var(--purple-soft);
-  font-weight: 900;
-  font-size: 22px;
-  margin: 0 0 12px;
-}
-
-/* Day view header row: title left, Splice "i" aligned right. */
-.day-view-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.day-view-header .day-view-heading { margin: 0; }
-.day-view-header .splice-marker { margin-left: auto; }
-
-/* Activity-type grouping heading inside the day/list views */
-.type-group-title {
-  color: var(--purple-soft);
-  font-weight: 900;
-  font-size: 16px;
-  margin: 18px 0 10px;
-}
-
-/* Empty-state message */
-.empty-note {
-  color: var(--muted);
-  font-style: italic;
-  padding: 8px 0;
-}
-
-/* ---- Event card -------------------------------------------- */
-.event {
-  border: 1px solid rgba(201, 156, 255, 0.35);
-  border-left: 4px solid rgba(201, 156, 255, 0.45);
-  border-radius: 12px;
-  background: rgba(124, 77, 255, 0.22);
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  line-height: 1.4;
-  /* Break long unbroken strings (e.g. "TransferCommandSendTrigger") so
-     they wrap inside the card instead of overflowing the border. */
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-/* Larger event cards in the roomy day/list views */
-.day-view .event,
-.list-view .event {
-  font-size: 15px;
-  padding: 14px 16px;
-}
-
-.event.devnet {
-  background: rgba(37, 99, 235, 0.28);
-  border-color: #2563eb;
-  border-left: 4px solid #2563eb;
-}
-
-.event.testnet {
-  background: rgba(250, 204, 21, 0.16);
-  border-color: #facc15;
-  border-left: 4px solid #facc15;
-}
-
-.event.mainnet {
-  background: rgba(22, 163, 74, 0.28);
-  border-color: #16a34a;
-  border-left: 4px solid #16a34a;
-}
-
-/* "To Be Confirmed" events: subdued / muted so they read as tentative.
-   Desaturates whatever network color the card has, dims it, and switches
-   to a dashed border. The explicit "To Be Confirmed" tag (below) carries
-   the status in text so it doesn't depend on color. */
-.event.tbc {
-  filter: grayscale(0.7);
-  opacity: 0.7;
-  border-style: dashed;
-  border-left-style: dashed;
-}
-
-/* Cancelled events: bright orange-red, overriding the network color so
-   they clearly read as no-longer-happening. Placed after the network
-   rules so it wins on equal specificity. Applies even when the event is
-   also "To Be Confirmed" — cancellation is the more important signal. */
-.event.cancelled,
-.event.cancelled.devnet,
-.event.cancelled.testnet,
-.event.cancelled.mainnet {
-  background: rgba(239, 68, 68, 0.22);
-  border-color: #ff5722;
-  border-left: 4px solid #ff5722;
-}
-
-/* If a cancelled event is also TBC, keep the dashed border but don't let
-   the TBC grayscale wash out the orange-red — cancellation reads first. */
-.event.cancelled.tbc {
-  filter: none;
-  opacity: 0.85;
-}
-
-/* Explicit "Cancelled" status tag — orange-red to match the card. */
-.tag.cancelled-tag {
-  background: rgba(255, 87, 34, 0.25);
-  border-color: #ff5722;
-  color: #ffd5c9;
-  font-style: italic;
-}
-
-/* ---- Subscribe popover ------------------------------------- */
-.subscribe-popover {
-  position: fixed;
-  z-index: 9999;
-  width: 320px;
-  max-width: calc(100vw - 16px);
-  padding: 16px;
-  background: #0f1225;
-  border: 1px solid rgba(201, 156, 255, 0.4);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  color: var(--text);
-}
-.subscribe-title {
-  font-weight: 800;
-  color: var(--purple-soft);
-  margin-bottom: 6px;
-}
-.subscribe-desc {
-  font-size: 12px;
-  color: var(--text);
-  opacity: 0.8;
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-.subscribe-google {
-  display: block;
-  text-align: center;
-  padding: 9px 12px;
-  background: #7c4dff;
-  color: #fff;
-  border-radius: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  margin-bottom: 12px;
-}
-.subscribe-google:hover { background: #8f66ff; }
-.subscribe-manual-label {
-  font-size: 11px;
-  color: var(--text);
-  opacity: 0.7;
-  margin-top: 10px;
-  line-height: 1.5;
-}
-.subscribe-url-row { display: flex; gap: 6px; margin-bottom: 12px; }
-.subscribe-url {
-  flex: 1 1 auto;
-  min-width: 0;
-  padding: 6px 8px;
-  font-size: 11px;
-  background: #0c0a18;
-  border: 1px solid rgba(201, 156, 255, 0.35);
-  border-radius: 6px;
-  color: var(--text);
-}
-.subscribe-copy {
-  flex: 0 0 auto;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* Explicit "To Be Confirmed" status tag */
-.tag.tbc-tag {
-  background: rgba(148, 163, 184, 0.25);
-  border-color: rgba(148, 163, 184, 0.7);
-  color: #e5e7eb;
-  font-style: italic;
-}
-
-.title {
-  font-weight: 600;
-  margin-bottom: 6px;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-/* Inline links to CIPs (Canton Improvement Proposals) */
-.cip-link {
-  color: var(--purple-soft);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  font-weight: inherit;
-  white-space: nowrap;
-}
-.cip-link:hover { color: #ffffff; }
-
-.meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-/* ---- Tags (badges) ----------------------------------------- */
-.tag {
-  font-size: 10px;
-  color: var(--muted);
-  border: 1px solid rgba(201, 156, 255, 0.28);
-  border-radius: 999px;
-  padding: 3px 7px;
-  font-weight: 700;
-  background: rgba(201, 156, 255, 0.08);
-}
-
-/* Slightly bigger tags in day/list views */
-.day-view .tag,
-.list-view .tag { font-size: 12px; padding: 4px 9px; }
-
-.tag.devnet {
-  background: #2563eb;
-  border-color: #2563eb;
-  color: #ffffff;
-}
-
-.tag.testnet {
-  background: #fde047;
-  border-color: #fde047;
-  color: #111827;
-}
-
-.tag.mainnet {
-  background: #16a34a;
-  border-color: #16a34a;
-  color: #ffffff;
-}
-
-/* "All day" / time tag — neutral styling */
-.tag.time-tag {
-  background: rgba(201, 156, 255, 0.12);
-  border-color: rgba(201, 156, 255, 0.4);
-  color: var(--text);
-}
-
-/* Link tag ("→ LSU Jul 8" / "← Freeze Jul 7") on connected events */
-.tag.link-tag {
-  background: rgba(124, 77, 255, 0.35);
-  border-color: var(--purple);
-  color: #ffffff;
-}
-
-.description { white-space: pre-wrap; overflow-wrap: break-word; word-break: break-word; }
-
-/* ---- Network sub-sections inside a description ------------- */
-.network-section {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(201, 156, 255, 0.25);
-}
-
-.network-title {
-  color: var(--purple-soft);
-  font-weight: 900;
-  text-decoration: underline;
-  margin-bottom: 4px;
-}
-
-/* ---- Connected-event block --------------------------------- */
-/* Shows the counterpart event (freeze <-> LSU) with a jump link. */
-.connected-block {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed rgba(201, 156, 255, 0.4);
-}
-
-.connected-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--purple-soft);
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-/* The nested counterpart card is a quieter version of an event */
-.connected-card {
-  border: 1px solid rgba(201, 156, 255, 0.25);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 12px;
-}
-
-.connected-card .connected-title {
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-/* "View on <date> →" jump button */
-.jump-btn {
-  display: inline-block;
-  margin-top: 10px;
-  background: var(--purple);
-  border: 1px solid var(--purple);
-  color: #ffffff;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.jump-btn:hover { filter: brightness(1.1); }
-
-/* ---- List view --------------------------------------------- */
-/* Two-column: mini date-picker on the left, agenda on the right. */
-.list-view {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-/* Mini month picker */
-.mini-cal {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
-  padding: 18px;
-  position: sticky;
-  top: 20px;
-}
-
-.mini-cal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.mini-cal-header .mini-title {
-  color: var(--purple-soft);
-  font-weight: 900;
-  font-size: 18px;
-}
-
-.mini-cal-header button {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  border-radius: 10px;
-}
-
-.mini-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  text-align: center;
-}
-
-.mini-grid .mini-weekday {
-  color: var(--purple-soft);
-  font-weight: 900;
-  font-size: 12px;
-  padding-bottom: 4px;
-}
-
-.mini-grid .mini-day {
-  padding: 8px 0;
-  border-radius: 10px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.mini-grid .mini-day.outside { color: #574a75; cursor: default; }
-.mini-grid .mini-day:not(.outside):hover { background: rgba(124, 77, 255, 0.25); }
-
-/* Selected / current day in the mini picker */
-.mini-grid .mini-day.selected {
-  background: var(--purple);
-  color: #ffffff;
-  font-weight: 800;
-}
-
-/* Agenda column */
-.agenda { min-width: 0; }
-
-/* One date block in the agenda */
-.agenda-day { margin-bottom: 26px; }
-
-.agenda-date {
-  color: var(--purple-soft);
-  font-weight: 900;
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-/* List view date header row: date on the left, Splice "i" aligned right. */
-.agenda-date-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.agenda-date-row .agenda-date { margin-bottom: 0; }
-.agenda-date-row .splice-marker { margin-left: auto; }
-
-/* ---- Footer ------------------------------------------------ */
-.footer-meta {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted);
-  margin-top: 18px;
-  font-size: 14px;
-}
-
-/* ---- Responsive -------------------------------------------- */
-@media (max-width: 900px) {
-  header { flex-direction: column; align-items: flex-start; }
-  .day { height: 240px; }
-  .event { font-size: 11px; }
-  .list-view { grid-template-columns: 1fr; }
-  .mini-cal { position: static; }
-}
-
-@media (max-width: 700px) {
-  body { padding: 18px 12px; }
-  h1 { font-size: 28px; }
-  .weekdays { display: none; }
-  .calendar { display: block; }
-
-  .day {
-    height: auto;
-    min-height: 120px;
-    margin-bottom: 14px;
-  }
-
-  .day.outside { display: none; }
-
-  .day-number {
-    font-size: 20px;
-    color: var(--purple-soft);
-    border-bottom: 1px solid rgba(201, 156, 255, 0.25);
-    padding-bottom: 8px;
-  }
-
-  .event { font-size: 14px; }
-
-  .footer-meta {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>SV Operations Schedule</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- CSS now lives in its own file (was previously inline). -->
+  <link rel="stylesheet" href="./styles.css?v=22" />
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>SV Operations Schedule</h1>
+        <div class="subtitle">Scheduled Items</div>
+      </div>
+
+      <!-- Right side: source pill + the calendar/list mode toggle -->
+      <div class="header-actions">
+        <div class="source-pill">Source: monday.com</div>
+        <button id="listToggle" class="view-toggle-pill" onclick="toggleListMode()">List view</button>
+      </div>
+    </header>
+
+    <section class="controls">
+      <!-- Row 1: date navigation (left) + view switcher (right) -->
+      <div class="toolbar-row toolbar-row-top">
+        <div class="nav-group">
+          <button onclick="previousPeriod()"><span class="btn-ic">&#8592;</span> Previous</button>
+          <button onclick="goToday()">Today</button>
+          <button onclick="nextPeriod()">Next <span class="btn-ic">&#8594;</span></button>
+        </div>
+
+        <div class="view-switcher">
+          <button id="btnMonth" onclick="setView('month')">Month</button>
+          <button id="btnWeek" onclick="setView('week')">Week</button>
+          <button id="btnDay" onclick="setView('day')">Day</button>
+        </div>
+      </div>
+
+      <!-- Row 2: search + filters -->
+      <div class="toolbar-row toolbar-row-filters">
+        <input id="search" placeholder="Search approved events..." />
+
+        <select id="networkFilter">
+          <option value="">All Networks</option>
+        </select>
+
+        <div class="type-filter-cell">
+          <select id="typeFilter">
+            <option value="">All activity types</option>
+          </select>
+          <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
+        </div>
+      </div>
+
+      <!-- Row 3: utility actions, right-aligned -->
+      <div class="toolbar-row toolbar-row-actions">
+        <button class="action-btn" onclick="clearFilters()" title="Reset search, filters, and view">
+          <svg class="action-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+          Reset
+        </button>
+        <button id="copyLinkBtn" class="action-btn" onclick="copyShareLink()" title="Copy a link to this filtered view">
+          <svg class="action-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15l6-6"/><path d="M11 6l.5-.5a4 4 0 0 1 6 6l-1 1"/><path d="M13 18l-.5.5a4 4 0 0 1-6-6l1-1"/></svg>
+          Copy link
+        </button>
+        <button id="subscribeBtn" class="action-btn action-btn-primary" onclick="subscribeCalendar()" title="Subscribe to this calendar (.ics) in Google Calendar, Apple, or Outlook">
+          <svg class="action-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+          Subscribe
+        </button>
+      </div>
+    </section>
+
+    <!-- Dim backdrop behind the info modal -->
+    <div id="infoBackdrop" class="info-backdrop hidden" onclick="closeInfo()"></div>
+
+    <!-- Info popover, hidden by default -->
+    <div id="infoPopover" class="info-popover hidden">
+      <!-- Close (x) button in the top-right corner -->
+      <button class="info-close" onclick="closeInfo()" aria-label="Close">×</button>
+      <h3>About this schedule</h3>
+      <div>
+        Items <strong>confirmed</strong> by the Splice engineering team are shown in solid colors.
+        Colors indicate the network:
+      </div>
+      <ul>
+        <li><strong>DevNet</strong> — blue</li>
+        <li><strong>TestNet</strong> — yellow</li>
+        <li><strong>MainNet</strong> — green</li>
+        <li><strong>Events with dashed outlines are not yet confirmed</strong></li>
+      </ul>
+      <div>
+        Topology Freeze and LSU events are linked: each shows its counterpart
+        and a jump button to the connected date.
+      </div>
+
+      <!-- Activity type definitions -->
+      <h3 class="info-section-title">Activity Types</h3>
+      <dl class="activity-types">
+        <dt>Weekly Upgrades</dt>
+        <dd>Regularly scheduled Splice version upgrades across networks.</dd>
+
+        <dt>Minimum Splice Versions</dt>
+        <dd>Updates to the minimum required Splice validator version for each network.</dd>
+
+        <dt>Minimum Splice Dar versions</dt>
+        <dd>Updates to minimum required .dar package versions for each network.</dd>
+
+        <dt>Splice Daml Model Effectivity</dt>
+        <dd>Specific versions of Splice Daml models become effective. Nodes that have not upgraded to the Splice version that includes these models may fall out of synchronization.</dd>
+        
+        <dt>Protocol Upgrades (LSU)</dt>
+        <dd>Logical Synchronizer Upgrade protocol upgrades requiring a topology freeze.</dd>
+
+        <dt>Other Network Configuration Change</dt>
+        <dd>Changes to network configuration settings or enabling new features take effect.</dd>
+      </dl>
+    </div>
+
+    <!-- Period title: month name / week range / single day -->
+    <div class="month-title" id="periodTitle"></div>
+
+    <!-- Weekday header row (hidden in Day and List modes) -->
+    <div class="weekdays" id="weekdayHeader">
+      <div class="weekday">MON</div>
+      <div class="weekday">TUE</div>
+      <div class="weekday">WED</div>
+      <div class="weekday">THU</div>
+      <div class="weekday">FRI</div>
+      <div class="weekday">SAT</div>
+      <div class="weekday">SUN</div>
+    </div>
+
+    <!-- Single mount point that every view renders into -->
+    <main id="viewRoot"></main>
+
+    <div class="footer-meta">
+      <div id="updated">↻ Loading schedule...</div>
+      <div>Only Approved items are shown</div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       STATE
+       - allEvents:   every event loaded from schedule.json
+       - currentDate: the "focus" date driving what we display
+       - currentView: 'month' | 'week' | 'day'
+       - listMode:    true when the List view (agenda) is active
+       ========================================================= */
+    let allEvents = [];
+    let currentDate = new Date();
+    let currentView = 'month';
+    let listMode = false;
+
+    /* ---------------------------------------------------------
+       DATA LOADING
+       Fetch schedule.json (cache-busted) and initialise the UI.
+       --------------------------------------------------------- */
+    async function loadSchedule() {
+      const response = await fetch('./schedule.json?cache=' + Date.now());
+      allEvents = await response.json();
+
+      populateNetworkFilter();
+      populateTypeFilter();
+
+      // Restore any filters/view/date from a shared link. Must run after
+      // the dropdowns are populated so their option values exist.
+      applyStateFromURL();
+
+      document.getElementById('updated').textContent =
+        '↻ Last loaded: ' + isoDateTime(new Date());
+
+      render();
+    }
+
+    /* ---------------------------------------------------------
+       NORMALISATION HELPERS
+       --------------------------------------------------------- */
+
+    // Map any spelling of a network value onto a canonical name.
+    function normalizeNetwork(network) {
+      const value = String(network || '').trim().toLowerCase();
+
+      if (value === 'dev net' || value === 'devnet') return 'DevNet';
+      if (value === 'testnet' || value === 'test net') return 'TestNet';
+      if (value === 'mainnet' || value === 'main net') return 'MainNet';
+      if (value === 'minimum versions' || value === 'minimum version') return 'Minimum Versions';
+
+      return String(network || '').trim();
+    }
+
+    // CSS modifier class for a given canonical network.
+    function networkClass(network) {
+      if (network === 'DevNet') return 'devnet';
+      if (network === 'TestNet') return 'testnet';
+      if (network === 'MainNet') return 'mainnet';
+      return '';
+    }
+
+    /* ---------------------------------------------------------
+       DATE HELPERS
+       The "start" field may be "YYYY-MM-DD" or "YYYY-MM-DD HH:mm".
+       We split the date part (used for grid placement) from the
+       time part (used for the time tag).
+       --------------------------------------------------------- */
+
+    // The date portion of an event's start ("2026-07-22 14:00" -> "2026-07-22").
+    function eventDatePart(event) {
+      return String(event.start || '').trim().split(' ')[0];
+    }
+
+    // The time portion, or '' if the event is all-day.
+    function eventTimePart(event) {
+      const parts = String(event.start || '').trim().split(' ');
+      return parts.length > 1 ? parts[1] : '';
+    }
+
+    // Time label for an event, converted from US Eastern (the timezone
+    // all board times are entered in) to the VIEWER'S local timezone.
+    //
+    // Board times have no zone attached (e.g. "2026-08-26 14:00"), and we
+    // treat that wall-clock time as America/New_York. JavaScript can't
+    // parse a string "as New York time" directly, so we:
+    //   1. find New York's UTC offset on that specific date (this is
+    //      where EDT vs EST / daylight saving is resolved automatically),
+    //   2. build the exact UTC instant that offset implies,
+    //   3. format that instant in the viewer's own local timezone.
+    // All-day events (no time component) return '' so no tag is shown.
+    const EASTERN_TZ = 'America/New_York';
+
+    // Return the UTC-offset in minutes for a given timezone at a given
+    // UTC instant. (e.g. New York in summer -> -240, in winter -> -300)
+    function tzOffsetMinutes(date, timeZone) {
+      // Format the instant in the target zone, then read it back as if it
+      // were UTC; the difference is the zone's offset at that moment.
+      const dtf = new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+      });
+      const parts = {};
+      dtf.formatToParts(date).forEach(p => { parts[p.type] = p.value; });
+      let hour = parts.hour === '24' ? 0 : Number(parts.hour);
+      const asUTC = Date.UTC(
+        Number(parts.year), Number(parts.month) - 1, Number(parts.day),
+        hour, Number(parts.minute), Number(parts.second)
+      );
+      return (asUTC - date.getTime()) / 60000;
+    }
+
+    // Convert a New York wall-clock "YYYY-MM-DD" + "HH:MM" to the exact
+    // UTC Date instant it represents.
+    function easternWallClockToDate(dateStr, timeStr) {
+      const [y, mo, d] = dateStr.split('-').map(Number);
+      const [h, mi] = timeStr.split(':').map(Number);
+
+      // First guess: treat the wall-clock numbers as if they were UTC.
+      const guess = new Date(Date.UTC(y, mo - 1, d, h, mi));
+      // How far New York is from UTC at that instant, then correct.
+      const offset = tzOffsetMinutes(guess, EASTERN_TZ);   // e.g. -240
+      // The real UTC instant is the wall-clock minus the offset.
+      return new Date(guess.getTime() - offset * 60000);
+    }
+
+    // Format a viewer-local UTC offset for a given instant as "UTC+1",
+    // "UTC-4", "UTC+5:30", or "UTC+0". Uses getTimezoneOffset(), which
+    // returns minutes WEST of UTC (so it's negated), evaluated at that
+    // specific instant so the viewer's own daylight-saving is handled.
+    function utcOffsetLabel(date) {
+      const offsetMin = -date.getTimezoneOffset();   // e.g. Lisbon summer -> +60
+      const sign = offsetMin >= 0 ? '+' : '-';
+      const abs = Math.abs(offsetMin);
+      const hours = Math.floor(abs / 60);
+      const mins = abs % 60;
+      // Only show minutes when the zone has a half/quarter-hour offset.
+      return 'UTC' + sign + hours + (mins ? ':' + String(mins).padStart(2, '0') : '');
+    }
+
+    function timeLabel(event) {
+      const t = eventTimePart(event);
+      if (!t) return '';
+
+      // Interpret the stored time as New York time, get the true instant,
+      // then format it in the viewer's local zone (browser default).
+      const instant = easternWallClockToDate(eventDatePart(event), t);
+
+      const time = instant.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false   // 24-hour format (e.g. "14:00", not "2:00 PM")
+      });
+
+      // Append the viewer's local UTC offset, e.g. "14:00 (UTC+1)".
+      return time + ' (' + utcOffsetLabel(instant) + ')';
+    }
+
+    // Build a "YYYY-MM-DD" key for a Date object (local time).
+    function dateKey(date) {
+      return date.getFullYear() + '-' +
+        String(date.getMonth() + 1).padStart(2, '0') + '-' +
+        String(date.getDate()).padStart(2, '0');
+    }
+
+    // ISO-style date-time "YYYY-MM-DD HH:MM" in 24-hour local time.
+    function isoDateTime(date) {
+      return dateKey(date) + ' ' +
+        String(date.getHours()).padStart(2, '0') + ':' +
+        String(date.getMinutes()).padStart(2, '0');
+    }
+
+    // Parse "YYYY-MM-DD" into a local Date (avoids UTC shift).
+    function parseDateKey(key) {
+      const [y, m, d] = key.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    /* ---------------------------------------------------------
+       SHAREABLE URL STATE
+       The current filters, view, and viewed date are mirrored into the
+       URL's query string so the address bar always describes what's on
+       screen. A "Copy link" button copies that URL. Opening a shared
+       link restores the same view.
+
+       Params: search, network, type, view (month|week|day|list), date.
+       Empty/default values are omitted to keep links short.
+       --------------------------------------------------------- */
+
+    // Write current state into the URL without reloading or adding history.
+    function syncURL() {
+      const params = new URLSearchParams();
+
+      const search = document.getElementById('search').value.trim();
+      const network = document.getElementById('networkFilter').value;
+      const type = document.getElementById('typeFilter').value;
+
+      if (search) params.set('search', search);
+      if (network) params.set('network', network);
+      if (type) params.set('type', type);
+
+      // View: 'list' takes precedence when list mode is on.
+      const view = listMode ? 'list' : currentView;
+      if (view !== 'month') params.set('view', view);   // month is the default
+
+      // Always record the viewed date so the link lands on the right period.
+      params.set('date', dateKey(currentDate));
+
+      const query = params.toString();
+      const newUrl = window.location.pathname + (query ? '?' + query : '');
+
+      // Discrete actions push a new history entry (so Back returns to the
+      // previous state); everything else replaces silently. The flag is
+      // consumed on each call.
+      if (pendingHistoryPush) {
+        history.pushState(null, '', newUrl);
+        pendingHistoryPush = false;
+      } else {
+        history.replaceState(null, '', newUrl);
+      }
+    }
+
+    // Set before a render() that should be undoable with the Back button.
+    let pendingHistoryPush = false;
+    function renderWithHistory() {
+      pendingHistoryPush = true;
+      render();
+    }
+
+    // Read state from the URL and apply it. Called once on load, AFTER the
+    // filter dropdowns are populated (so their options exist to be set).
+    function applyStateFromURL() {
+      const params = new URLSearchParams(window.location.search);
+
+      // Absent params reset to DEFAULT (empty search/filter, Month view),
+      // not left stale — essential for the Back button to correctly return
+      // to a state where something had been cleared.
+
+      // Search: absent → empty box.
+      document.getElementById('search').value = params.get('search') || '';
+
+      // Network filter: absent or invalid → "all" (empty value).
+      const network = params.get('network');
+      const netSel = document.getElementById('networkFilter');
+      netSel.value =
+        (network && [...netSel.options].some(o => o.value === network)) ? network : '';
+
+      // Type filter: absent or invalid → "all".
+      const type = params.get('type');
+      const typeSel = document.getElementById('typeFilter');
+      typeSel.value =
+        (type && [...typeSel.options].some(o => o.value === type)) ? type : '';
+
+      // View: absent → Month (default). 'list' toggles list mode.
+      const view = params.get('view');
+      if (view === 'list') {
+        listMode = true;
+      } else if (['month', 'week', 'day'].includes(view)) {
+        currentView = view;
+        listMode = false;
+      } else {
+        currentView = 'month';
+        listMode = false;
+      }
+
+      const date = params.get('date');
+      if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        currentDate = parseDateKey(date);
+      }
+    }
+
+    // Copy the current (state-bearing) URL to the clipboard, with a brief
+    // "Copied!" confirmation on the button itself.
+    function copyShareLink() {
+      syncURL();   // make sure the URL is current before copying
+      const url = window.location.href;
+      const btn = document.getElementById('copyLinkBtn');
+
+      const confirm = () => {
+        if (!btn) return;
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      };
+
+      // Modern clipboard API, with a legacy fallback for older browsers.
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(confirm).catch(() => {
+          window.prompt('Copy this link:', url);
+        });
+      } else {
+        window.prompt('Copy this link:', url);
+      }
+    }
+
+    // Subscribe to the calendar feed. The .ics feed is served from the same
+    // origin as this page (published by the Apps Script alongside
+    // schedule.json). We show a small popover with the feed URL, a
+    // one-click "Add to Google Calendar" link, and a copy button so people
+    // can paste it into Apple Calendar / Outlook too.
+    function subscribeCalendar() {
+      // Feed lives next to this page: <origin><path>schedule.ics
+      const base = window.location.origin +
+        window.location.pathname.replace(/[^/]*$/, '');
+      const feedUrl = base + 'schedule.ics';
+
+      // Google's calendar/r?cid= deep-link is unreliable for third-party
+      // .ics feeds (it often fails with "unable to add"). Instead we open
+      // Google's official "add by URL" settings page and pre-copy the feed
+      // URL, so the user just pastes it into the box that page shows. This
+      // is the supported flow and works consistently.
+      const googleAddByUrl =
+        'https://calendar.google.com/calendar/u/0/r/settings/addbyurl';
+
+      // Build a lightweight popover.
+      let pop = document.getElementById('subscribePopover');
+      if (pop) { pop.remove(); return; }   // toggle off if already open
+
+      pop = document.createElement('div');
+      pop.id = 'subscribePopover';
+      pop.className = 'subscribe-popover';
+      pop.innerHTML =
+        '<div class="subscribe-title">Subscribe to this calendar</div>' +
+        '<div class="subscribe-desc">Copy the feed URL, then paste it into ' +
+        'your calendar app. It stays in sync automatically.</div>' +
+        '<div class="subscribe-url-row">' +
+        '<input class="subscribe-url" readonly value="' + feedUrl + '" />' +
+        '<button class="subscribe-copy">Copy</button>' +
+        '</div>' +
+        '<a class="subscribe-google" href="' + googleAddByUrl + '" ' +
+        'target="_blank" rel="noopener noreferrer">Open Google Calendar &rarr; paste URL</a>' +
+        '<div class="subscribe-manual-label">In Google Calendar: paste the ' +
+        'copied URL into the box, then &ldquo;Add calendar.&rdquo; ' +
+        'Apple / Outlook: paste the same URL into their &ldquo;subscribe from ' +
+        'URL&rdquo; option.</div>';
+
+      document.body.appendChild(pop);
+
+      // Position under the Subscribe button.
+      const btn = document.getElementById('subscribeBtn');
+      const r = btn.getBoundingClientRect();
+      pop.style.top = (r.bottom + 8) + 'px';
+      pop.style.left = Math.max(8,
+        Math.min(r.left, window.innerWidth - pop.offsetWidth - 8)) + 'px';
+
+      const urlInput = pop.querySelector('.subscribe-url');
+      const copyBtn = pop.querySelector('.subscribe-copy');
+      const googleLink = pop.querySelector('.subscribe-google');
+
+      const copyFeed = () => {
+        return (navigator.clipboard && navigator.clipboard.writeText)
+          ? navigator.clipboard.writeText(feedUrl).catch(() => {
+              urlInput.select(); document.execCommand('copy');
+            })
+          : Promise.resolve(urlInput.select(), document.execCommand('copy'));
+      };
+
+      // Copy button.
+      copyBtn.addEventListener('click', () => {
+        copyFeed().then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+        });
+      });
+
+      // Opening Google: copy the URL first so it's ready to paste.
+      googleLink.addEventListener('click', () => { copyFeed(); });
+
+      // Dismiss on outside click.
+      setTimeout(() => {
+        const onAway = e => {
+          if (!pop.contains(e.target) && e.target !== btn) {
+            pop.remove();
+            document.removeEventListener('click', onAway);
+          }
+        };
+        document.addEventListener('click', onAway);
+      }, 0);
+    }
+
+    // Monday-based start of the week containing `date`.
+    function startOfWeek(date) {
+      const d = new Date(date);
+      let offset = d.getDay() - 1;      // 0=Sun -> -1 -> 6
+      if (offset < 0) offset = 6;
+      d.setDate(d.getDate() - offset);
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+
+    // Short friendly date, e.g. "Jul 8".
+    function shortDate(key) {
+      return parseDateKey(key)
+        .toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    // Long friendly date, e.g. "Monday, July 6, 2026".
+    function longDate(key) {
+      return parseDateKey(key)
+        .toLocaleDateString('en-US',
+          { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    /* ---------------------------------------------------------
+       FILTER POPULATION (unchanged behaviour)
+       --------------------------------------------------------- */
+    function populateNetworkFilter() {
+      const select = document.getElementById('networkFilter');
+      const currentValue = select.value;
+
+      const orderedNetworks = ['DevNet', 'TestNet', 'MainNet', 'Minimum Versions'];
+
+      select.innerHTML = '<option value="">All Networks</option>';
+
+      orderedNetworks.forEach(network => {
+        const exists = allEvents.some(event => normalizeNetwork(event.network) === network);
+        if (!exists) return;
+
+        const option = document.createElement('option');
+        option.value = network;
+        option.textContent = network;
+        select.appendChild(option);
+      });
+
+      select.value = currentValue;
+    }
+
+    // Preferred activity types, in the same order as the info modal.
+    // These always appear first in the dropdown, in this fixed order,
+    // using the exact type strings the monday data uses so filtering
+    // matches correctly.
+    const ACTIVITY_TYPES = [
+      'Weekly Upgrades',
+      'Minimum Splice Versions',
+      'Minimum Splice Dar versions',
+      'Splice Daml Model Effectivity',
+      'Protocol Upgrades (LSU)',
+      'Other Network Configuration Change'
+    ];
+
+    function populateTypeFilter() {
+      const select = document.getElementById('typeFilter');
+      const currentValue = select.value;
+
+      select.innerHTML = '<option value="">All activity types</option>';
+
+      // Start with the preferred list in its fixed order.
+      const ordered = [...ACTIVITY_TYPES];
+
+      // Then append any activity type present in the data that isn't
+      // already in the preferred list (title only), so nothing from
+      // monday ever goes missing from the filter. These extras are
+      // sorted alphabetically and added after the fixed entries.
+      const extras = [...new Set(
+        allEvents.map(event => event.type).filter(Boolean)
+      )]
+        .filter(type => !ACTIVITY_TYPES.includes(type))
+        .sort();
+
+      ordered.push(...extras);
+
+      ordered.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        select.appendChild(option);
+      });
+
+      select.value = currentValue;
+    }
+
+    /* ---------------------------------------------------------
+       FILTERING
+       Returns every event that matches the search box and the
+       two dropdown filters (network + activity type).
+       --------------------------------------------------------- */
+    function matchesFilters(event) {
+      const search = document.getElementById('search').value.toLowerCase();
+      const selectedNetwork = document.getElementById('networkFilter').value;
+      const selectedType = document.getElementById('typeFilter').value;
+
+      const normalizedNetwork = normalizeNetwork(event.network);
+
+      const searchable = [
+        event.title, event.description, normalizedNetwork,
+        event.type, event.category, event.status
+      ].join(' ').toLowerCase();
+
+      return searchable.includes(search) &&
+        (!selectedNetwork || normalizedNetwork === selectedNetwork) &&
+        (!selectedType || event.type === selectedType);
+    }
+
+    // All events on a given date key (filters applied).
+    function eventsOnDate(key) {
+      return allEvents.filter(e => eventDatePart(e) === key && matchesFilters(e));
+    }
+
+    /* ---------------------------------------------------------
+       CURRENT SPLICE VERSION MARKER
+       Each day cell carries a small "i" in its top-right corner that
+       reports the Splice version currently live on each network as of
+       that day. A version becomes "current" on the day its upgrade lands
+       and is carried forward on every following day until the next
+       upgrade supersedes it.
+
+       Only real version upgrades set the current value: events whose
+       title matches "upgrades to Splice X.Y.Z". Other Splice-related
+       activity types (minimum versions, DAR versions, Daml effectivity)
+       are intentionally ignored here.
+       --------------------------------------------------------- */
+
+    // The three networks tracked, in display order.
+    const SPLICE_NETWORKS = ['DevNet', 'TestNet', 'MainNet'];
+
+    // Pull the version number out of an upgrade title.
+    // "DevNet upgrades to Splice 0.7.1" -> "0.7.1"; null if not a match.
+    function parseSpliceVersion(event) {
+      const title = String(event.title || '');
+
+      // Format A: "<Network>: Validators must upgrade to 0.7.x" (and the
+      // LSU variant "...validators must upgrade to >= 0.6.5 before the LSU").
+      // The version token allows an 'x' segment (e.g. 0.7.x), and an
+      // optional ">=" before the number is stripped. The (?<!not\s)
+      // lookbehind still guards against a negated "not Validators".
+      let match = title.match(
+        /(?<!not\s)validators\s+must\s+upgrade\s+to\s+>?=?\s*(\d+(?:\.[\dx]+)*)/i);
+      if (match) return match[1];
+
+      // Format B: the existing weekly "<Network> Validators upgrade to
+      // Splice N". "Validators remain on..." is not matched (no "upgrade
+      // to"), so a version carries forward until the next real upgrade.
+      match = title.match(
+        /(?<!not\s)validators\s+upgrade\s+to\s+splice\s+(\d+(?:\.\d+)*)/i);
+      return match ? match[1] : null;
+    }
+
+    // Build a lookup of the current Splice version per network for a given
+    // day. For each network we take the most recent upgrade whose date is
+    // on or before `key`. Networks with no prior upgrade return null.
+    //
+    // Note: this scans ALL events, ignoring the active network/type/search
+    // filters on purpose — the marker always reports the true live version
+    // on every network regardless of what the user has filtered the grid to.
+    function currentSpliceVersions(key) {
+      const target = parseDateKey(key);            // the day we're asking about
+      const result = {};
+
+      SPLICE_NETWORKS.forEach(network => {
+        let bestDate = null;                       // date of the winning upgrade
+        let bestVersion = null;                    // its version string
+
+        allEvents.forEach(event => {
+          if (normalizeNetwork(event.network) !== network) return;
+
+          const version = parseSpliceVersion(event);
+          if (!version) return;                    // not an upgrade event
+
+          const eventDate = parseDateKey(eventDatePart(event));
+          if (eventDate > target) return;          // hasn't happened yet on this day
+
+          // Keep the latest upgrade at or before the target day.
+          if (bestDate === null || eventDate > bestDate) {
+            bestDate = eventDate;
+            bestVersion = version;
+          }
+        });
+
+        result[network] = bestVersion;             // null if no upgrade yet
+      });
+
+      return result;
+    }
+
+    /* ---------------------------------------------------------
+       CURRENT DAR VERSIONS (per network, carry-forward)
+       Parallel to currentSpliceVersions, but for the minimum Splice
+       ".dar" component versions. These come from network-tagged events
+       of type "Minimum Splice Dar versions", whose description lists
+       component/version pairs (amulet 0.1.22, wallet 0.1.23, ...).
+
+       Only network-tagged DAR events are used (the untagged, all-in-one
+       description events are intentionally ignored — too inconsistent to
+       attribute reliably). Like Splice versions, the most recent DAR set
+       on or before a day carries forward until the next one supersedes it.
+       --------------------------------------------------------- */
+
+    // Pull component/version pairs out of a DAR event's description.
+    // Returns an array of [component, version], or [] if none found.
+    /* ---------------------------------------------------------
+       DAR VERSION INDEX
+       The Monday board expresses minimum ".dar" component versions in TWO
+       different shapes, so we build a per-day index once, then carry the
+       latest set forward per network.
+
+       Format A (June 16 style): a single event whose DESCRIPTION contains
+         "DevNet:\n amulet 0.1.19 ...\n TestNet:\n ...".
+
+       Format B (June 30 / July 7 / July 14 style): many sibling events on
+         the SAME DAY, each with an empty description — a "DevNet:" header
+         event, then separate events titled "amulet 0.1.20",
+         "amuletNameService 0.1.21", etc., then "TestNet:", and so on.
+         Components belong to the most recent network-header event seen in
+         document order that day.
+
+       Also handles a single network-tagged event whose description holds
+       the list (Aug 10 TestNet). Unlabeled component lists with no network
+       context are ignored.
+       --------------------------------------------------------- */
+
+    // Recognise a "DevNet:" / "TestNet:" / "MainNet:" header (title only).
+    function darNetworkHeader(title) {
+      const m = String(title || '').trim().match(/^(DevNet|TestNet|MainNet)\s*:?\s*$/i);
+      return m ? normalizeNetwork(m[1]) : null;
+    }
+
+    // Recognise a bare "component 0.1.20" title → [comp, ver] or null.
+    function darComponentTitle(title) {
+      const m = String(title || '').trim().match(/^([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)\s*$/);
+      return m ? [m[1], m[2]] : null;
+    }
+
+    // Extract per-network component lists from a single description (Format
+    // A / Aug 10). Returns { DevNet: [[c,v]...], ... } or {}.
+    function darFromDescription(event) {
+      const desc = String(event.description || '');
+      if (!desc) return {};
+      const compRe = /([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)/g;
+      const result = {};
+      const netRe = /(DevNet|TestNet|MainNet)\s*:/gi;
+      const labels = [];
+      let m;
+      while ((m = netRe.exec(desc)) !== null) {
+        labels.push({ net: normalizeNetwork(m[1]), start: m.index, end: netRe.lastIndex });
+      }
+      if (labels.length) {
+        for (let i = 0; i < labels.length; i++) {
+          const segEnd = (i + 1 < labels.length) ? labels[i + 1].start : desc.length;
+          const seg = desc.slice(labels[i].end, segEnd);
+          const pairs = [];
+          const re = new RegExp(compRe.source, 'g');
+          let c;
+          while ((c = re.exec(seg)) !== null) pairs.push([c[1], c[2]]);
+          if (pairs.length) result[labels[i].net] = pairs;
+        }
+      } else if (event.network) {
+        const pairs = [];
+        let c;
+        while ((c = compRe.exec(desc)) !== null) pairs.push([c[1], c[2]]);
+        if (pairs.length) result[normalizeNetwork(event.network)] = pairs;
+      }
+      return result;
+    }
+
+    // Build { dateKey: { DevNet:[[c,v]...], TestNet:[...], MainNet:[...] } }
+    // across the whole schedule, merging both formats. Cached after first
+    // build since allEvents doesn't change within a render session.
+    let _darIndex = null;
+    function buildDarIndex() {
+      if (_darIndex) return _darIndex;
+      const index = {};
+
+      // Walk events in document order so Format B header→component grouping
+      // works. Track the current network header within each day.
+      let currentDay = null;
+      let currentNet = null;
+
+      allEvents.forEach(event => {
+        const dayKey = eventDatePart(event);
+        if (dayKey !== currentDay) { currentDay = dayKey; currentNet = null; }
+
+        // Format A / Aug 10: description carries the whole thing.
+        const fromDesc = darFromDescription(event);
+        if (Object.keys(fromDesc).length) {
+          index[dayKey] = index[dayKey] || {};
+          Object.entries(fromDesc).forEach(([net, pairs]) => {
+            index[dayKey][net] = (index[dayKey][net] || []).concat(pairs);
+          });
+          return;
+        }
+
+        // Format B: header event sets the current network for the day.
+        const header = darNetworkHeader(event.title);
+        if (header) { currentNet = header; return; }
+
+        // Format B: component-title event → attach to current network.
+        const comp = darComponentTitle(event.title);
+        if (comp && currentNet) {
+          index[dayKey] = index[dayKey] || {};
+          index[dayKey][currentNet] = (index[dayKey][currentNet] || []);
+          index[dayKey][currentNet].push(comp);
+        }
+      });
+
+      _darIndex = index;
+      return index;
+    }
+
+    // For a given day, the current DAR set per network: the most recent
+    // DAR entry (on or before that day) that has data for that network,
+    // carried forward. Returns { DevNet: { components, dateKey }, ... }.
+    function currentDarVersions(key) {
+      const index = buildDarIndex();
+      const target = parseDateKey(key);
+      const result = {};
+
+      SPLICE_NETWORKS.forEach(network => {
+        let bestDate = null;
+        let bestComponents = [];
+        let bestKey = null;
+
+        Object.keys(index).forEach(dayKey => {
+          const pairs = index[dayKey][network];
+          if (!pairs || !pairs.length) return;
+
+          const eventDate = parseDateKey(dayKey);
+          if (eventDate > target) return;
+
+          if (bestDate === null || eventDate > bestDate) {
+            bestDate = eventDate;
+            bestComponents = pairs;
+            bestKey = dayKey;
+          }
+        });
+
+        result[network] = { components: bestComponents, dateKey: bestKey };
+      });
+
+      return result;
+    }
+
+    /* ---------------------------------------------------------
+       SHARED TOOLTIP (attached to <body>)
+       Day cells clip their overflow, so a tooltip placed *inside* a
+       cell gets cut off. Instead we use ONE tooltip element attached
+       to document.body — it floats above everything and is never
+       clipped. Each "i" marker carries its version data in a data-
+       attribute; hovering shows/positions this single element.
+       --------------------------------------------------------- */
+    let spliceTooltipEl = null;
+    // When true, the tooltip stays open (clicked/pinned) so its DAR links
+    // are clickable, instead of vanishing on mouseleave.
+    let spliceTooltipPinned = false;
+
+    // Lazily create the one shared tooltip element.
+    function getSpliceTooltip() {
+      if (spliceTooltipEl) return spliceTooltipEl;
+      spliceTooltipEl = document.createElement('div');
+      spliceTooltipEl.className = 'splice-tooltip';
+      document.body.appendChild(spliceTooltipEl);
+      return spliceTooltipEl;
+    }
+
+    // Show the tooltip next to a given marker element, filled with that
+    // marker's stored version rows.
+    function showSpliceTooltip(marker) {
+      const tip = getSpliceTooltip();
+
+      // Rebuild rows from the marker's stored data (network|version pairs).
+      const rows = JSON.parse(marker.dataset.versions || '[]');
+      tip.innerHTML = '';
+
+      // Header at the top of the tooltip.
+      const header = document.createElement('div');
+      header.className = 'splice-tooltip-header';
+      header.textContent = 'Minimum Splice Versions:';
+      tip.appendChild(header);
+
+      rows.forEach(([network, version]) => {
+        const row = document.createElement('div');
+        row.className = 'splice-tooltip-row';
+        const name = document.createElement('span');
+        name.className = 'splice-tooltip-net ' + networkClass(network);
+        name.textContent = network;
+        const ver = document.createElement('span');
+        ver.className = 'splice-tooltip-ver';
+        ver.textContent = 'Validators must upgrade to ' + version;
+        row.appendChild(name);
+        row.appendChild(ver);
+        tip.appendChild(row);
+      });
+
+      // DAR section: one line per network that has DAR data, showing the
+      // component count, linking to the day it came from. Full lists live
+      // in that Day view. Networks with no DAR data are omitted.
+      const darRows = JSON.parse(marker.dataset.dar || '[]');
+      const darWithData = darRows.filter(([, count]) => count > 0);
+
+      if (darWithData.length) {
+        const darHeader = document.createElement('div');
+        darHeader.className = 'splice-tooltip-header';
+        darHeader.textContent = 'Minimum DAR versions:';
+        tip.appendChild(darHeader);
+
+        darWithData.forEach(([network, count, sourceKey]) => {
+          const row = document.createElement('div');
+          row.className = 'splice-tooltip-row splice-dar-link';
+          const name = document.createElement('span');
+          name.className = 'splice-tooltip-net ' + networkClass(network);
+          name.textContent = network;
+          const val = document.createElement('span');
+          val.className = 'splice-tooltip-ver';
+          // e.g. "6 DAR versions →" — click opens the source day.
+          val.textContent = count + ' DAR versions →';
+          row.appendChild(name);
+          row.appendChild(val);
+
+          // Clicking the row opens the Day view of the event this DAR set
+          // came from, where the full component list is shown.
+          if (sourceKey) {
+            row.addEventListener('click', () => {
+              hideSpliceTooltip();
+              jumpToDate(sourceKey);   // opens Day view at that date
+            });
+          }
+
+          tip.appendChild(row);
+        });
+      }
+
+      // Footer: link to the official Splice release notes. Sits at the
+      // bottom so the version data reads first. opens in a new tab.
+      const notes = document.createElement('a');
+      notes.className = 'splice-tooltip-link';
+      notes.href = 'https://docs.canton.network/global-synchronizer/release-notes/splice';
+      notes.target = '_blank';
+      notes.rel = 'noopener noreferrer';
+      notes.textContent = 'Release notes →';
+      // Keep a click on the link from also closing the (pinned) tooltip
+      // via the document click-away handler.
+      notes.addEventListener('click', event => event.stopPropagation());
+      tip.appendChild(notes);
+
+      // Make it measurable, then position relative to the marker.
+      tip.classList.add('visible');
+      tip.classList.toggle('pinned', spliceTooltipPinned);
+      const m = marker.getBoundingClientRect();
+      const t = tip.getBoundingClientRect();
+
+      // Default: below the "i", right-aligned to it.
+      let left = m.right - t.width;
+      let top = m.bottom + 6;
+
+      // Keep it on-screen horizontally.
+      if (left < 6) left = 6;
+      if (left + t.width > window.innerWidth - 6) {
+        left = window.innerWidth - 6 - t.width;
+      }
+      // If it would go off the bottom, flip above the "i".
+      if (top + t.height > window.innerHeight - 6) {
+        top = m.top - t.height - 6;
+      }
+
+      // position: fixed => use viewport coordinates directly.
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+    }
+
+    function hideSpliceTooltip() {
+      spliceTooltipPinned = false;
+      if (spliceTooltipEl) {
+        spliceTooltipEl.classList.remove('visible');
+        spliceTooltipEl.classList.remove('pinned');
+      }
+    }
+
+    // Create the top-right "i" marker for a day cell. The version data is
+    // stored on the element; a shared body-level tooltip (above) renders
+    // it instantly on hover, free of any cell clipping.
+    function buildSpliceMarker(key) {
+      const versions = currentSpliceVersions(key);
+
+      // Store network|version pairs for the shared tooltip to read.
+      const rows = SPLICE_NETWORKS.map(network =>
+        [network, versions[network] || '—']);
+
+      // DAR data per network: [network, componentCount, sourceDateKey].
+      // Full lists live in the Day view; the tooltip shows a count and
+      // links to the day the data came from. sourceDateKey is null when a
+      // network has no DAR data.
+      const dar = currentDarVersions(key);
+      const darRows = SPLICE_NETWORKS.map(network => {
+        const entry = dar[network] || { components: [], dateKey: null };
+        return [network, entry.components.length, entry.dateKey];
+      });
+
+      const marker = document.createElement('div');
+      marker.className = 'splice-marker';
+      marker.textContent = 'i';
+      marker.dataset.versions = JSON.stringify(rows);
+      marker.dataset.dar = JSON.stringify(darRows);
+
+      // Hover shows the tooltip; click "pins" it open so its DAR links
+      // Click-only: the tooltip appears when the "i" is clicked and closes
+      // on a second click (or a click elsewhere — see the document handler).
+      // No hover behaviour. stopPropagation keeps the click from bubbling to
+      // the day cell, which would otherwise open the Day view.
+      marker.addEventListener('click', event => {
+        event.stopPropagation();
+        if (spliceTooltipPinned) {
+          hideSpliceTooltip();          // second click closes it
+        } else {
+          spliceTooltipPinned = true;
+          showSpliceTooltip(marker);
+        }
+      });
+
+      // Accessibility: expose the same information to screen readers.
+      marker.setAttribute('aria-label', 'Validators must upgrade to. ' +
+        rows.map(([n, v]) => `${n}: ${v}`).join(', '));
+
+      return marker;
+    }
+
+    /* ---------------------------------------------------------
+       CONNECTED EVENTS (Freeze <-> LSU pairing)
+       Within the same network + "Protocol Upgrades (LSU)" type,
+       a Topology Freeze is paired with the nearest LSU that comes
+       after it. Returns the counterpart event or null.
+       --------------------------------------------------------- */
+    function findConnectedEvent(event) {
+      // PREFERRED: authoritative pairing via Monday's "Dependent On" column,
+      // published as a `dependsOn` array of item IDs. The relationship is
+      // bidirectional — this event may point at its partner, or the partner
+      // may point at this event — so we check both directions by `id`.
+      const byDependency = findByDependency_(event);
+      if (byDependency) return byDependency;
+
+      // FALLBACK (for events with no dependency set, e.g. older data):
+      // infer the Freeze <-> LSU pairing from titles and dates. Roles come
+      // from the TITLE (the board types these events inconsistently), the
+      // pairing is directional (a Freeze precedes its LSU by ~1 day), capped
+      // to 3 days, and both events must share a network.
+      const isFreeze = /freeze/i.test(event.title || '');
+      const isLSU = /\bLSU\b/i.test(event.title || '');
+      if (!isFreeze && !isLSU) return null;
+
+      const network = normalizeNetwork(event.network);
+      if (!network) return null;
+
+      const thisDate = eventDatePart(event);
+      const thisTime = parseDateKey(thisDate).getTime();
+      const MAX_GAP_DAYS = 3;
+      const MS_PER_DAY = 86400000;
+
+      const candidates = allEvents.filter(e => {
+        if (e === event) return false;
+        if (normalizeNetwork(e.network) !== network) return false;
+
+        const otherFreeze = /freeze/i.test(e.title || '');
+        const otherLSU = /\bLSU\b/i.test(e.title || '');
+        const otherTime = parseDateKey(eventDatePart(e)).getTime();
+        if (Math.abs(otherTime - thisTime) / MS_PER_DAY > MAX_GAP_DAYS) return false;
+
+        if (isFreeze && otherLSU) return otherTime >= thisTime;
+        if (isLSU && otherFreeze) return otherTime <= thisTime;
+        return false;
+      });
+
+      if (!candidates.length) return null;
+
+      candidates.sort((a, b) => {
+        const da = Math.abs(parseDateKey(eventDatePart(a)) - parseDateKey(thisDate));
+        const db = Math.abs(parseDateKey(eventDatePart(b)) - parseDateKey(thisDate));
+        return da - db;
+      });
+
+      return candidates[0];
+    }
+
+    // Authoritative pairing using the published `dependsOn` item IDs.
+    // Checks both directions: this event depending on another, or another
+    // event depending on this one. Returns the partner event or null.
+    function findByDependency_(event) {
+      const myId = event.id != null ? String(event.id) : null;
+      const myDeps = Array.isArray(event.dependsOn) ? event.dependsOn.map(String) : [];
+
+      // Direction 1: this event lists a dependency → find that event by id.
+      if (myDeps.length) {
+        const partner = allEvents.find(e => e.id != null && myDeps.includes(String(e.id)));
+        if (partner) return partner;
+      }
+
+      // Direction 2: some other event depends on THIS one.
+      if (myId) {
+        const partner = allEvents.find(e =>
+          Array.isArray(e.dependsOn) && e.dependsOn.map(String).includes(myId));
+        if (partner) return partner;
+      }
+
+      return null;
+    }
+
+    /* ---------------------------------------------------------
+       DESCRIPTION RENDERING (unchanged behaviour)
+       Splits multi-line descriptions and detects "DevNet:" style
+       sub-headings so per-network blocks render nicely.
+       --------------------------------------------------------- */
+    /* ---------------------------------------------------------
+       CIP AUTO-LINKING
+       Turns CIP references into links to the canton-foundation CIPs
+       repo, and rewrites every reference to the canonical padded form
+       "CIP-XXXX" as the visible label. Handles the styles in the data:
+         "CIP-104"      -> CIP-0104
+         "CIP 64"       -> CIP-0064
+         "CIP-0066"     -> CIP-0066
+         "CIPs 47 & 56" -> CIP-0047 & CIP-0056   (each linked)
+       Multi-number runs keep their separator (& / and / , / /) between
+       the rewritten links. Input is escaped first, so the returned HTML
+       is safe for innerHTML.
+       --------------------------------------------------------- */
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Anchor for one CIP number, always shown as padded "CIP-XXXX".
+    function cipAnchor(digits) {
+      const padded = digits.padStart(4, '0');   // 47 -> 0047
+      const url = `https://github.com/canton-foundation/cips/blob/main/cip-${padded}/cip-${padded}.md`;
+      return `<a class="cip-link" href="${url}" target="_blank" rel="noopener noreferrer">CIP-${padded}</a>`;
+    }
+
+    function linkifyCIPs(text) {
+      // Escape first. "&" becomes "&amp;", so the separator alternation
+      // below also matches the escaped ampersand.
+      const safe = escapeHTML(text);
+
+      // Match a "CIP"/"CIPs" prefix plus one or more numbers, optionally
+      // joined by & / and / , / /. The entire run is replaced.
+      const pattern = /\bCIPs?\b[-\s]?\d+(?:\s*(?:&amp;|&|and|,|\/)\s*\d+)*/gi;
+
+      return safe.replace(pattern, run => {
+        // Pull the numbers out in order.
+        const numbers = run.match(/\d+/g) || [];
+
+        // Pull the separators between numbers (everything that isn't the
+        // leading "CIP(s)" prefix or the numbers themselves), so we can
+        // stitch the rewritten links back together with the same joiners.
+        const separators = [];
+        const sepPattern = /\d+\s*(&amp;|&|and|,|\/)\s*(?=\d)/gi;
+        let m;
+        while ((m = sepPattern.exec(run)) !== null) {
+          separators.push(m[1]);
+        }
+
+        // Rebuild: CIP-XXXX <sep> CIP-YYYY ...
+        // Commas attach directly (no leading space); other separators
+        // ("&", "and", "/") get spaces on both sides.
+        let out = cipAnchor(numbers[0]);
+        for (let i = 1; i < numbers.length; i++) {
+          const sep = separators[i - 1] || '&amp;';
+          const joiner = sep === ',' ? `${sep} ` : ` ${sep} `;
+          out += joiner + cipAnchor(numbers[i]);
+        }
+        return out;
+      });
+    }
+
+    function appendDescription(parent, description) {
+      const lines = String(description || '')
+        .split(/\r?\n|\r/)
+        .map(line => line.trim())
+        .filter(Boolean);
+
+      let section = null;
+
+      lines.forEach(line => {
+        const isNetwork =
+          /^DevNet:\s*$/i.test(line) ||
+          /^TestNet:\s*$/i.test(line) ||
+          /^MainNet:\s*$/i.test(line);
+
+        if (isNetwork) {
+          section = document.createElement('div');
+          section.className = 'network-section';
+
+          const title = document.createElement('div');
+          title.className = 'network-title';
+          title.textContent = line;
+
+          section.appendChild(title);
+          parent.appendChild(section);
+          return;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'description';
+        div.innerHTML = linkifyCIPs(line);
+
+        (section || parent).appendChild(div);
+      });
+    }
+
+    /* ---------------------------------------------------------
+       EVENT CARD RENDERING
+       `options.showConnected` controls whether we render the
+       linked-event block + jump button (used in Day/List views).
+       --------------------------------------------------------- */
+    function renderEvent(event, options = {}) {
+      const showConnected = options.showConnected || false;
+
+      const eventDiv = document.createElement('div');
+      const network = normalizeNetwork(event.network);
+      const colorClass = networkClass(network);
+
+      // "To Be Confirmed" items get a subdued, muted treatment plus an
+      // explicit tag (below) so the tentative status is clear without
+      // relying on color alone.
+      const isTBC = String(event.status || '').trim().toLowerCase() === 'to be confirmed';
+
+      // Cancelled events (status "Cancelled" in the board) get a bright
+      // orange-red treatment that overrides the normal network color so
+      // they clearly read as no-longer-happening.
+      const isCancelled = String(event.status || '').trim().toLowerCase() === 'cancelled';
+
+      eventDiv.className = colorClass ? `event ${colorClass}` : 'event';
+      if (isTBC) eventDiv.classList.add('tbc');
+      if (isCancelled) eventDiv.classList.add('cancelled');
+
+      // Title
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.innerHTML = linkifyCIPs(event.title || 'Untitled event');
+      eventDiv.appendChild(title);
+
+      // Meta row: time/all-day, network, activity type, link badge
+      const meta = document.createElement('div');
+      meta.className = 'meta-row';
+
+      // "To Be Confirmed" tag — explicit text status, shown first so it's
+      // clear the item is tentative even without relying on color.
+      if (isTBC) {
+        const tbcTag = document.createElement('span');
+        tbcTag.className = 'tag tbc-tag';
+        tbcTag.textContent = 'To Be Confirmed';
+        meta.appendChild(tbcTag);
+      }
+
+      // "Cancelled" tag — explicit text status so cancellation is clear
+      // even without relying on color.
+      if (isCancelled) {
+        const cancelTag = document.createElement('span');
+        cancelTag.className = 'tag cancelled-tag';
+        cancelTag.textContent = 'Cancelled';
+        meta.appendChild(cancelTag);
+      }
+
+      // Time tag — shown only for events that have an actual time
+      // (all-day events get no tag).
+      const timeText = timeLabel(event);
+      if (timeText) {
+        const timeTag = document.createElement('span');
+        timeTag.className = 'tag time-tag';
+        timeTag.textContent = timeText;
+        meta.appendChild(timeTag);
+      }
+
+      // Network tag
+      if (network) {
+        const tag = document.createElement('span');
+        tag.className = colorClass ? `tag ${colorClass}` : 'tag';
+        tag.textContent = network;
+        meta.appendChild(tag);
+      }
+
+      // Connected badge ("→ LSU Jul 8" / "← Freeze Jul 7")
+      const connected = findConnectedEvent(event);
+      if (connected) {
+        const isFreeze = /freeze/i.test(event.title || '');
+        const linkTag = document.createElement('span');
+        linkTag.className = 'tag link-tag';
+        const arrow = isFreeze ? '→ LSU' : '← Freeze';
+        linkTag.textContent = `${arrow} ${shortDate(eventDatePart(connected))}`;
+        meta.appendChild(linkTag);
+      }
+
+      // Activity type tag
+      if (event.type) {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = event.type;
+        meta.appendChild(tag);
+      }
+
+      if (meta.children.length) eventDiv.appendChild(meta);
+
+      // Description
+      if (event.description) appendDescription(eventDiv, event.description);
+
+      // Connected-event block with a jump button (Day/List only)
+      if (showConnected && connected) {
+        const block = document.createElement('div');
+        block.className = 'connected-block';
+
+        const label = document.createElement('div');
+        label.className = 'connected-label';
+        label.textContent = '↔ Connected';
+        block.appendChild(label);
+
+        const card = document.createElement('div');
+        card.className = 'connected-card';
+
+        const cTitle = document.createElement('div');
+        cTitle.className = 'connected-title';
+        cTitle.innerHTML = linkifyCIPs(connected.title || 'Untitled event');
+        card.appendChild(cTitle);
+
+        // Small meta row on the counterpart
+        const cMeta = document.createElement('div');
+        cMeta.className = 'meta-row';
+
+        const cTimeText = timeLabel(connected);
+        if (cTimeText) {
+          const cTime = document.createElement('span');
+          cTime.className = 'tag time-tag';
+          cTime.textContent = cTimeText;
+          cMeta.appendChild(cTime);
+        }
+
+        const cNet = normalizeNetwork(connected.network);
+        if (cNet) {
+          const t = document.createElement('span');
+          const cc = networkClass(cNet);
+          t.className = cc ? `tag ${cc}` : 'tag';
+          t.textContent = cNet;
+          cMeta.appendChild(t);
+        }
+        if (connected.type) {
+          const t = document.createElement('span');
+          t.className = 'tag';
+          t.textContent = connected.type;
+          cMeta.appendChild(t);
+        }
+        card.appendChild(cMeta);
+
+        // Jump button: switch to Day view on the connected date
+        const jump = document.createElement('button');
+        jump.className = 'jump-btn';
+        const connectedKey = eventDatePart(connected);
+        jump.textContent = 'View on ' +
+          parseDateKey(connectedKey)
+            .toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) +
+          ' →';
+        jump.onclick = () => jumpToDate(connectedKey);
+        card.appendChild(jump);
+
+        block.appendChild(card);
+        eventDiv.appendChild(block);
+      }
+
+      return eventDiv;
+    }
+
+    /* ---------------------------------------------------------
+       VIEW ROUTER
+       Decides which builder to call and toggles chrome (weekday
+       header, active buttons) accordingly.
+       --------------------------------------------------------- */
+    function render() {
+      // Mirror the current filters/view/date into the URL so it's always
+      // shareable. Every state change ends in render(), so this one call
+      // keeps the address bar in sync everywhere.
+      syncURL();
+
+      const root = document.getElementById('viewRoot');
+      const weekdayHeader = document.getElementById('weekdayHeader');
+      root.className = '';
+      root.innerHTML = '';
+
+      // Highlight the active Month/Week/Day button
+      ['Month', 'Week', 'Day'].forEach(v => {
+        const btn = document.getElementById('btn' + v);
+        btn.classList.toggle('active', currentView === v.toLowerCase() && !listMode);
+      });
+
+      // List-view pill label reflects what it will switch TO
+      document.getElementById('listToggle').textContent =
+        listMode ? 'Calendar view' : 'List view';
+
+      if (listMode) {
+        weekdayHeader.style.display = 'none';
+        renderListView(root);
+        return;
+      }
+
+      if (currentView === 'month') {
+        weekdayHeader.style.display = '';
+        renderMonthView(root);
+      } else if (currentView === 'week') {
+        weekdayHeader.style.display = '';
+        renderWeekView(root);
+      } else {
+        weekdayHeader.style.display = 'none';
+        renderDayView(root);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       MONTH VIEW  (original behaviour, refactored)
+       --------------------------------------------------------- */
+    function renderMonthView(root) {
+      root.classList.add('calendar');
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      document.getElementById('periodTitle').textContent =
+        currentDate.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+
+      const firstDay = new Date(year, month, 1);
+      const gridStart = startOfWeek(firstDay);
+      const todayKey = dateKey(new Date());
+
+      for (let i = 0; i < 35; i++) {
+        const dayDate = new Date(gridStart);
+        dayDate.setDate(gridStart.getDate() + i);
+
+        const key = dateKey(dayDate);
+        const day = document.createElement('div');
+        day.className = 'day';
+
+        if (dayDate.getMonth() !== month) day.classList.add('outside');
+        if (key === todayKey) day.classList.add('today');
+
+        const dayLabel = window.innerWidth <= 700
+          ? dayDate.toLocaleDateString('en-US',
+              { weekday: 'long', month: 'long', day: 'numeric' })
+          : dayDate.getDate();
+
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.innerHTML = `<div class="day-number">${dayLabel}</div>`;
+        header.appendChild(buildSpliceMarker(key));
+        day.appendChild(header);
+
+        // Only in-month days open the day view.
+        if (dayDate.getMonth() === month) makeDayClickable(day, key);
+
+        eventsOnDate(key).forEach(event => day.appendChild(renderEvent(event)));
+        root.appendChild(day);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       WEEK VIEW
+       Seven day-columns for the Monday-based week of currentDate.
+       --------------------------------------------------------- */
+    function renderWeekView(root) {
+      root.classList.add('calendar', 'week-grid');
+
+      const weekStart = startOfWeek(currentDate);
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekStart.getDate() + 6);
+
+      document.getElementById('periodTitle').textContent =
+        weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) +
+        ' – ' +
+        weekEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      const todayKey = dateKey(new Date());
+
+      for (let i = 0; i < 7; i++) {
+        const dayDate = new Date(weekStart);
+        dayDate.setDate(weekStart.getDate() + i);
+
+        const key = dateKey(dayDate);
+        const day = document.createElement('div');
+        day.className = 'day';
+        if (key === todayKey) day.classList.add('today');
+
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.innerHTML = `<div class="day-number">${dayDate.getDate()}</div>`;
+        header.appendChild(buildSpliceMarker(key));
+        day.appendChild(header);
+
+        makeDayClickable(day, key);
+
+        eventsOnDate(key).forEach(event =>
+          day.appendChild(renderEvent(event, { showConnected: true })));
+        root.appendChild(day);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       DAY VIEW
+       A single panel for currentDate, with events grouped by
+       activity type. Connected blocks are shown here.
+       --------------------------------------------------------- */
+    function renderDayView(root) {
+      const key = dateKey(currentDate);
+
+      document.getElementById('periodTitle').textContent = longDate(key);
+
+      const panel = document.createElement('div');
+      panel.className = 'day-view';
+
+      const heading = document.createElement('div');
+      heading.className = 'day-view-heading';
+      heading.textContent = longDate(key);
+
+      const headerRow = document.createElement('div');
+      headerRow.className = 'day-view-header';
+      headerRow.appendChild(heading);
+      headerRow.appendChild(buildSpliceMarker(key));
+      panel.appendChild(headerRow);
+
+      const events = eventsOnDate(key);
+
+      if (!events.length) {
+        const note = document.createElement('div');
+        note.className = 'empty-note';
+        note.textContent = 'No approved events on this day.';
+        panel.appendChild(note);
+      } else {
+        renderGroupedByType(panel, events, { showConnected: true });
+      }
+
+      root.appendChild(panel);
+    }
+
+    /* ---------------------------------------------------------
+       LIST VIEW
+       Mini date-picker (left) + a scrolling agenda from the
+       selected date onward (right). Days with no matching events
+       are skipped.
+       --------------------------------------------------------- */
+    function renderListView(root) {
+      root.classList.add('list-view');
+
+      const startKey = dateKey(currentDate);
+      document.getElementById('periodTitle').textContent = 'From ' + shortLong(startKey);
+
+      // --- Left: mini calendar ---
+      root.appendChild(buildMiniCalendar());
+
+      // --- Right: agenda ---
+      const agenda = document.createElement('div');
+      agenda.className = 'agenda';
+
+      // Collect the distinct dates (from the selected day forward)
+      // that have at least one matching event.
+      const start = parseDateKey(startKey);
+      const datesWithEvents = [...new Set(
+        allEvents
+          .filter(matchesFilters)
+          .map(eventDatePart)
+          .filter(k => parseDateKey(k) >= start)
+      )].sort();
+
+      if (!datesWithEvents.length) {
+        const note = document.createElement('div');
+        note.className = 'empty-note';
+        note.textContent = 'No approved events from this date onward.';
+        agenda.appendChild(note);
+      }
+
+      datesWithEvents.forEach(key => {
+        const block = document.createElement('div');
+        block.className = 'agenda-day';
+
+        const dateEl = document.createElement('div');
+        dateEl.className = 'agenda-date';
+        dateEl.textContent = longDate(key);
+
+        // Header row so the Splice "i" for this day sits at the right of
+        // the date heading, matching the other views.
+        const dateRow = document.createElement('div');
+        dateRow.className = 'agenda-date-row';
+        dateRow.appendChild(dateEl);
+        dateRow.appendChild(buildSpliceMarker(key));
+        block.appendChild(dateRow);
+
+        renderGroupedByType(block, eventsOnDate(key), { showConnected: true });
+        agenda.appendChild(block);
+      });
+
+      root.appendChild(agenda);
+    }
+
+    // "Jul 6, 2026" style label used in the list title.
+    function shortLong(key) {
+      return parseDateKey(key)
+        .toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    /* ---------------------------------------------------------
+       SHARED: group events under activity-type headings
+       Used by both Day and List views.
+       --------------------------------------------------------- */
+    function renderGroupedByType(parent, events, options) {
+      // Preserve first-seen order of types.
+      const groups = {};
+      const order = [];
+
+      events.forEach(e => {
+        const type = e.type || 'Other';
+        if (!groups[type]) { groups[type] = []; order.push(type); }
+        groups[type].push(e);
+      });
+
+      order.forEach(type => {
+        const title = document.createElement('div');
+        title.className = 'type-group-title';
+        title.textContent = type;
+        parent.appendChild(title);
+
+        groups[type].forEach(event =>
+          parent.appendChild(renderEvent(event, options)));
+      });
+    }
+
+    /* ---------------------------------------------------------
+       MINI CALENDAR (List view sidebar)
+       Clicking a day sets currentDate and re-renders the agenda.
+       --------------------------------------------------------- */
+    function buildMiniCalendar() {
+      const wrap = document.createElement('div');
+      wrap.className = 'mini-cal';
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      // Header with month label + prev/next arrows
+      const header = document.createElement('div');
+      header.className = 'mini-cal-header';
+
+      const prev = document.createElement('button');
+      prev.textContent = '←';
+      prev.onclick = () => { currentDate.setMonth(month - 1); renderWithHistory(); };
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'mini-title';
+      titleEl.textContent =
+        currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      const next = document.createElement('button');
+      next.textContent = '→';
+      next.onclick = () => { currentDate.setMonth(month + 1); renderWithHistory(); };
+
+      header.appendChild(prev);
+      header.appendChild(titleEl);
+      header.appendChild(next);
+      wrap.appendChild(header);
+
+      // Day grid
+      const grid = document.createElement('div');
+      grid.className = 'mini-grid';
+
+      ['M', 'T', 'W', 'T', 'F', 'S', 'S'].forEach(d => {
+        const wd = document.createElement('div');
+        wd.className = 'mini-weekday';
+        wd.textContent = d;
+        grid.appendChild(wd);
+      });
+
+      const firstDay = new Date(year, month, 1);
+      const gridStart = startOfWeek(firstDay);
+      const selectedKey = dateKey(currentDate);
+
+      for (let i = 0; i < 42; i++) {
+        const dayDate = new Date(gridStart);
+        dayDate.setDate(gridStart.getDate() + i);
+
+        const key = dateKey(dayDate);
+        const cell = document.createElement('div');
+        cell.className = 'mini-day';
+
+        if (dayDate.getMonth() !== month) {
+          cell.classList.add('outside');
+        } else {
+          cell.onclick = () => jumpToDate(key, /*keepList*/ true);
+        }
+
+        if (key === selectedKey) cell.classList.add('selected');
+
+        cell.textContent = dayDate.getDate();
+        grid.appendChild(cell);
+      }
+
+      wrap.appendChild(grid);
+      return wrap;
+    }
+
+    /* ---------------------------------------------------------
+       NAVIGATION
+       Previous/Next step by month, week, or day depending on view.
+       --------------------------------------------------------- */
+    function previousPeriod() { step(-1); }
+    function nextPeriod() { step(1); }
+
+    function step(direction) {
+      if (listMode || currentView === 'month') {
+        currentDate.setMonth(currentDate.getMonth() + direction);
+      } else if (currentView === 'week') {
+        currentDate.setDate(currentDate.getDate() + 7 * direction);
+      } else { // day
+        currentDate.setDate(currentDate.getDate() + direction);
+      }
+      renderWithHistory();
+    }
+
+    function goToday() {
+      currentDate = new Date();
+      renderWithHistory();
+    }
+
+    // Reset the search box and both filter dropdowns, then re-render so
+    // the full unfiltered schedule is shown again.
+    function clearFilters() {
+      document.getElementById('search').value = '';
+      document.getElementById('networkFilter').value = '';
+      document.getElementById('typeFilter').value = '';
+      // Reset also returns to the default Month view (leaving List/Week/Day)
+      // AND jumps back to today, so Reset always lands on the current month
+      // rather than whatever month you'd navigated to.
+      currentView = 'month';
+      listMode = false;
+      currentDate = new Date();
+      renderWithHistory();
+    }
+
+    // Switch Month/Week/Day (also leaves list mode).
+    function setView(view) {
+      currentView = view;
+      listMode = false;
+      renderWithHistory();
+    }
+
+    // Toggle the List (agenda) mode on/off.
+    function toggleListMode() {
+      listMode = !listMode;
+      renderWithHistory();
+    }
+
+    // Jump to a specific date. By default this opens Day view;
+    // from the mini calendar we stay in List mode instead.
+    function jumpToDate(key, keepList = false) {
+      currentDate = parseDateKey(key);
+      if (!keepList) { listMode = false; currentView = 'day'; }
+      renderWithHistory();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Make a Month/Week day cell open its Day view when clicked.
+    // Clicks on interactive children (e.g. the connected-event jump
+    // button) are ignored so those keep their own behaviour.
+    function makeDayClickable(dayEl, key) {
+      dayEl.classList.add('clickable');
+      dayEl.title = 'Open day view';
+
+      dayEl.addEventListener('click', event => {
+        // Let buttons/links inside the cell handle their own clicks.
+        if (event.target.closest('button, a, .jump-btn')) return;
+        jumpToDate(key);
+      });
+    }
+
+    // Show/hide the info modal (popover + backdrop together).
+    function toggleInfo() {
+      document.getElementById('infoPopover').classList.toggle('hidden');
+      document.getElementById('infoBackdrop').classList.toggle('hidden');
+    }
+
+    // Explicitly close the info modal (used by the x button, backdrop click, Escape).
+    function closeInfo() {
+      document.getElementById('infoPopover').classList.add('hidden');
+      document.getElementById('infoBackdrop').classList.add('hidden');
+    }
+
+    /* ---------------------------------------------------------
+       EVENT LISTENERS
+       --------------------------------------------------------- */
+    // Search typing replaces the URL silently (no history per keystroke).
+    document.getElementById('search').addEventListener('input', render);
+    // Changing a filter is a discrete action → push a history entry.
+    document.getElementById('networkFilter').addEventListener('change', renderWithHistory);
+    document.getElementById('typeFilter').addEventListener('change', renderWithHistory);
+
+    // Browser Back/Forward: re-apply the state the URL now describes, then
+    // render without touching history (plain render → replaceState).
+    window.addEventListener('popstate', () => {
+      applyStateFromURL();
+      render();
+    });
+
+    // Re-render on resize so the month view's mobile labels update.
+    window.addEventListener('resize', render);
+
+    // Hide the shared Splice tooltip whenever anything scrolls, so a
+    // fixed-position tooltip can't drift away from its "i". Capture phase
+    // catches scrolling inside individual day cells too, not just the page.
+    window.addEventListener('scroll', hideSpliceTooltip, true);
+
+    // Clicking anywhere outside a pinned tooltip (and not on an "i")
+    // dismisses it. Clicks on a DAR link inside run first (they navigate
+    // and call hideSpliceTooltip themselves).
+    document.addEventListener('click', event => {
+      if (!spliceTooltipPinned) return;
+      const onTooltip = spliceTooltipEl && spliceTooltipEl.contains(event.target);
+      const onMarker = event.target.closest && event.target.closest('.splice-marker');
+      if (!onTooltip && !onMarker) hideSpliceTooltip();
+    });
+
+    // Close the info modal with the Escape key.
+    // (Clicking outside is handled by the backdrop's own onclick.)
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeInfo();
+    });
+
+    loadSchedule();
+  </script>
+</body>
+</html>
