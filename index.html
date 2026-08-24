@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=19" />
+  <link rel="stylesheet" href="./styles.css?v=20" />
 </head>
 
 <body>
@@ -48,6 +48,7 @@
           <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
           <button class="clear-btn" onclick="clearFilters()" title="Reset search, filters, and view">Reset</button>
           <button id="copyLinkBtn" class="clear-btn" onclick="copyShareLink()" title="Copy a link to this filtered view">Copy link</button>
+          <button id="subscribeBtn" class="clear-btn" onclick="subscribeCalendar()" title="Subscribe to this calendar (.ics) in Google Calendar, Apple, or Outlook">Subscribe</button>
         </div>
       </div>
 
@@ -419,6 +420,77 @@
       } else {
         window.prompt('Copy this link:', url);
       }
+    }
+
+    // Subscribe to the calendar feed. The .ics feed is served from the same
+    // origin as this page (published by the Apps Script alongside
+    // schedule.json). We show a small popover with the feed URL, a
+    // one-click "Add to Google Calendar" link, and a copy button so people
+    // can paste it into Apple Calendar / Outlook too.
+    function subscribeCalendar() {
+      // Feed lives next to this page: <origin><path>schedule.ics
+      const base = window.location.origin +
+        window.location.pathname.replace(/[^/]*$/, '');
+      const feedUrl = base + 'schedule.ics';
+
+      // Google Calendar "add by URL" deep link.
+      const googleUrl = 'https://calendar.google.com/calendar/r?cid=' +
+        encodeURIComponent(feedUrl);
+
+      // Build a lightweight popover (reuses the info-popover styling).
+      let pop = document.getElementById('subscribePopover');
+      if (pop) { pop.remove(); return; }   // toggle off if already open
+
+      pop = document.createElement('div');
+      pop.id = 'subscribePopover';
+      pop.className = 'subscribe-popover';
+      pop.innerHTML =
+        '<div class="subscribe-title">Subscribe to this calendar</div>' +
+        '<div class="subscribe-desc">Add the SV Operations Schedule to your ' +
+        'calendar app. It stays in sync automatically.</div>' +
+        '<a class="subscribe-google" href="' + googleUrl + '" target="_blank" ' +
+        'rel="noopener noreferrer">Add to Google Calendar</a>' +
+        '<div class="subscribe-manual-label">Or paste this feed URL into ' +
+        'Apple Calendar / Outlook:</div>' +
+        '<div class="subscribe-url-row">' +
+        '<input class="subscribe-url" readonly value="' + feedUrl + '" />' +
+        '<button class="subscribe-copy">Copy</button>' +
+        '</div>';
+
+      document.body.appendChild(pop);
+
+      // Position under the Subscribe button.
+      const btn = document.getElementById('subscribeBtn');
+      const r = btn.getBoundingClientRect();
+      pop.style.top = (r.bottom + 8) + 'px';
+      pop.style.left = Math.max(8,
+        Math.min(r.left, window.innerWidth - pop.offsetWidth - 8)) + 'px';
+
+      // Copy button.
+      const copyBtn = pop.querySelector('.subscribe-copy');
+      const urlInput = pop.querySelector('.subscribe-url');
+      copyBtn.addEventListener('click', () => {
+        const done = () => { copyBtn.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(feedUrl).then(done).catch(() => {
+            urlInput.select(); document.execCommand('copy'); done();
+          });
+        } else {
+          urlInput.select(); document.execCommand('copy'); done();
+        }
+      });
+
+      // Dismiss on outside click.
+      setTimeout(() => {
+        const onAway = e => {
+          if (!pop.contains(e.target) && e.target !== btn) {
+            pop.remove();
+            document.removeEventListener('click', onAway);
+          }
+        };
+        document.addEventListener('click', onAway);
+      }, 0);
     }
 
     // Monday-based start of the week containing `date`.
