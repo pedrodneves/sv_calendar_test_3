@@ -626,6 +626,19 @@ select::-ms-expand { display: none; }
   opacity: 0.85;
 }
 
+/* Strike through the title of a cancelled event so it reads as
+   no-longer-happening at a glance. */
+.event.cancelled .title {
+  text-decoration: line-through;
+  text-decoration-color: #ff5722;
+  text-decoration-thickness: 2px;
+}
+
+/* "Cancelled events" label in the About modal legend, in the same red. */
+.legend-cancelled {
+  color: #ff5722;
+}
+
 /* Explicit "Cancelled" status tag — orange-red to match the card. */
 .tag.cancelled-tag {
   background: rgba(255, 87, 34, 0.25);
