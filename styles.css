@@ -634,10 +634,6 @@ select::-ms-expand { display: none; }
   text-decoration-thickness: 2px;
 }
 
-/* "Cancelled events" label in the About modal legend, in the same red. */
-.legend-cancelled {
-  color: #ff5722;
-}
 
 /* Explicit "Cancelled" status tag — orange-red to match the card. */
 .tag.cancelled-tag {
