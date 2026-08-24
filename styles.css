@@ -80,60 +80,82 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
 /* ---- Controls bar ------------------------------------------ */
 .controls {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 16px;
+  flex-direction: column;
+  gap: 12px;
   margin-bottom: 24px;
-  padding: 18px;
+  padding: 16px 18px;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
 }
 
-/* Three flex children: nav-group, filter-group, view-switcher. */
-.nav-group     { display: flex; gap: 10px; flex: 0 0 auto; order: 2; }
-.view-switcher { flex: 0 0 auto; order: 3; }
-
-.filter-group {
+/* Each row is its own flex line. */
+.toolbar-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  flex: 1 1 auto;
-  min-width: 0;
-  order: 1;
-}
-.filter-group #search { flex: 1 1 200px; min-width: 150px; }
-.filter-group #networkFilter { flex: 0 1 auto; min-width: 150px; }
-.filter-group .type-filter-cell { flex: 0 1 auto; }
-
-/* WIDE (default, one row):
-   nav (left) — filters (middle, growing) — view (right). The filter-group
-   grows to fill the space between nav and view. */
-@media (min-width: 1351px) {
-  .nav-group { order: 1; }
-  .filter-group { order: 2; }
-  .view-switcher { order: 3; }
+  flex-wrap: wrap;
 }
 
-/* NARROW (two rows): filters on their own top line, then nav-group and
-   view-switcher share the line below — nav pushed left, view pushed
-   right. A full-width break after the filter-group guarantees the split
-   so nothing ends up on a stray third row. */
-@media (max-width: 1350px) {
-  .filter-group { flex-basis: 100%; }        /* filters take the whole top line */
-  .view-switcher { margin-left: auto; }       /* push Month/Week/Day to the right */
+/* Row 1: nav on the left, view switcher pushed to the right. */
+.toolbar-row-top { justify-content: space-between; }
+.nav-group { display: flex; gap: 8px; }
+
+/* Row 2: search grows, filters sit beside it. */
+.toolbar-row-filters #search { flex: 1 1 220px; min-width: 160px; }
+.toolbar-row-filters #networkFilter { flex: 0 1 auto; min-width: 150px; }
+.toolbar-row-filters .type-filter-cell { flex: 0 1 auto; }
+
+/* Row 3: utility actions, right-aligned, with a divider above. */
+.toolbar-row-actions {
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid rgba(124, 77, 255, 0.18);
+  padding-top: 12px;
 }
 
-/* VERY NARROW (phones): nav-group + view-switcher can no longer fit on
-   one line together, so give each its own full-width line and let the
-   buttons stretch to fill — keeps everything tidy instead of a ragged
-   half-wrapped row. */
+/* Action buttons (Reset / Copy link / Subscribe) with leading icons. */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid rgba(201, 156, 255, 0.25);
+  color: #a89cc0;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.action-btn:hover {
+  border-color: var(--purple-soft);
+  color: var(--purple-soft);
+  background: rgba(124, 77, 255, 0.1);
+}
+.action-btn .action-ic { width: 15px; height: 15px; flex: 0 0 auto; }
+
+/* Subscribe is the primary action — a touch of accent. */
+.action-btn-primary {
+  background: rgba(124, 77, 255, 0.18);
+  border-color: rgba(201, 156, 255, 0.5);
+  color: var(--purple-soft);
+}
+.action-btn-primary:hover {
+  background: rgba(124, 77, 255, 0.3);
+  border-color: var(--purple-soft);
+}
+
+.btn-ic { opacity: 0.8; }
+
+/* On phones, let the action buttons stretch and center rather than crowd
+   the right edge. */
 @media (max-width: 560px) {
-  .nav-group, .view-switcher { flex-basis: 100%; justify-content: space-between; }
-  .nav-group { display: flex; }
-  .view-switcher { display: flex; margin-left: 0; }
+  .toolbar-row-top { flex-direction: column; align-items: stretch; }
+  .nav-group, .view-switcher { justify-content: space-between; }
   .nav-group button, .view-switcher button { flex: 1 1 auto; }
+  .toolbar-row-actions { justify-content: center; }
 }
 
 button, input, select {
