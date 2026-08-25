@@ -46,6 +46,36 @@ header {
 h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
 .subtitle { margin-top: 8px; color: var(--muted); }
 
+/* Left side of the header: logo, a divider, then the title block — all
+   on one line and vertically centered to each other. */
+.header-brand {
+  display: flex;
+  align-items: center;   /* centers the logo to the title block */
+  gap: 20px;
+  min-width: 0;
+}
+.header-logo {
+  height: 46px;          /* wordmark scales to this height, width auto */
+  width: auto;
+  flex: 0 0 auto;
+  display: block;
+}
+.header-divider {
+  width: 1px;
+  align-self: stretch;   /* matches the height of the taller neighbor */
+  min-height: 44px;
+  background: rgba(201, 156, 255, 0.25);
+  flex: 0 0 auto;
+}
+.header-titles { min-width: 0; }
+
+/* On narrow screens, drop the divider and let brand + actions wrap. */
+@media (max-width: 640px) {
+  header { flex-wrap: wrap; }
+  .header-logo { height: 38px; }
+  h1 { font-size: 30px; }
+}
+
 /* Right-hand cluster in the header: source pill + list-view toggle */
 .header-actions {
   display: flex;
