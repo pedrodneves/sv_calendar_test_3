@@ -1,53 +1,5 @@
 [
   {
-    "id": "12560030157",
-    "title": "DevNet upgrades to Splice 0.7.4",
-    "start": "2026-08-24",
-    "end": "2026-08-24",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12560030158",
-    "title": "TestNet upgrades to Splice 0.7.3",
-    "start": "2026-08-24",
-    "end": "2026-08-24",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12560030159",
-    "title": "MainNet upgrades to Splice 0.7.1",
-    "start": "2026-08-24",
-    "end": "2026-08-24",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559975419",
-    "title": "TestNet: Validators must upgrade to 0.7.x",
-    "start": "2026-08-24",
-    "end": "2026-08-24",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Minimum Splice Versions",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12560030160",
     "title": "DevNet Breaking Config Changes (0.7.x Required)",
     "start": "2026-08-25",
@@ -9392,6 +9344,54 @@
     "status": "Confirmed",
     "network": "MainNet",
     "type": "Splice Daml Model Effectivity",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559975419",
+    "title": "TestNet: Validators must upgrade to 0.7.x",
+    "start": "2026-08-24",
+    "end": "2026-08-24",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Minimum Splice Versions",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12560030159",
+    "title": "MainNet upgrades to Splice 0.7.1",
+    "start": "2026-08-24",
+    "end": "2026-08-24",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12560030157",
+    "title": "DevNet upgrades to Splice 0.7.4",
+    "start": "2026-08-24",
+    "end": "2026-08-24",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12560030158",
+    "title": "TestNet upgrades to Splice 0.7.3",
+    "start": "2026-08-24",
+    "end": "2026-08-24",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
     "category": "general",
     "dependsOn": []
   }
