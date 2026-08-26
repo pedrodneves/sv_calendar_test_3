@@ -1,29 +1,5 @@
 [
   {
-    "id": "12560030160",
-    "title": "DevNet Breaking Config Changes (0.7.x Required)",
-    "start": "2026-08-25",
-    "end": "2026-08-25",
-    "description": "",
-    "status": "Cancelled",
-    "network": "DevNet",
-    "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559962705",
-    "title": "TestNet: Topology Freeze (0.7.x Required) (August 2026)",
-    "start": "2026-08-25",
-    "end": "2026-08-25",
-    "description": "",
-    "status": "Cancelled",
-    "network": "TestNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559975423",
     "title": "TestNet LSU (0.7.x Required) (August 2026)",
     "start": "2026-08-26 14:00",
@@ -9392,6 +9368,30 @@
     "status": "Confirmed",
     "network": "TestNet",
     "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559962705",
+    "title": "TestNet: Topology Freeze (0.7.x Required) (August 2026)",
+    "start": "2026-08-25",
+    "end": "2026-08-25",
+    "description": "",
+    "status": "Cancelled",
+    "network": "TestNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12560030160",
+    "title": "DevNet Breaking Config Changes (0.7.x Required)",
+    "start": "2026-08-25",
+    "end": "2026-08-25",
+    "description": "",
+    "status": "Cancelled",
+    "network": "DevNet",
+    "type": "Other Network Configuration Change",
     "category": "general",
     "dependsOn": []
   }
