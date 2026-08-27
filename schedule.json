@@ -1,17 +1,5 @@
 [
   {
-    "id": "12559975423",
-    "title": "TestNet LSU (0.7.x Required) (August 2026)",
-    "start": "2026-08-26 14:00",
-    "end": "2026-08-26 14:00",
-    "description": "",
-    "status": "Cancelled",
-    "network": "TestNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559975425",
     "title": "DevNet upgrades to Splice 0.7.5",
     "start": "2026-08-31",
@@ -9392,6 +9380,18 @@
     "status": "Cancelled",
     "network": "DevNet",
     "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559975423",
+    "title": "TestNet LSU (0.7.x Required) (August 2026)",
+    "start": "2026-08-26 14:00",
+    "end": "2026-08-26 14:00",
+    "description": "",
+    "status": "Cancelled",
+    "network": "TestNet",
+    "type": "Protocol Upgrades (LSU)",
     "category": "general",
     "dependsOn": []
   }
