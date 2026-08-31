@@ -1463,7 +1463,17 @@
       const gridStart = startOfWeek(firstDay);
       const todayKey = dateKey(new Date());
 
-      for (let i = 0; i < 35; i++) {
+      // A month can span 5 OR 6 calendar rows depending on which weekday the
+      // 1st falls on. A fixed 35-day (5-week) grid silently cut off the last
+      // day of months like Aug 2026 (the 31st landed in row 6). Compute how
+      // many weeks are needed so every day of the month is always shown.
+      const lastDay = new Date(year, month + 1, 0);       // last day of month
+      const msPerDay = 86400000;
+      const daysSpanned = Math.round((lastDay - gridStart) / msPerDay) + 1;
+      const weeks = Math.ceil(daysSpanned / 7);
+      const cellCount = weeks * 7;                          // 35 or 42
+
+      for (let i = 0; i < cellCount; i++) {
         const dayDate = new Date(gridStart);
         dayDate.setDate(gridStart.getDate() + i);
 
@@ -1679,7 +1689,7 @@
 
       const prev = document.createElement('button');
       prev.textContent = '←';
-      prev.onclick = () => { currentDate.setMonth(month - 1); renderWithHistory(); };
+      prev.onclick = () => { currentDate = new Date(year, month - 1, 1); renderWithHistory(); };
 
       const titleEl = document.createElement('div');
       titleEl.className = 'mini-title';
@@ -1688,7 +1698,7 @@
 
       const next = document.createElement('button');
       next.textContent = '→';
-      next.onclick = () => { currentDate.setMonth(month + 1); renderWithHistory(); };
+      next.onclick = () => { currentDate = new Date(year, month + 1, 1); renderWithHistory(); };
 
       header.appendChild(prev);
       header.appendChild(titleEl);
@@ -1743,6 +1753,11 @@
 
     function step(direction) {
       if (listMode || currentView === 'month') {
+        // Snap to the 1st before changing month. Otherwise, stepping from a
+        // 31st into a shorter month (e.g. Aug 31 -> Sep) overflows to the
+        // following month (Oct 1), skipping a month entirely. Month view
+        // only cares which month is shown, not the day.
+        currentDate.setDate(1);
         currentDate.setMonth(currentDate.getMonth() + direction);
       } else if (currentView === 'week') {
         currentDate.setDate(currentDate.getDate() + 7 * direction);
