@@ -1,53 +1,5 @@
 [
   {
-    "id": "12559975425",
-    "title": "DevNet upgrades to Splice 0.7.5",
-    "start": "2026-08-31",
-    "end": "2026-08-31",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559993028",
-    "title": "TestNet upgrades to Splice 0.7.4",
-    "start": "2026-08-31",
-    "end": "2026-08-31",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559993031",
-    "title": "MainNet upgrades to Splice 0.7.3",
-    "start": "2026-08-31",
-    "end": "2026-08-31",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559975649",
-    "title": "MainNet: Validators must upgrade to 0.7.x",
-    "start": "2026-08-31",
-    "end": "2026-08-31",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Minimum Splice Versions",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559993034",
     "title": "TestNet Breaking Config Changes (0.7.x Required)",
     "start": "2026-09-01",
@@ -9392,6 +9344,54 @@
     "status": "Cancelled",
     "network": "TestNet",
     "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559975425",
+    "title": "DevNet upgrades to Splice 0.7.5",
+    "start": "2026-08-31",
+    "end": "2026-08-31",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559975649",
+    "title": "MainNet: Validators must upgrade to 0.7.x",
+    "start": "2026-08-31",
+    "end": "2026-08-31",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Minimum Splice Versions",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993031",
+    "title": "MainNet upgrades to Splice 0.7.3",
+    "start": "2026-08-31",
+    "end": "2026-08-31",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993028",
+    "title": "TestNet upgrades to Splice 0.7.4",
+    "start": "2026-08-31",
+    "end": "2026-08-31",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
     "category": "general",
     "dependsOn": []
   }
