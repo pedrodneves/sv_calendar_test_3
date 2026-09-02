@@ -1,17 +1,5 @@
 [
   {
-    "id": "12559993034",
-    "title": "TestNet Breaking Config Changes (0.7.x Required)",
-    "start": "2026-09-01",
-    "end": "2026-09-01",
-    "description": "",
-    "status": "Cancelled",
-    "network": "TestNet",
-    "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12266306148",
     "title": "MainNet Topology Freeze",
     "start": "2026-09-04",
@@ -9392,6 +9380,18 @@
     "status": "Confirmed",
     "network": "TestNet",
     "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993034",
+    "title": "TestNet Breaking Config Changes (0.7.x Required)",
+    "start": "2026-09-01",
+    "end": "2026-09-01",
+    "description": "",
+    "status": "Cancelled",
+    "network": "TestNet",
+    "type": "Other Network Configuration Change",
     "category": "general",
     "dependsOn": []
   }
