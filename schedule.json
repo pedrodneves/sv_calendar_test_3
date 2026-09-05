@@ -1,17 +1,5 @@
 [
   {
-    "id": "12266306148",
-    "title": "MainNet Topology Freeze",
-    "start": "2026-09-04",
-    "end": "2026-09-04",
-    "description": "",
-    "status": "Cancelled",
-    "network": "MainNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12675008989",
     "title": "MainNet LSU (0.7.x Required)",
     "start": "2026-09-05",
@@ -9392,6 +9380,18 @@
     "status": "Cancelled",
     "network": "TestNet",
     "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12266306148",
+    "title": "MainNet Topology Freeze",
+    "start": "2026-09-04",
+    "end": "2026-09-04",
+    "description": "",
+    "status": "Cancelled",
+    "network": "MainNet",
+    "type": "Protocol Upgrades (LSU)",
     "category": "general",
     "dependsOn": []
   }
