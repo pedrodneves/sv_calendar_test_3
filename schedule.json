@@ -1,17 +1,5 @@
 [
   {
-    "id": "12675008989",
-    "title": "MainNet LSU (0.7.x Required)",
-    "start": "2026-09-05",
-    "end": "2026-09-05",
-    "description": "",
-    "status": "Cancelled",
-    "network": "MainNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559993840",
     "title": "DevNet upgrades to Splice 0.8.0",
     "start": "2026-09-07",
@@ -9388,6 +9376,18 @@
     "title": "MainNet Topology Freeze",
     "start": "2026-09-04",
     "end": "2026-09-04",
+    "description": "",
+    "status": "Cancelled",
+    "network": "MainNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12675008989",
+    "title": "MainNet LSU (0.7.x Required)",
+    "start": "2026-09-05",
+    "end": "2026-09-05",
     "description": "",
     "status": "Cancelled",
     "network": "MainNet",
