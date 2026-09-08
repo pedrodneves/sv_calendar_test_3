@@ -1,41 +1,5 @@
 [
   {
-    "id": "12559993840",
-    "title": "DevNet upgrades to Splice 0.8.0",
-    "start": "2026-09-07",
-    "end": "2026-09-07",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559993843",
-    "title": "TestNet upgrades to Splice 0.7.5",
-    "start": "2026-09-07",
-    "end": "2026-09-07",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
-    "id": "12559993845",
-    "title": "MainNet upgrades to Splice 0.7.4",
-    "start": "2026-09-07",
-    "end": "2026-09-07",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": []
-  },
-  {
     "id": "12559998077",
     "title": "MainNet breaking config change (0.7.x Required)",
     "start": "2026-09-08",
@@ -9392,6 +9356,42 @@
     "status": "Cancelled",
     "network": "MainNet",
     "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993845",
+    "title": "MainNet upgrades to Splice 0.7.4",
+    "start": "2026-09-07",
+    "end": "2026-09-07",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993843",
+    "title": "TestNet upgrades to Splice 0.7.5",
+    "start": "2026-09-07",
+    "end": "2026-09-07",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": []
+  },
+  {
+    "id": "12559993840",
+    "title": "DevNet upgrades to Splice 0.8.0",
+    "start": "2026-09-07",
+    "end": "2026-09-07",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
     "category": "general",
     "dependsOn": []
   }
