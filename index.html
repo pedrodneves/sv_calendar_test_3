@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=25" />
+  <link rel="stylesheet" href="./styles.css?v=31" />
 </head>
 
 <body>
@@ -46,18 +46,27 @@
 
       <!-- Row 2: search + filters -->
       <div class="toolbar-row toolbar-row-filters">
-        <input id="search" placeholder="Search approved events..." />
+        <input id="search" placeholder="Search events..." />
 
         <select id="networkFilter">
           <option value="">All Networks</option>
         </select>
 
-        <div class="type-filter-cell">
-          <select id="typeFilter">
-            <option value="">All activity types</option>
-          </select>
-          <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
+        <select id="typeFilter">
+          <option value="">All activity types</option>
+        </select>
+
+        <select id="versionFilter">
+          <option value="">All versions</option>
+        </select>
+
+        <div class="date-filter-cell">
+          <label for="afterDate" class="date-filter-label">On or after</label>
+          <input type="date" id="afterDate" class="date-filter-input" />
+          <button id="clearAfterDate" class="date-filter-clear" title="Clear date filter" aria-label="Clear date filter">✕</button>
         </div>
+
+        <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
       </div>
 
       <!-- Row 3: utility actions, right-aligned -->
@@ -169,6 +178,7 @@
 
       populateNetworkFilter();
       populateTypeFilter();
+      populateVersionFilter();
 
       // Restore any filters/view/date from a shared link. Must run after
       // the dropdowns are populated so their option values exist.
@@ -340,10 +350,16 @@
       const search = document.getElementById('search').value.trim();
       const network = document.getElementById('networkFilter').value;
       const type = document.getElementById('typeFilter').value;
+      const versionEl = document.getElementById('versionFilter');
+      const version = versionEl ? versionEl.value : '';
+      const afterEl = document.getElementById('afterDate');
+      const after = afterEl ? afterEl.value : '';
 
       if (search) params.set('search', search);
       if (network) params.set('network', network);
       if (type) params.set('type', type);
+      if (version) params.set('version', version);
+      if (after) params.set('after', after);
 
       // View: 'list' takes precedence when list mode is on.
       const view = listMode ? 'list' : currentView;
@@ -396,6 +412,21 @@
       const typeSel = document.getElementById('typeFilter');
       typeSel.value =
         (type && [...typeSel.options].some(o => o.value === type)) ? type : '';
+
+      // Version filter: absent or invalid → "all".
+      const version = params.get('version');
+      const verSel = document.getElementById('versionFilter');
+      if (verSel) {
+        verSel.value =
+          (version && [...verSel.options].some(o => o.value === version)) ? version : '';
+      }
+
+      // Optional "on or after" date filter: absent → cleared.
+      const after = params.get('after');
+      const afterEl = document.getElementById('afterDate');
+      if (afterEl) {
+        afterEl.value = (after && /^\d{4}-\d{2}-\d{2}$/.test(after)) ? after : '';
+      }
 
       // View: absent → Month (default). 'list' toggles list mode.
       const view = params.get('view');
@@ -615,15 +646,44 @@
       select.value = currentValue;
     }
 
-    /* ---------------------------------------------------------
-       FILTERING
-       Returns every event that matches the search box and the
-       two dropdown filters (network + activity type).
-       --------------------------------------------------------- */
+    // Populate the minor-version filter from the structured `minorVersion`
+    // field published from monday's "Minor Versions" column. Values look
+    // like "0.7", "0.8", "0.10". Events with no version (null) are simply
+    // not represented as options. Sorted numerically so "0.10" comes after
+    // "0.9" (a plain string sort would misorder them).
+    function populateVersionFilter() {
+      const select = document.getElementById('versionFilter');
+      if (!select) return;
+      const currentValue = select.value;
+
+      select.innerHTML = '<option value="">All versions</option>';
+
+      const versions = [...new Set(
+        allEvents.map(event => event.minorVersion).filter(Boolean)
+      )].sort((a, b) => {
+        // Compare as [major, minor] number pairs, not as strings.
+        const pa = String(a).split('.').map(Number);
+        const pb = String(b).split('.').map(Number);
+        return (pa[0] - pb[0]) || ((pa[1] || 0) - (pb[1] || 0));
+      });
+
+      versions.forEach(version => {
+        const option = document.createElement('option');
+        option.value = version;
+        option.textContent = 'Splice ' + version + '.x';
+        select.appendChild(option);
+      });
+
+      select.value = currentValue;
+    }
     function matchesFilters(event) {
       const search = document.getElementById('search').value.toLowerCase();
       const selectedNetwork = document.getElementById('networkFilter').value;
       const selectedType = document.getElementById('typeFilter').value;
+      const versionEl = document.getElementById('versionFilter');
+      const selectedVersion = versionEl ? versionEl.value : '';
+      const afterEl = document.getElementById('afterDate');
+      const afterDate = afterEl ? afterEl.value : '';   // "YYYY-MM-DD" or ''
 
       const normalizedNetwork = normalizeNetwork(event.network);
 
@@ -634,7 +694,13 @@
 
       return searchable.includes(search) &&
         (!selectedNetwork || normalizedNetwork === selectedNetwork) &&
-        (!selectedType || event.type === selectedType);
+        (!selectedType || event.type === selectedType) &&
+        // When a version is selected, show ONLY events with that exact minor
+        // version; events without a version (null) are hidden.
+        (!selectedVersion || String(event.minorVersion) === selectedVersion) &&
+        // Optional "on or after" date filter — off when empty. String
+        // comparison works because both are ISO YYYY-MM-DD.
+        (!afterDate || eventDatePart(event) >= afterDate);
     }
 
     // All events on a given date key (filters applied).
@@ -712,7 +778,7 @@
           }
         });
 
-        result[network] = bestVersion;             // null if no upgrade yet
+        result[network] = { version: bestVersion, dateKey: bestDate ? dateKey(bestDate) : null };
       });
 
       return result;
@@ -838,6 +904,23 @@
         }
       });
 
+      // De-duplicate components per network per day. Some days carry the DAR
+      // list in BOTH formats — a set of component-title events AND a summary
+      // event whose description repeats the same list (e.g. 2026-06-16) —
+      // which would otherwise show each component twice ("12 components").
+      // Keep the first occurrence of each component name per network.
+      Object.keys(index).forEach(dayKey => {
+        Object.keys(index[dayKey]).forEach(net => {
+          const seen = new Set();
+          index[dayKey][net] = index[dayKey][net].filter(([name]) => {
+            const key = name.toLowerCase();
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+        });
+      });
+
       _darIndex = index;
       return index;
     }
@@ -912,7 +995,7 @@
       header.textContent = 'Minimum Splice Versions:';
       tip.appendChild(header);
 
-      rows.forEach(([network, version]) => {
+      rows.forEach(([network, version, sourceKey]) => {
         const row = document.createElement('div');
         row.className = 'splice-tooltip-row';
         const name = document.createElement('span');
@@ -923,14 +1006,30 @@
         ver.textContent = 'Validators must upgrade to ' + version;
         row.appendChild(name);
         row.appendChild(ver);
+
+        // If we know which day this version came from, make the row a link
+        // that jumps to that day's Day view (same behaviour as DAR rows).
+        if (sourceKey) {
+          row.classList.add('splice-dar-link');
+          row.title = 'Set on ' + sourceKey + ' — click to view';
+          row.addEventListener('click', ev => {
+            ev.stopPropagation();
+            hideSpliceTooltip();
+            jumpToDate(sourceKey);
+          });
+        }
+
         tip.appendChild(row);
       });
 
-      // DAR section: one line per network that has DAR data, showing the
-      // component count, linking to the day it came from. Full lists live
-      // in that Day view. Networks with no DAR data are omitted.
+      // DAR section (Option B): one expandable row per network that has
+      // DAR data. The row shows the network + component count; clicking it
+      // toggles the full [name, version] list open/closed. The first
+      // network with data starts expanded so the tooltip is useful at a
+      // glance while staying short. Networks with no DAR data are omitted.
       const darRows = JSON.parse(marker.dataset.dar || '[]');
-      const darWithData = darRows.filter(([, count]) => count > 0);
+      const darWithData = darRows.filter(([, components]) =>
+        Array.isArray(components) && components.length > 0);
 
       if (darWithData.length) {
         const darHeader = document.createElement('div');
@@ -938,29 +1037,70 @@
         darHeader.textContent = 'Minimum DAR versions:';
         tip.appendChild(darHeader);
 
-        darWithData.forEach(([network, count, sourceKey]) => {
-          const row = document.createElement('div');
-          row.className = 'splice-tooltip-row splice-dar-link';
+        darWithData.forEach(([network, components, sourceKey], idx) => {
+          // Group wrapper for this network (header row + collapsible list).
+          const group = document.createElement('div');
+          group.className = 'splice-dar-group ' + networkClass(network);
+
+          // Clickable header row: network name + count + chevron.
+          const head = document.createElement('div');
+          head.className = 'splice-dar-toggle';
           const name = document.createElement('span');
           name.className = 'splice-tooltip-net ' + networkClass(network);
           name.textContent = network;
-          const val = document.createElement('span');
-          val.className = 'splice-tooltip-ver';
-          // e.g. "6 DAR versions →" — click opens the source day.
-          val.textContent = count + ' DAR versions →';
-          row.appendChild(name);
-          row.appendChild(val);
+          const meta = document.createElement('span');
+          meta.className = 'splice-dar-count';
+          meta.innerHTML = components.length + ' components ' +
+            '<span class="splice-dar-chevron">›</span>';
+          head.appendChild(name);
+          head.appendChild(meta);
+          group.appendChild(head);
 
-          // Clicking the row opens the Day view of the event this DAR set
-          // came from, where the full component list is shown.
+          // Collapsible body: the full component list.
+          const body = document.createElement('div');
+          body.className = 'splice-dar-body';
+          components.forEach(([comp, ver]) => {
+            const line = document.createElement('div');
+            line.className = 'splice-dar-comp';
+            const c = document.createElement('span');
+            c.className = 'splice-dar-comp-name';
+            c.textContent = comp;
+            const v = document.createElement('span');
+            v.className = 'splice-tooltip-ver';
+            v.textContent = ver;
+            line.appendChild(c);
+            line.appendChild(v);
+            body.appendChild(line);
+          });
+
+          // A small "view source day" link at the end of the list, if we
+          // know which day this DAR set came from.
           if (sourceKey) {
-            row.addEventListener('click', () => {
+            const jump = document.createElement('div');
+            jump.className = 'splice-dar-jump';
+            jump.textContent = 'View ' + sourceKey + ' →';
+            jump.addEventListener('click', ev => {
+              ev.stopPropagation();
               hideSpliceTooltip();
-              jumpToDate(sourceKey);   // opens Day view at that date
+              jumpToDate(sourceKey);
             });
+            body.appendChild(jump);
           }
 
-          tip.appendChild(row);
+          group.appendChild(body);
+
+          // First network starts expanded; the rest collapsed.
+          if (idx === 0) group.classList.add('expanded');
+
+          // Toggle open/closed on header click. Re-position after, since
+          // the height changes.
+          head.addEventListener('click', ev => {
+            ev.stopPropagation();
+            group.classList.toggle('expanded');
+            positionSpliceTooltip(marker);
+          });
+
+          tip.appendChild(group);
         });
       }
 
@@ -980,24 +1120,39 @@
       // Make it measurable, then position relative to the marker.
       tip.classList.add('visible');
       tip.classList.toggle('pinned', spliceTooltipPinned);
+      positionSpliceTooltip(marker);
+    }
+
+    // Position the (already-populated, visible) tooltip relative to its
+    // marker. Called on open and again after an expand/collapse changes the
+    // height. A max-height with internal scroll (see CSS) guarantees it can
+    // never run off-screen even when every network is expanded.
+    function positionSpliceTooltip(marker) {
+      const tip = spliceTooltipEl;
+      if (!tip) return;
+
+      // Cap the height to the space available above/below the marker so the
+      // tooltip always fits; its own overflow:auto then scrolls if needed.
       const m = marker.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - m.bottom - 12;
+      const spaceAbove = m.top - 12;
+      const placeBelow = spaceBelow >= spaceAbove;
+      const avail = Math.max(placeBelow ? spaceBelow : spaceAbove, 160);
+      tip.style.maxHeight = avail + 'px';
+
       const t = tip.getBoundingClientRect();
 
-      // Default: below the "i", right-aligned to it.
+      // Horizontal: right-aligned to the "i", clamped on-screen.
       let left = m.right - t.width;
-      let top = m.bottom + 6;
-
-      // Keep it on-screen horizontally.
       if (left < 6) left = 6;
       if (left + t.width > window.innerWidth - 6) {
         left = window.innerWidth - 6 - t.width;
       }
-      // If it would go off the bottom, flip above the "i".
-      if (top + t.height > window.innerHeight - 6) {
-        top = m.top - t.height - 6;
-      }
 
-      // position: fixed => use viewport coordinates directly.
+      // Vertical: below if there's room, otherwise above.
+      let top = placeBelow ? m.bottom + 6 : m.top - t.height - 6;
+      if (top < 6) top = 6;
+
       tip.style.left = left + 'px';
       tip.style.top = top + 'px';
     }
@@ -1016,18 +1171,20 @@
     function buildSpliceMarker(key) {
       const versions = currentSpliceVersions(key);
 
-      // Store network|version pairs for the shared tooltip to read.
-      const rows = SPLICE_NETWORKS.map(network =>
-        [network, versions[network] || '—']);
+      // Store [network, version, sourceDateKey] so the tooltip can render
+      // each Splice row as a link to the day the upgrade was fetched from.
+      const rows = SPLICE_NETWORKS.map(network => {
+        const entry = versions[network] || { version: null, dateKey: null };
+        return [network, entry.version || '—', entry.dateKey];
+      });
 
-      // DAR data per network: [network, componentCount, sourceDateKey].
-      // Full lists live in the Day view; the tooltip shows a count and
-      // links to the day the data came from. sourceDateKey is null when a
-      // network has no DAR data.
+      // DAR data per network: [network, components, sourceDateKey], where
+      // components is the full [name, version] list. The tooltip (Option B)
+      // shows each network as an expandable row revealing these components.
       const dar = currentDarVersions(key);
       const darRows = SPLICE_NETWORKS.map(network => {
         const entry = dar[network] || { components: [], dateKey: null };
-        return [network, entry.components.length, entry.dateKey];
+        return [network, entry.components, entry.dateKey];
       });
 
       const marker = document.createElement('div');
@@ -1428,6 +1585,12 @@
       document.getElementById('listToggle').textContent =
         listMode ? 'Calendar view' : 'List view';
 
+      // The list view turns the title into an arrow-nav bar; other views
+      // use it as plain text, so clear that styling hook when not in list.
+      if (!listMode) {
+        document.getElementById('periodTitle').classList.remove('list-nav');
+      }
+
       if (listMode) {
         weekdayHeader.style.display = 'none';
         renderListView(root);
@@ -1589,54 +1752,82 @@
     function renderListView(root) {
       root.classList.add('list-view');
 
-      const startKey = dateKey(currentDate);
-      document.getElementById('periodTitle').textContent = 'From ' + shortLong(startKey);
+      // The list is scoped to the mini-calendar's current month. Title shows
+      // that month; the calendar's ← → arrows change which month loads.
+      const periodTitle = document.getElementById('periodTitle');
+      periodTitle.classList.remove('list-nav');
+      periodTitle.textContent = currentDate.toLocaleDateString('en-US',
+        { month: 'long', year: 'numeric' });
 
-      // --- Left: mini calendar ---
+      // --- Left: mini calendar. Its ← → change the month; clicking a day
+      // scrolls the list to that day within the month. ---
       root.appendChild(buildMiniCalendar());
 
-      // --- Right: agenda ---
+      // --- Right: the filtered list for THIS MONTH, grouped by date ---
       const agenda = document.createElement('div');
       agenda.className = 'agenda';
+      agenda.id = 'agendaList';
 
-      // Collect the distinct dates (from the selected day forward)
-      // that have at least one matching event.
-      const start = parseDateKey(startKey);
-      const datesWithEvents = [...new Set(
-        allEvents
-          .filter(matchesFilters)
-          .map(eventDatePart)
-          .filter(k => parseDateKey(k) >= start)
-      )].sort();
+      // Only events in the selected month that match the current filters.
+      const y = currentDate.getFullYear();
+      const m = currentDate.getMonth();
+      const monthPrefix = y + '-' + String(m + 1).padStart(2, '0');   // "2026-10"
 
-      if (!datesWithEvents.length) {
+      const matching = allEvents.filter(e =>
+        eventDatePart(e).startsWith(monthPrefix) && matchesFilters(e));
+
+      const byDate = {};
+      const dateOrder = [];
+      matching.forEach(e => {
+        const k = eventDatePart(e);
+        if (!byDate[k]) { byDate[k] = []; dateOrder.push(k); }
+        byDate[k].push(e);
+      });
+      dateOrder.sort();
+
+      if (!dateOrder.length) {
         const note = document.createElement('div');
-        note.className = 'empty-note';
-        note.textContent = 'No approved events from this date onward.';
-        agenda.appendChild(note);
+        note.className = 'empty-note empty-note-centered';
+        note.textContent = 'No events this month.';
+        root.appendChild(note);
+        return;
       }
 
-      datesWithEvents.forEach(key => {
+      dateOrder.forEach(key => {
         const block = document.createElement('div');
         block.className = 'agenda-day';
+        // Anchor id so the mini-calendar can scroll to a day within the month.
+        block.id = 'day-' + key;
+        block.dataset.date = key;
 
+        // Date heading with the Splice "i" marker at the right.
+        const dateRow = document.createElement('div');
+        dateRow.className = 'agenda-date-row';
         const dateEl = document.createElement('div');
         dateEl.className = 'agenda-date';
         dateEl.textContent = longDate(key);
-
-        // Header row so the Splice "i" for this day sits at the right of
-        // the date heading, matching the other views.
-        const dateRow = document.createElement('div');
-        dateRow.className = 'agenda-date-row';
         dateRow.appendChild(dateEl);
         dateRow.appendChild(buildSpliceMarker(key));
         block.appendChild(dateRow);
 
-        renderGroupedByType(block, eventsOnDate(key), { showConnected: true });
+        renderGroupedByType(block, byDate[key], { showConnected: true });
         agenda.appendChild(block);
       });
 
       root.appendChild(agenda);
+    }
+
+    // Scroll the list to the first date section on or after the given key.
+    // Used by the mini-calendar and the Prev/Today/Next buttons in list mode.
+    function scrollListToDate(key) {
+      const agenda = document.getElementById('agendaList');
+      if (!agenda) return;
+      const blocks = [...agenda.querySelectorAll('.agenda-day')];
+      // Exact match first, else the next date after it.
+      let target = blocks.find(b => b.dataset.date === key);
+      if (!target) target = blocks.find(b => b.dataset.date >= key);
+      if (!target) target = blocks[blocks.length - 1];   // past the end → last
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // "Jul 6, 2026" style label used in the list title.
@@ -1730,7 +1921,11 @@
         if (dayDate.getMonth() !== month) {
           cell.classList.add('outside');
         } else {
-          cell.onclick = () => jumpToDate(key, /*keepList*/ true);
+          // In list mode, clicking a day SCROLLS the full list to that date
+          // (it doesn't limit the list). Elsewhere it opens the Day view.
+          cell.onclick = listMode
+            ? () => { currentDate = parseDateKey(key); scrollListToDate(key); syncURL(); }
+            : () => jumpToDate(key, /*keepList*/ true);
         }
 
         if (key === selectedKey) cell.classList.add('selected');
@@ -1751,7 +1946,14 @@
     function nextPeriod() { step(1); }
 
     function step(direction) {
-      if (listMode || currentView === 'month') {
+      if (listMode) {
+        // Month-scoped list: Prev/Next change which month loads. Snap to the
+        // 1st before shifting so a 31st doesn't overflow a shorter month.
+        currentDate.setDate(1);
+        currentDate.setMonth(currentDate.getMonth() + direction);
+        renderWithHistory();
+        return;
+      } else if (currentView === 'month') {
         // Snap to the 1st before changing month. Otherwise, stepping from a
         // 31st into a shorter month (e.g. Aug 31 -> Sep) overflows to the
         // following month (Oct 1), skipping a month entirely. Month view
@@ -1768,6 +1970,8 @@
 
     function goToday() {
       currentDate = new Date();
+      // In the month-scoped list, "Today" loads the current month; in other
+      // views it re-renders normally. Either way a plain re-render suffices.
       renderWithHistory();
     }
 
@@ -1777,6 +1981,10 @@
       document.getElementById('search').value = '';
       document.getElementById('networkFilter').value = '';
       document.getElementById('typeFilter').value = '';
+      const vf = document.getElementById('versionFilter');
+      if (vf) vf.value = '';
+      const af = document.getElementById('afterDate');
+      if (af) af.value = '';
       // Reset also returns to the default Month view (leaving List/Week/Day)
       // AND jumps back to today, so Reset always lands on the current month
       // rather than whatever month you'd navigated to.
@@ -1842,6 +2050,13 @@
     // Changing a filter is a discrete action → push a history entry.
     document.getElementById('networkFilter').addEventListener('change', renderWithHistory);
     document.getElementById('typeFilter').addEventListener('change', renderWithHistory);
+    document.getElementById('versionFilter').addEventListener('change', renderWithHistory);
+    // Optional "on or after" date filter.
+    document.getElementById('afterDate').addEventListener('change', renderWithHistory);
+    document.getElementById('clearAfterDate').addEventListener('click', () => {
+      document.getElementById('afterDate').value = '';
+      renderWithHistory();
+    });
 
     // Browser Back/Forward: re-apply the state the URL now describes, then
     // render without touching history (plain render → replaceState).

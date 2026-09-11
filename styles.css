@@ -272,6 +272,45 @@ select::-ms-expand { display: none; }
 }
 .info-btn:hover { border-color: var(--purple-soft); color: var(--purple-soft); }
 
+/* Optional "on or after" date filter — matches the other filter controls.
+   The ✕ clears it. Highlighted when a date is set is handled inline. */
+.date-filter-cell {
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0c0a18;
+  border: 1px solid rgba(201, 156, 255, 0.35);
+  border-radius: 12px;
+  padding: 0 10px;
+  align-self: stretch;
+}
+.date-filter-label {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.date-filter-input {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 0;
+  color-scheme: dark;   /* dark native date picker */
+}
+.date-filter-input:focus { outline: none; }
+.date-filter-clear {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.date-filter-clear:hover { color: var(--purple-soft); }
+
 /* Info popover (hidden until toggled) — centered modal */
 .info-popover {
   position: fixed;
@@ -350,6 +389,54 @@ select::-ms-expand { display: none; }
   font-size: 30px;
   font-weight: 900;
   margin: 20px 0 18px;
+}
+
+/* List view turns the title into an arrow-nav bar: ‹ [date] (i) › */
+.month-title.list-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.list-nav-arrow {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 156, 255, 0.3);
+  background: #141021;
+  color: var(--purple-soft);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.list-nav-arrow:hover {
+  border-color: var(--purple-soft);
+  background: rgba(124, 77, 255, 0.15);
+}
+/* Fixed width so the arrows don't shift as the date text length changes
+   (e.g. "May 1" vs "September 12"). The date is centered within it, and
+   the "i" marker is pinned to the right edge, aligned with the date. */
+/* Date + "i" group. A min-width (not a fixed width) keeps the arrows from
+   collapsing inward on short dates, while the "i" sits inline after the
+   date with a real gap so it never overlaps the text. */
+.list-nav-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 480px;
+  max-width: 70vw;
+}
+.list-nav-date > span:first-child { white-space: nowrap; }
+.list-nav-date .splice-marker {
+  flex: 0 0 auto;   /* stays a fixed-size circle, right of the date */
+  margin-left: 0;
 }
 
 /* ---- Month grid -------------------------------------------- */
@@ -441,6 +528,8 @@ select::-ms-expand { display: none; }
   pointer-events: none;   /* never intercepts the mouse */
   opacity: 0;
   visibility: hidden;     /* instant hide; no fade delay */
+  overflow-y: auto;       /* safety net: scroll if taller than the cap */
+  overscroll-behavior: contain;
 }
 
 .splice-tooltip.visible {
@@ -466,6 +555,67 @@ select::-ms-expand { display: none; }
 .splice-tooltip.pinned .splice-dar-link:hover {
   background: rgba(124, 77, 255, 0.25);
 }
+
+/* ---- Option B: expandable DAR groups per network ---------------- */
+.splice-dar-group {
+  border: 1px solid rgba(124, 77, 255, 0.18);
+  border-radius: 8px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+/* A network header row — click to expand/collapse its components. */
+.splice-dar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 7px 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s;
+}
+.splice-tooltip.pinned .splice-dar-toggle:hover {
+  background: rgba(124, 77, 255, 0.12);
+}
+.splice-dar-count {
+  font-size: 11px;
+  color: #9a93b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.splice-dar-chevron {
+  display: inline-block;
+  transition: transform 0.15s;
+}
+.splice-dar-group.expanded .splice-dar-chevron {
+  transform: rotate(90deg);   /* › points down when open */
+}
+
+/* Collapsible body: hidden until the group is expanded. */
+.splice-dar-body {
+  display: none;
+  padding: 2px 10px 8px;
+}
+.splice-dar-group.expanded .splice-dar-body {
+  display: block;
+}
+.splice-dar-comp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.splice-dar-comp-name { color: #9a93b8; }
+.splice-dar-jump {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #b79cff;
+  cursor: pointer;
+}
+.splice-tooltip.pinned .splice-dar-jump:hover { text-decoration: underline; }
 
 /* Header sits above the network rows, separated by a hairline rule. */
 .splice-tooltip-header {
@@ -582,6 +732,21 @@ select::-ms-expand { display: none; }
   color: var(--muted);
   font-style: italic;
   padding: 8px 0;
+}
+
+/* Empty state: the mini-calendar sits in column 1; the note spans the full
+   width on the SAME grid row and centers, so it aligns under the centered
+   date title while the calendar stays visible on the left. */
+.list-view .mini-cal { grid-row: 1; grid-column: 1; }
+.list-view .empty-note-centered {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  font-size: 15px;
+  text-align: center;
+  padding: 24px;
+  pointer-events: none;   /* clicks pass through to the calendar underneath */
 }
 
 /* ---- Event card -------------------------------------------- */
