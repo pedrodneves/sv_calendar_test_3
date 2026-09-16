@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=32" />
+  <link rel="stylesheet" href="./styles.css?v=33" />
 </head>
 
 <body>
@@ -511,13 +511,13 @@
 
         '<div class="subscribe-feed-label">Schedule (no dev events)</div>' +
         '<div class="subscribe-url-row">' +
-        '<input class="subscribe-url" data-feed="user" readonly value="' + userFeedUrl + '" />' +
+        '<input class="subscribe-url" data-feed="user" readonly value="' + userFeedUrl + '" title="' + userFeedUrl + '" />' +
         '<button class="subscribe-copy" data-feed="user">Copy</button>' +
         '</div>' +
 
         '<div class="subscribe-feed-label">Dev schedule (all events)</div>' +
         '<div class="subscribe-url-row">' +
-        '<input class="subscribe-url" data-feed="dev" readonly value="' + devFeedUrl + '" />' +
+        '<input class="subscribe-url" data-feed="dev" readonly value="' + devFeedUrl + '" title="' + devFeedUrl + '" />' +
         '<button class="subscribe-copy subscribe-copy-secondary" data-feed="dev">Copy</button>' +
         '</div>' +
 
@@ -530,12 +530,14 @@
 
       document.body.appendChild(pop);
 
-      // Position under the Subscribe button.
+      // Position under the Subscribe button, right-aligned to it so the
+      // (wider) popover opens toward the left rather than off the right edge.
       const btn = document.getElementById('subscribeBtn');
       const r = btn.getBoundingClientRect();
       pop.style.top = (r.bottom + 8) + 'px';
-      pop.style.left = Math.max(8,
-        Math.min(r.left, window.innerWidth - pop.offsetWidth - 8)) + 'px';
+      let left = r.right - pop.offsetWidth;          // align right edges
+      left = Math.max(8, Math.min(left, window.innerWidth - pop.offsetWidth - 8));
+      pop.style.left = left + 'px';
 
       // Wire each feed's Copy button to copy its own URL.
       pop.querySelectorAll('.subscribe-copy').forEach(copyBtn => {

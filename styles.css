@@ -891,7 +891,7 @@ select::-ms-expand { display: none; }
 .subscribe-popover {
   position: fixed;
   z-index: 9999;
-  width: 320px;
+  width: 440px;
   max-width: calc(100vw - 16px);
   padding: 16px;
   background: #0f1225;
