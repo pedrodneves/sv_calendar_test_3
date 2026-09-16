@@ -1,20 +1,5 @@
 [
   {
-    "id": "12747165578",
-    "title": "DevNet: Daml Models supporting Token Standard V1 Expire (are unvetted)",
-    "start": "2026-09-15",
-    "end": "2026-09-15",
-    "description": "",
-    "status": "Cancelled",
-    "network": "DevNet",
-    "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": null,
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": []
-  },
-  {
     "id": "12559980590",
     "title": "DevNet upgrades to Splice 0.8.2",
     "start": "2026-09-21",
@@ -15398,5 +15383,20 @@
         "version": "0.1.22"
       }
     ]
+  },
+  {
+    "id": "12747165578",
+    "title": "DevNet: Daml Models supporting Token Standard V1 Expire (are unvetted)",
+    "start": "2026-09-15",
+    "end": "2026-09-15",
+    "description": "",
+    "status": "Cancelled",
+    "network": "DevNet",
+    "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": null,
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": []
   }
 ]
