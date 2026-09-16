@@ -12,7 +12,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980591",
@@ -52,7 +53,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559980592",
@@ -92,7 +94,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559980597",
@@ -107,7 +110,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980593",
@@ -122,7 +126,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980594",
@@ -137,7 +142,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980625",
@@ -152,7 +158,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980627",
@@ -167,7 +174,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980628",
@@ -182,7 +190,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980629",
@@ -222,7 +231,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559980654",
@@ -237,7 +247,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980630",
@@ -252,7 +263,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980632",
@@ -267,7 +279,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980652",
@@ -282,7 +295,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980656",
@@ -297,7 +311,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980657",
@@ -312,7 +327,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690777179",
@@ -327,7 +343,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690773848",
@@ -342,7 +359,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690777504",
@@ -357,7 +375,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559980658",
@@ -372,7 +391,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559967044",
@@ -387,7 +407,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559967045",
@@ -402,7 +423,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559992496",
@@ -417,7 +439,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690783625",
@@ -432,7 +455,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690881334",
@@ -447,7 +471,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690783959",
@@ -462,7 +487,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690777905",
@@ -477,7 +503,8 @@
     "dependsOn": [],
     "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690805412",
@@ -492,7 +519,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690882071",
@@ -507,7 +535,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690784554",
@@ -522,7 +551,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690784582",
@@ -537,7 +567,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690882257",
@@ -552,7 +583,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690805352",
@@ -567,7 +599,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690775440",
@@ -582,7 +615,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690805549",
@@ -597,7 +631,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690774908",
@@ -612,7 +647,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690805503",
@@ -627,7 +663,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690776372",
@@ -642,7 +679,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690806082",
@@ -657,7 +695,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690774841",
@@ -672,7 +711,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690883222",
@@ -687,7 +727,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690827525",
@@ -702,7 +743,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690883567",
@@ -717,7 +759,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690806166",
@@ -732,7 +775,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690942272",
@@ -747,7 +791,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690828085",
@@ -762,7 +807,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690942087",
@@ -777,7 +823,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690806399",
@@ -792,7 +839,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690883715",
@@ -807,7 +855,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690828057",
@@ -822,7 +871,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690883723",
@@ -837,7 +887,8 @@
     "dependsOn": [],
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690820594",
@@ -852,7 +903,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690956494",
@@ -867,7 +919,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690956723",
@@ -882,7 +935,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690884026",
@@ -897,7 +951,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690828896",
@@ -912,7 +967,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690956490",
@@ -927,7 +983,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690975690",
@@ -942,7 +999,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690975704",
@@ -957,7 +1015,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690820725",
@@ -972,7 +1031,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690975783",
@@ -987,7 +1047,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690976140",
@@ -1002,7 +1063,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690867545",
@@ -1017,7 +1079,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690957127",
@@ -1032,7 +1095,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690867807",
@@ -1047,7 +1111,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690957648",
@@ -1062,7 +1127,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690867758",
@@ -1077,7 +1143,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690943471",
@@ -1092,7 +1159,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690976431",
@@ -1107,7 +1175,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "13018640867",
@@ -1122,7 +1191,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "13018682963",
@@ -1137,7 +1207,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690976366",
@@ -1152,7 +1223,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690943575",
@@ -1167,7 +1239,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12690852435",
@@ -1182,7 +1255,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "13018641250",
@@ -1197,7 +1271,8 @@
     "dependsOn": [],
     "minorVersion": "0.10",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652819664",
@@ -1212,7 +1287,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652818700",
@@ -1227,7 +1303,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652875485",
@@ -1242,7 +1319,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652859331",
@@ -1257,7 +1335,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652874217",
@@ -1272,7 +1351,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652872701",
@@ -1287,7 +1367,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652904938",
@@ -1302,7 +1383,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652919385",
@@ -1317,7 +1399,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652859595",
@@ -1357,7 +1440,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652927602",
@@ -1372,7 +1456,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652917230",
@@ -1387,7 +1472,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652943314",
@@ -1402,7 +1488,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652943601",
@@ -1417,7 +1504,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652918219",
@@ -1457,7 +1545,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652944709",
@@ -1497,7 +1586,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652930900",
@@ -1512,7 +1602,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652918400",
@@ -1527,7 +1618,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652947360",
@@ -1567,7 +1659,8 @@
         "package": "walletPayments",
         "version": "0.1.10"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652966578",
@@ -1607,7 +1700,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652972931",
@@ -1647,7 +1741,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652995550",
@@ -1662,7 +1757,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652985625",
@@ -1677,7 +1773,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652993587",
@@ -1717,7 +1814,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652986695",
@@ -1757,7 +1855,8 @@
         "package": "walletPayments",
         "version": "0.1.10"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652986438",
@@ -1797,7 +1896,8 @@
         "package": "walletPayments",
         "version": "0.1.9"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12652985265",
@@ -1812,7 +1912,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12652972273",
@@ -1827,7 +1928,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653209470",
@@ -1842,7 +1944,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653302480",
@@ -1882,7 +1985,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653302481",
@@ -1922,7 +2026,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653225396",
@@ -1962,7 +2067,8 @@
         "package": "walletPayments",
         "version": "0.1.10"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653259246",
@@ -1977,7 +2083,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653261166",
@@ -1992,7 +2099,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653313958",
@@ -2032,7 +2140,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653260469",
@@ -2072,7 +2181,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653261186",
@@ -2112,7 +2222,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653311979",
@@ -2127,7 +2238,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653310531",
@@ -2142,7 +2254,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653312125",
@@ -2157,7 +2270,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653295257",
@@ -2197,7 +2311,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653294246",
@@ -2237,7 +2352,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653309727",
@@ -2277,7 +2393,8 @@
         "package": "walletPayments",
         "version": "0.1.11"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653338486",
@@ -2317,7 +2434,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653340551",
@@ -2357,7 +2475,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653340934",
@@ -2397,7 +2516,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653691623",
@@ -2437,7 +2557,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653660880",
@@ -2477,7 +2598,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653660789",
@@ -2517,7 +2639,8 @@
         "package": "walletPayments",
         "version": "0.1.12"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653687439",
@@ -2557,7 +2680,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653662441",
@@ -2597,7 +2721,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653694027",
@@ -2637,7 +2762,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653694619",
@@ -2652,7 +2778,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653719381",
@@ -2667,7 +2794,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653715086",
@@ -2707,7 +2835,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653716466",
@@ -2722,7 +2851,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653711377",
@@ -2737,7 +2867,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653711379",
@@ -2752,7 +2883,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653694840",
@@ -2792,7 +2924,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653724260",
@@ -2832,7 +2965,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653831520",
@@ -2847,7 +2981,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653831993",
@@ -2862,7 +2997,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653832895",
@@ -2902,7 +3038,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653842152",
@@ -2917,7 +3054,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653846841",
@@ -2932,7 +3070,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653851214",
@@ -2972,7 +3111,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653805160",
@@ -3012,7 +3152,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653882657",
@@ -3052,7 +3193,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653857978",
@@ -3067,7 +3209,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653872289",
@@ -3082,7 +3225,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653879473",
@@ -3097,7 +3241,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.15",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653908783",
@@ -3112,7 +3257,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653903579",
@@ -3127,7 +3273,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653913242",
@@ -3142,7 +3289,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653922259",
@@ -3157,7 +3305,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.15",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653879274",
@@ -3172,7 +3321,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.14",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653922387",
@@ -3187,7 +3337,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.12",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653892648",
@@ -3202,7 +3353,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653936246",
@@ -3217,7 +3369,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653948847",
@@ -3232,7 +3385,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653979154",
@@ -3247,7 +3401,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653980776",
@@ -3262,7 +3417,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.16",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653979947",
@@ -3302,7 +3458,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12653962524",
@@ -3342,7 +3499,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654001834",
@@ -3382,7 +3540,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654015950",
@@ -3397,7 +3556,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653949440",
@@ -3412,7 +3572,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12653973641",
@@ -3427,7 +3588,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659017659",
@@ -3442,7 +3604,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659042712",
@@ -3457,7 +3620,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659065867",
@@ -3472,7 +3636,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659048313",
@@ -3487,7 +3652,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659048314",
@@ -3502,7 +3668,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659053760",
@@ -3517,7 +3684,8 @@
     "dependsOn": [],
     "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659042847",
@@ -3532,7 +3700,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659058046",
@@ -3547,7 +3716,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654063008",
@@ -3562,7 +3732,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.17",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654065746",
@@ -3602,7 +3773,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654035249",
@@ -3642,7 +3814,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654087297",
@@ -3682,7 +3855,8 @@
         "package": "walletPayments",
         "version": "0.1.13"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654073165",
@@ -3697,7 +3871,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.18",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654062674",
@@ -3737,7 +3912,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654102048",
@@ -3777,7 +3953,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654110251",
@@ -3792,7 +3969,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654093203",
@@ -3832,7 +4010,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654128753",
@@ -3847,7 +4026,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654123163",
@@ -3862,7 +4042,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.19",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654122302",
@@ -3902,7 +4083,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654107732",
@@ -3917,7 +4099,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654092668",
@@ -3957,7 +4140,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654126930",
@@ -3997,7 +4181,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654089567",
@@ -4037,7 +4222,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654116660",
@@ -4052,7 +4238,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654091676",
@@ -4067,7 +4254,8 @@
     "dependsOn": [],
     "minorVersion": "0.4",
     "minValidatorSpliceVersion": "0.4.20",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654145956",
@@ -4107,7 +4295,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654094820",
@@ -4122,7 +4311,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654167010",
@@ -4162,7 +4352,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654093801",
@@ -4202,7 +4393,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654116435",
@@ -4242,7 +4434,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654156924",
@@ -4282,7 +4475,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654167229",
@@ -4322,7 +4516,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654135381",
@@ -4362,7 +4557,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654129429",
@@ -4402,7 +4598,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654167459",
@@ -4442,7 +4639,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654145848",
@@ -4482,7 +4680,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654190680",
@@ -4522,7 +4721,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654147617",
@@ -4562,7 +4762,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654117035",
@@ -4577,7 +4778,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654181563",
@@ -4617,7 +4819,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654174575",
@@ -4657,7 +4860,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654175084",
@@ -4697,7 +4901,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654191773",
@@ -4737,7 +4942,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654170257",
@@ -4777,7 +4983,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654193782",
@@ -4817,7 +5024,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654175144",
@@ -4857,7 +5065,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654170191",
@@ -4897,7 +5106,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654177173",
@@ -4937,7 +5147,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654221051",
@@ -4977,7 +5188,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654207229",
@@ -5017,7 +5229,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654212986",
@@ -5057,7 +5270,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654244673",
@@ -5097,7 +5311,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654207246",
@@ -5137,7 +5352,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654221568",
@@ -5177,7 +5393,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654227398",
@@ -5217,7 +5434,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654212621",
@@ -5257,7 +5475,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654203828",
@@ -5297,7 +5516,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654240889",
@@ -5337,7 +5557,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654227065",
@@ -5352,7 +5573,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654197733",
@@ -5392,7 +5614,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654246360",
@@ -5432,7 +5655,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654242457",
@@ -5472,7 +5696,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654226598",
@@ -5512,7 +5737,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654242412",
@@ -5552,7 +5778,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654233791",
@@ -5592,7 +5819,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654242681",
@@ -5632,7 +5860,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654257127",
@@ -5672,7 +5901,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654225832",
@@ -5687,7 +5917,8 @@
     "dependsOn": [],
     "minorVersion": "0.5",
     "minValidatorSpliceVersion": "0.5.1",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654213433",
@@ -5702,7 +5933,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654225642",
@@ -5742,7 +5974,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654267853",
@@ -5782,7 +6015,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654257021",
@@ -5822,7 +6056,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654233943",
@@ -5862,7 +6097,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654252833",
@@ -5877,7 +6113,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654296764",
@@ -5917,7 +6154,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654298639",
@@ -5957,7 +6195,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654263140",
@@ -5997,7 +6236,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654268388",
@@ -6037,7 +6277,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654318788",
@@ -6077,7 +6318,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654263790",
@@ -6117,7 +6359,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654253748",
@@ -6132,7 +6375,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654297333",
@@ -6172,7 +6416,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654279739",
@@ -6212,7 +6457,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654284928",
@@ -6252,7 +6498,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654319132",
@@ -6292,7 +6539,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654335356",
@@ -6332,7 +6580,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654285634",
@@ -6372,7 +6621,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654278840",
@@ -6412,7 +6662,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654297413",
@@ -6427,7 +6678,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654320583",
@@ -6467,7 +6719,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654335741",
@@ -6507,7 +6760,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654305847",
@@ -6547,7 +6801,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654292755",
@@ -6587,7 +6842,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654357283",
@@ -6627,7 +6883,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654280575",
@@ -6667,7 +6924,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654314024",
@@ -6707,7 +6965,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654313525",
@@ -6747,7 +7006,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654312295",
@@ -6787,7 +7047,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654315809",
@@ -6827,7 +7088,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654293959",
@@ -6867,7 +7129,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654358165",
@@ -6907,7 +7170,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654333357",
@@ -6947,7 +7211,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654294075",
@@ -6987,7 +7252,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654333558",
@@ -7027,7 +7293,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654334494",
@@ -7042,7 +7309,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654334193",
@@ -7057,7 +7325,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654340602",
@@ -7097,7 +7366,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654322710",
@@ -7137,7 +7407,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654315677",
@@ -7177,7 +7448,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654404910",
@@ -7217,7 +7489,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654366489",
@@ -7257,7 +7530,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654342395",
@@ -7297,7 +7571,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654381763",
@@ -7337,7 +7612,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654381052",
@@ -7377,7 +7653,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654381359",
@@ -7417,7 +7694,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654406072",
@@ -7457,7 +7735,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654405719",
@@ -7497,7 +7776,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654402978",
@@ -7512,7 +7792,8 @@
     "dependsOn": [],
     "minorVersion": "0.5",
     "minValidatorSpliceVersion": "0.5.6",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659058662",
@@ -7527,7 +7808,8 @@
     "dependsOn": [],
     "minorVersion": "0.5",
     "minValidatorSpliceVersion": "0.5.4",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12654394829",
@@ -7567,7 +7849,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654395106",
@@ -7607,7 +7890,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654384487",
@@ -7647,7 +7931,8 @@
         "package": "walletPayments",
         "version": "0.1.14"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12654382685",
@@ -7687,7 +7972,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659070142",
@@ -7702,7 +7988,8 @@
     "dependsOn": [],
     "minorVersion": "0.5",
     "minValidatorSpliceVersion": "0.5.4",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659070800",
@@ -7742,7 +8029,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659075485",
@@ -7782,7 +8070,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659075126",
@@ -7822,7 +8111,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659098145",
@@ -7862,7 +8152,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659070993",
@@ -7902,7 +8193,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659070757",
@@ -7917,7 +8209,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659090071",
@@ -7957,7 +8250,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659094357",
@@ -7997,7 +8291,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659092729",
@@ -8037,7 +8332,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659092425",
@@ -8077,7 +8373,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659116281",
@@ -8117,7 +8414,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659094931",
@@ -8157,7 +8455,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659093467",
@@ -8197,7 +8496,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659095064",
@@ -8237,7 +8537,8 @@
         "package": "walletPayments",
         "version": "0.1.15"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659095077",
@@ -8277,7 +8578,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659095390",
@@ -8317,7 +8619,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659091471",
@@ -8357,7 +8660,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659126217",
@@ -8397,7 +8701,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659132907",
@@ -8437,7 +8742,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659126437",
@@ -8477,7 +8783,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659126478",
@@ -8517,7 +8824,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659133143",
@@ -8557,7 +8865,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659097847",
@@ -8572,7 +8881,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659126519",
@@ -8587,7 +8897,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659126629",
@@ -8627,7 +8938,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659122763",
@@ -8667,7 +8979,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659122376",
@@ -8707,7 +9020,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659125848",
@@ -8747,7 +9061,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659160805",
@@ -8787,7 +9102,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659160809",
@@ -8827,7 +9143,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659129823",
@@ -8867,7 +9184,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659160961",
@@ -8907,7 +9225,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659122198",
@@ -8947,7 +9266,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659145368",
@@ -8987,7 +9307,8 @@
         "package": "walletPayments",
         "version": "0.1.16"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659178580",
@@ -9002,7 +9323,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659183252",
@@ -9017,7 +9339,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659145635",
@@ -9032,7 +9355,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659123183",
@@ -9072,7 +9396,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659122925",
@@ -9112,7 +9437,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659151499",
@@ -9152,7 +9478,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659183941",
@@ -9167,7 +9494,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659173649",
@@ -9207,7 +9535,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659184034",
@@ -9247,7 +9576,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659149376",
@@ -9287,7 +9617,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659151889",
@@ -9327,7 +9658,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659184089",
@@ -9342,7 +9674,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659123640",
@@ -9357,7 +9690,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659176971",
@@ -9372,7 +9706,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659149796",
@@ -9387,7 +9722,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659151965",
@@ -9402,7 +9738,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659168173",
@@ -9442,7 +9779,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659205255",
@@ -9482,7 +9820,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659156514",
@@ -9522,7 +9861,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659151006",
@@ -9562,7 +9902,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659211069",
@@ -9577,7 +9918,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659157021",
@@ -9592,7 +9934,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659211466",
@@ -9607,7 +9950,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659211677",
@@ -9622,7 +9966,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659177693",
@@ -9637,7 +9982,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659205890",
@@ -9652,7 +9998,8 @@
     "dependsOn": [],
     "minorVersion": "0.6",
     "minValidatorSpliceVersion": "0.5.18",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659189027",
@@ -9692,7 +10039,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659177882",
@@ -9732,7 +10080,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659193703",
@@ -9772,7 +10121,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659193984",
@@ -9787,7 +10137,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12659189542",
@@ -9827,7 +10178,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659189543",
@@ -9867,7 +10219,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12659211906",
@@ -9907,7 +10260,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661191629",
@@ -9947,7 +10301,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661221512",
@@ -9962,7 +10317,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661276727",
@@ -9977,7 +10333,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661277799",
@@ -9992,7 +10349,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661276732",
@@ -10007,7 +10365,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661277125",
@@ -10022,7 +10381,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661264259",
@@ -10037,7 +10397,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661256795",
@@ -10052,7 +10413,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661257333",
@@ -10067,7 +10429,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661276959",
@@ -10082,7 +10445,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661292529",
@@ -10122,7 +10486,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661271059",
@@ -10162,7 +10527,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661282953",
@@ -10202,7 +10568,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661326082",
@@ -10217,7 +10584,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661322603",
@@ -10232,7 +10600,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661333273",
@@ -10272,7 +10641,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661342083",
@@ -10312,7 +10682,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661333048",
@@ -10352,7 +10723,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661377873",
@@ -10367,7 +10739,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661447712",
@@ -10382,7 +10755,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661449272",
@@ -10397,7 +10771,8 @@
     "dependsOn": [],
     "minorVersion": "0.6",
     "minValidatorSpliceVersion": "0.6.0",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661408017",
@@ -10412,7 +10787,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661449521",
@@ -10427,7 +10803,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661394352",
@@ -10467,7 +10844,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661427873",
@@ -10507,7 +10885,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661408114",
@@ -10547,7 +10926,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661408052",
@@ -10562,7 +10942,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661545282",
@@ -10602,7 +10983,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661519649",
@@ -10642,7 +11024,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661478058",
@@ -10682,7 +11065,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661462300",
@@ -10722,7 +11106,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661503743",
@@ -10737,7 +11122,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661520179",
@@ -10752,7 +11138,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661461873",
@@ -10792,7 +11179,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661540051",
@@ -10832,7 +11220,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661502686",
@@ -10872,7 +11261,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661503700",
@@ -10887,7 +11277,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661585978",
@@ -10902,7 +11293,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661524305",
@@ -10942,7 +11334,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661559057",
@@ -10982,7 +11375,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661588748",
@@ -11022,7 +11416,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661642424",
@@ -11037,7 +11432,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661588756",
@@ -11052,7 +11448,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661575808",
@@ -11067,7 +11464,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661588488",
@@ -11107,7 +11505,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661524372",
@@ -11147,7 +11546,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661524568",
@@ -11187,7 +11587,8 @@
         "package": "walletPayments",
         "version": "0.1.17"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661564575",
@@ -11202,7 +11603,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661642739",
@@ -11242,7 +11644,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661686998",
@@ -11282,7 +11685,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661686934",
@@ -11322,7 +11726,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661686810",
@@ -11362,7 +11767,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661645049",
@@ -11377,7 +11783,8 @@
     "dependsOn": [],
     "minorVersion": "0.6",
     "minValidatorSpliceVersion": "0.6.0",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661634816",
@@ -11392,7 +11799,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661670794",
@@ -11407,7 +11815,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661686782",
@@ -11422,7 +11831,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661645231",
@@ -11462,7 +11872,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661653093",
@@ -11502,7 +11913,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661692678",
@@ -11542,7 +11954,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661754743",
@@ -11557,7 +11970,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12661780405",
@@ -11597,7 +12011,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12661760935",
@@ -11612,7 +12027,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265702512",
@@ -11652,7 +12068,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265702513",
@@ -11692,7 +12109,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265702514",
@@ -11732,7 +12150,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12673928202",
@@ -11747,7 +12166,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12673893132",
@@ -11787,7 +12207,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12673927280",
@@ -11827,7 +12248,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12673901990",
@@ -11867,7 +12289,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265751024",
@@ -11882,7 +12305,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12673923681",
@@ -11922,7 +12346,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12673994646",
@@ -11937,7 +12362,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265751031",
@@ -11977,7 +12403,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265700866",
@@ -11992,7 +12419,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265700971",
@@ -12032,7 +12460,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674202073",
@@ -12072,7 +12501,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674202072",
@@ -12087,7 +12517,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265738368",
@@ -12127,7 +12558,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265738369",
@@ -12167,7 +12599,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265738388",
@@ -12207,7 +12640,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674204906",
@@ -12222,7 +12656,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265709372",
@@ -12262,7 +12697,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12311060381",
@@ -12302,7 +12738,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12311072807",
@@ -12342,7 +12779,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674253045",
@@ -12357,7 +12795,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674209972",
@@ -12372,7 +12811,8 @@
     "dependsOn": [],
     "minorVersion": "0.6",
     "minValidatorSpliceVersion": "0.6.6",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265754542",
@@ -12387,7 +12827,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674300170",
@@ -12402,7 +12843,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674255437",
@@ -12417,7 +12859,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12265782704",
@@ -12457,7 +12900,8 @@
         "package": "walletPayments",
         "version": "0.1.18"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265803037",
@@ -12497,7 +12941,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265803038",
@@ -12537,7 +12982,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265803039",
@@ -12577,7 +13023,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12265803040",
@@ -12592,7 +13039,8 @@
     "dependsOn": [],
     "minorVersion": "0.6",
     "minValidatorSpliceVersion": "0.6.6",
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674326051",
@@ -12632,7 +13080,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674347001",
@@ -12672,7 +13121,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674427808",
@@ -12712,7 +13162,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12400984055",
@@ -12752,7 +13203,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674451401",
@@ -12792,7 +13244,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674291858",
@@ -12807,7 +13260,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674426867",
@@ -12847,7 +13301,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266185973",
@@ -12887,7 +13342,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266185974",
@@ -12927,7 +13383,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266185975",
@@ -12967,7 +13424,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674457792",
@@ -12982,7 +13440,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12266185976",
@@ -13022,7 +13481,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12412070085",
@@ -13062,7 +13522,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12412086000",
@@ -13102,7 +13563,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674458229",
@@ -13142,7 +13604,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674420930",
@@ -13157,7 +13620,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674449332",
@@ -13172,7 +13636,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12266186959",
@@ -13212,7 +13677,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266186960",
@@ -13252,7 +13718,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266186961",
@@ -13292,7 +13759,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674546232",
@@ -13307,7 +13775,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674584149",
@@ -13347,7 +13816,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674596203",
@@ -13387,7 +13857,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674584200",
@@ -13427,7 +13898,8 @@
         "package": "walletPayments",
         "version": "0.1.19"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674611795",
@@ -13467,7 +13939,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560019104",
@@ -13507,7 +13980,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560019115",
@@ -13547,7 +14021,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560019116",
@@ -13587,7 +14062,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674729005",
@@ -13602,7 +14078,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674738670",
@@ -13642,7 +14119,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674729117",
@@ -13682,7 +14160,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674746451",
@@ -13722,7 +14201,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266228178",
@@ -13737,7 +14217,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560019117",
@@ -13777,7 +14258,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266228179",
@@ -13817,7 +14299,8 @@
         "package": "walletPayments",
         "version": "0.1.20"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266282142",
@@ -13857,7 +14340,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266282143",
@@ -13897,7 +14381,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12266282146",
@@ -13937,7 +14422,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674724858",
@@ -13952,7 +14438,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12412140198",
@@ -13992,7 +14479,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12412140921",
@@ -14032,7 +14520,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674783648",
@@ -14072,7 +14561,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560019122",
@@ -14112,7 +14602,8 @@
         "package": "walletPayments",
         "version": "0.1.21"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674785350",
@@ -14127,7 +14618,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674766799",
@@ -14142,7 +14634,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674807242",
@@ -14157,7 +14650,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12674767968",
@@ -14197,7 +14691,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674785173",
@@ -14237,7 +14732,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674825744",
@@ -14277,7 +14773,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674802733",
@@ -14292,7 +14789,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560019131",
@@ -14332,7 +14830,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030061",
@@ -14347,7 +14846,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560019130",
@@ -14387,7 +14887,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12747221304",
@@ -14402,7 +14903,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560030060",
@@ -14442,7 +14944,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12747165223",
@@ -14482,7 +14985,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12674903037",
@@ -14497,7 +15001,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560030066",
@@ -14537,7 +15042,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12798073791",
@@ -14577,7 +15083,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030068",
@@ -14592,7 +15099,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12798054170",
@@ -14632,7 +15140,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030065",
@@ -14672,7 +15181,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030064",
@@ -14712,7 +15222,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030067",
@@ -14727,7 +15238,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560030070",
@@ -14767,7 +15279,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559975419",
@@ -14782,7 +15295,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560030159",
@@ -14822,7 +15336,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030157",
@@ -14862,7 +15377,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12560030158",
@@ -14902,7 +15418,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559962705",
@@ -14917,7 +15434,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12560030160",
@@ -14932,7 +15450,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559975423",
@@ -14947,7 +15466,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559975425",
@@ -14987,7 +15507,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559975649",
@@ -15002,7 +15523,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559993031",
@@ -15042,7 +15564,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559993028",
@@ -15082,7 +15605,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559993034",
@@ -15097,7 +15621,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12266306148",
@@ -15112,7 +15637,8 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12675008989",
@@ -15127,7 +15653,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559993845",
@@ -15167,7 +15694,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559993843",
@@ -15207,7 +15735,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559993840",
@@ -15247,7 +15776,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559998077",
@@ -15262,7 +15792,8 @@
     "dependsOn": [],
     "minorVersion": "0.7",
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   },
   {
     "id": "12559998082",
@@ -15302,7 +15833,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559998130",
@@ -15342,7 +15874,8 @@
         "package": "walletPayments",
         "version": "0.1.23"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12559998132",
@@ -15382,7 +15915,8 @@
         "package": "walletPayments",
         "version": "0.1.22"
       }
-    ]
+    ],
+    "dev": false
   },
   {
     "id": "12747165578",
@@ -15397,6 +15931,7 @@
     "dependsOn": [],
     "minorVersion": null,
     "minValidatorSpliceVersion": null,
-    "minDarVersions": []
+    "minDarVersions": [],
+    "dev": false
   }
 ]
