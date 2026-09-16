@@ -1,5 +1,21 @@
 [
   {
+    "id": "13061900171",
+    "title": "TEST, PLEASE IGNORE",
+    "start": "2026-12-31",
+    "end": "2026-12-31",
+    "description": "",
+    "status": "Cancelled",
+    "network": "",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": null,
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": true
+  },
+  {
     "id": "12559980590",
     "title": "DevNet upgrades to Splice 0.8.2",
     "start": "2026-09-21",
