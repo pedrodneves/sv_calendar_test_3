@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=33" />
+  <link rel="stylesheet" href="./styles.css?v=34" />
 </head>
 
 <body>
@@ -21,9 +21,14 @@
         </div>
       </div>
 
-      <!-- Right side: source pill + the calendar/list mode toggle -->
+      <!-- Right side: source pill + dev toggle + the calendar/list mode toggle -->
       <div class="header-actions">
         <div class="source-pill">Official SV Operations Schedule</div>
+        <label class="dev-toggle" title="Show internal / developer events">
+          <input type="checkbox" id="devToggle" />
+          <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
+          <span class="dev-toggle-label">Show dev events</span>
+        </label>
         <button id="listToggle" class="view-toggle-pill" onclick="toggleListMode()">List view</button>
       </div>
     </header>
@@ -65,12 +70,6 @@
           <input type="date" id="afterDate" class="date-filter-input" />
           <button id="clearAfterDate" class="date-filter-clear" title="Clear date filter" aria-label="Clear date filter">✕</button>
         </div>
-
-        <label class="dev-toggle" title="Show internal / developer events">
-          <input type="checkbox" id="devToggle" />
-          <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
-          <span class="dev-toggle-label">Show dev events</span>
-        </label>
 
         <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
       </div>

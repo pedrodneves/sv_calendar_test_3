@@ -81,6 +81,8 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 /* Green "Source: monday.com" pill */
@@ -292,13 +294,9 @@ select::-ms-expand { display: none; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0c0a18;
-  border: 1px solid rgba(201, 156, 255, 0.35);
-  border-radius: 12px;
-  padding: 0 12px;
-  align-self: stretch;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
 }
 .dev-toggle input { position: absolute; opacity: 0; pointer-events: none; }
 .dev-toggle-track {
