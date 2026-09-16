@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=31" />
+  <link rel="stylesheet" href="./styles.css?v=32" />
 </head>
 
 <body>
@@ -65,6 +65,12 @@
           <input type="date" id="afterDate" class="date-filter-input" />
           <button id="clearAfterDate" class="date-filter-clear" title="Clear date filter" aria-label="Clear date filter">✕</button>
         </div>
+
+        <label class="dev-toggle" title="Show internal / developer events">
+          <input type="checkbox" id="devToggle" />
+          <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
+          <span class="dev-toggle-label">Show dev events</span>
+        </label>
 
         <button class="info-btn" onclick="toggleInfo()" title="Activity type definitions">i</button>
       </div>
@@ -354,12 +360,15 @@
       const version = versionEl ? versionEl.value : '';
       const afterEl = document.getElementById('afterDate');
       const after = afterEl ? afterEl.value : '';
+      const devEl = document.getElementById('devToggle');
+      const showDev = devEl ? devEl.checked : false;
 
       if (search) params.set('search', search);
       if (network) params.set('network', network);
       if (type) params.set('type', type);
       if (version) params.set('version', version);
       if (after) params.set('after', after);
+      if (showDev) params.set('dev', '1');
 
       // View: 'list' takes precedence when list mode is on.
       const view = listMode ? 'list' : currentView;
@@ -428,6 +437,10 @@
         afterEl.value = (after && /^\d{4}-\d{2}-\d{2}$/.test(after)) ? after : '';
       }
 
+      // Dev toggle: present (dev=1) → on, absent → off.
+      const devEl = document.getElementById('devToggle');
+      if (devEl) devEl.checked = params.get('dev') === '1';
+
       // View: absent → Month (default). 'list' toggles list mode.
       const view = params.get('view');
       if (view === 'list') {
@@ -470,22 +483,17 @@
       }
     }
 
-    // Subscribe to the calendar feed. The .ics feed is served from the same
-    // origin as this page (published by the Apps Script alongside
-    // schedule.json). We show a small popover with the feed URL, a
-    // one-click "Add to Google Calendar" link, and a copy button so people
-    // can paste it into Apple Calendar / Outlook too.
     function subscribeCalendar() {
-      // Feed lives next to this page: <origin><path>schedule.ics
+      // Feeds live next to this page. schedule.ics = user feed (no dev
+      // events); schedule-dev.ics = dev feed (all events). Both published by
+      // the Apps Script alongside schedule.json.
       const base = window.location.origin +
         window.location.pathname.replace(/[^/]*$/, '');
-      const feedUrl = base + 'schedule.ics';
+      const userFeedUrl = base + 'schedule.ics';
+      const devFeedUrl = base + 'schedule-dev.ics';
 
-      // Google's calendar/r?cid= deep-link is unreliable for third-party
-      // .ics feeds (it often fails with "unable to add"). Instead we open
-      // Google's official "add by URL" settings page and pre-copy the feed
-      // URL, so the user just pastes it into the box that page shows. This
-      // is the supported flow and works consistently.
+      // Google's official "add by URL" settings page (reliable, unlike the
+      // calendar/r?cid= deep-link which often fails for third-party feeds).
       const googleAddByUrl =
         'https://calendar.google.com/calendar/u/0/r/settings/addbyurl';
 
@@ -498,18 +506,27 @@
       pop.className = 'subscribe-popover';
       pop.innerHTML =
         '<div class="subscribe-title">Subscribe to this calendar</div>' +
-        '<div class="subscribe-desc">Copy the feed URL, then paste it into ' +
+        '<div class="subscribe-desc">Copy a feed URL, then paste it into ' +
         'your calendar app. It stays in sync automatically.</div>' +
+
+        '<div class="subscribe-feed-label">Schedule (no dev events)</div>' +
         '<div class="subscribe-url-row">' +
-        '<input class="subscribe-url" readonly value="' + feedUrl + '" />' +
-        '<button class="subscribe-copy">Copy</button>' +
+        '<input class="subscribe-url" data-feed="user" readonly value="' + userFeedUrl + '" />' +
+        '<button class="subscribe-copy" data-feed="user">Copy</button>' +
         '</div>' +
+
+        '<div class="subscribe-feed-label">Dev schedule (all events)</div>' +
+        '<div class="subscribe-url-row">' +
+        '<input class="subscribe-url" data-feed="dev" readonly value="' + devFeedUrl + '" />' +
+        '<button class="subscribe-copy subscribe-copy-secondary" data-feed="dev">Copy</button>' +
+        '</div>' +
+
         '<a class="subscribe-google" href="' + googleAddByUrl + '" ' +
         'target="_blank" rel="noopener noreferrer">Open Google Calendar &rarr; paste URL</a>' +
-        '<div class="subscribe-manual-label">In Google Calendar: paste the ' +
+        '<div class="subscribe-manual-label">In Google Calendar: paste a ' +
         'copied URL into the box, then &ldquo;Add calendar.&rdquo; ' +
-        'Apple / Outlook: paste the same URL into their &ldquo;subscribe from ' +
-        'URL&rdquo; option.</div>';
+        'Apple / Outlook: paste it into their &ldquo;subscribe from URL&rdquo; ' +
+        'option.</div>';
 
       document.body.appendChild(pop);
 
@@ -520,28 +537,25 @@
       pop.style.left = Math.max(8,
         Math.min(r.left, window.innerWidth - pop.offsetWidth - 8)) + 'px';
 
-      const urlInput = pop.querySelector('.subscribe-url');
-      const copyBtn = pop.querySelector('.subscribe-copy');
-      const googleLink = pop.querySelector('.subscribe-google');
-
-      const copyFeed = () => {
-        return (navigator.clipboard && navigator.clipboard.writeText)
-          ? navigator.clipboard.writeText(feedUrl).catch(() => {
-              urlInput.select(); document.execCommand('copy');
-            })
-          : Promise.resolve(urlInput.select(), document.execCommand('copy'));
-      };
-
-      // Copy button.
-      copyBtn.addEventListener('click', () => {
-        copyFeed().then(() => {
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+      // Wire each feed's Copy button to copy its own URL.
+      pop.querySelectorAll('.subscribe-copy').forEach(copyBtn => {
+        const feed = copyBtn.dataset.feed;
+        const input = pop.querySelector('.subscribe-url[data-feed="' + feed + '"]');
+        const url = input.value;
+        copyBtn.addEventListener('click', () => {
+          const done = () => {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done).catch(() => {
+              input.select(); document.execCommand('copy'); done();
+            });
+          } else {
+            input.select(); document.execCommand('copy'); done();
+          }
         });
       });
-
-      // Opening Google: copy the URL first so it's ready to paste.
-      googleLink.addEventListener('click', () => { copyFeed(); });
 
       // Dismiss on outside click.
       setTimeout(() => {
@@ -684,6 +698,8 @@
       const selectedVersion = versionEl ? versionEl.value : '';
       const afterEl = document.getElementById('afterDate');
       const afterDate = afterEl ? afterEl.value : '';   // "YYYY-MM-DD" or ''
+      const devEl = document.getElementById('devToggle');
+      const showDev = devEl ? devEl.checked : false;
 
       const normalizedNetwork = normalizeNetwork(event.network);
 
@@ -700,7 +716,9 @@
         (!selectedVersion || String(event.minorVersion) === selectedVersion) &&
         // Optional "on or after" date filter — off when empty. String
         // comparison works because both are ISO YYYY-MM-DD.
-        (!afterDate || eventDatePart(event) >= afterDate);
+        (!afterDate || eventDatePart(event) >= afterDate) &&
+        // Dev events are hidden unless the "Show dev events" toggle is on.
+        (showDev || !event.dev);
     }
 
     // All events on a given date key (filters applied).
@@ -1985,6 +2003,8 @@
       if (vf) vf.value = '';
       const af = document.getElementById('afterDate');
       if (af) af.value = '';
+      const dt = document.getElementById('devToggle');
+      if (dt) dt.checked = false;   // dev events hidden again on reset
       // Reset also returns to the default Month view (leaving List/Week/Day)
       // AND jumps back to today, so Reset always lands on the current month
       // rather than whatever month you'd navigated to.
@@ -2053,6 +2073,7 @@
     document.getElementById('versionFilter').addEventListener('change', renderWithHistory);
     // Optional "on or after" date filter.
     document.getElementById('afterDate').addEventListener('change', renderWithHistory);
+    document.getElementById('devToggle').addEventListener('change', renderWithHistory);
     document.getElementById('clearAfterDate').addEventListener('click', () => {
       document.getElementById('afterDate').value = '';
       renderWithHistory();
