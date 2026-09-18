@@ -11,8 +11,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.8",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.8.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
     "dev": false
   },
   {
@@ -189,8 +214,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.8",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.8.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
     "dev": false
   },
   {
@@ -374,8 +424,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.8",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.8.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
     "dev": false
   },
   {
@@ -2865,7 +2940,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -2881,7 +2956,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -9337,7 +9412,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10347,7 +10422,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10363,7 +10438,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10379,7 +10454,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10395,7 +10470,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10411,7 +10486,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
@@ -10427,7 +10502,7 @@
     "type": "",
     "category": "general",
     "dependsOn": [],
-    "minorVersion": null,
+    "minorVersion": "0.1",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
