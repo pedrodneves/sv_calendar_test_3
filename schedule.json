@@ -381,22 +381,6 @@
     "dev": false
   },
   {
-    "id": "12690777179",
-    "title": "DevNet Upgrades to Splice 0.9.0",
-    "start": "2026-10-05",
-    "end": "2026-10-05",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "13079569611",
     "title": "TestNet Upgrades to Splice 0.8.4",
     "start": "2026-10-05",
@@ -513,6 +497,22 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.8",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "12690777179",
+    "title": "DevNet Upgrades to Splice 0.9.0",
+    "start": "2026-10-05",
+    "end": "2026-10-05",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
