@@ -1,144 +1,5 @@
 [
   {
-    "id": "13079541257",
-    "title": "DevNet upgrades to Splice 0.8.3",
-    "start": "2026-09-21",
-    "end": "2026-09-21",
-    "description": "Splice 0.8.2 had an error. Replaced by Splice 0.8.3",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.8",
-    "minValidatorSpliceVersion": "0.8.1",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.23"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.24"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.29"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.9"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.24"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.23"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12559980591",
-    "title": "TestNet upgrades to Splice 0.8.1",
-    "start": "2026-09-21",
-    "end": "2026-09-21",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.8",
-    "minValidatorSpliceVersion": "0.8.0",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.23"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.24"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.29"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.9"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.24"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.23"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12559980592",
-    "title": "MainNet upgrades to Splice 0.8.0",
-    "start": "2026-09-21",
-    "end": "2026-09-21",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.8",
-    "minValidatorSpliceVersion": "0.7.5",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.23"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.24"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.29"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.9"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.24"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.23"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12559980597",
-    "title": "DevNet: Validators must upgrade to 0.8.x",
-    "start": "2026-09-21",
-    "end": "2026-09-21",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Minimum Splice Versions",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.8",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "12559980593",
     "title": "DevNet Topology Freeze (0.8.x Required) (September 2026)",
     "start": "2026-09-22",
@@ -16021,6 +15882,145 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": null,
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "12559980591",
+    "title": "TestNet upgrades to Splice 0.8.1",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.8",
+    "minValidatorSpliceVersion": "0.8.0",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "12559980592",
+    "title": "MainNet upgrades to Splice 0.8.0",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.8",
+    "minValidatorSpliceVersion": "0.7.5",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "13079541257",
+    "title": "DevNet upgrades to Splice 0.8.3",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "description": "Splice 0.8.2 had an error. Replaced by Splice 0.8.3",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.8",
+    "minValidatorSpliceVersion": "0.8.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.23"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.24"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.29"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.9"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.24"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.23"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "12559980597",
+    "title": "DevNet: Validators must upgrade to 0.8.x",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Minimum Splice Versions",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.8",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
     "dev": false
