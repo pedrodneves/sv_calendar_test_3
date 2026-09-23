@@ -32,6 +32,11 @@
           <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
           <span class="dev-toggle-label">Show dev events</span>
         </label>
+        <label class="dev-toggle" title="Hide cancelled events">
+          <input type="checkbox" id="hideCancelledToggle" />
+          <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
+          <span class="dev-toggle-label">Hide cancelled</span>
+        </label>
         <button id="listToggle" class="view-toggle-pill" onclick="toggleListMode()">List view</button>
       </div>
     </header>
@@ -364,6 +369,8 @@
       const after = afterEl ? afterEl.value : '';
       const devEl = document.getElementById('devToggle');
       const showDev = devEl ? devEl.checked : false;
+      const hideCancelledEl = document.getElementById('hideCancelledToggle');
+      const hideCancelled = hideCancelledEl ? hideCancelledEl.checked : false;
 
       if (search) params.set('search', search);
       if (network) params.set('network', network);
@@ -371,6 +378,7 @@
       if (version) params.set('version', version);
       if (after) params.set('after', after);
       if (showDev) params.set('dev', '1');
+      if (hideCancelled) params.set('hidecancelled', '1');
 
       // View: 'list' takes precedence when list mode is on.
       const view = listMode ? 'list' : currentView;
@@ -442,6 +450,8 @@
       // Dev toggle: present (dev=1) → on, absent → off.
       const devEl = document.getElementById('devToggle');
       if (devEl) devEl.checked = params.get('dev') === '1';
+      const hideCancelledEl = document.getElementById('hideCancelledToggle');
+      if (hideCancelledEl) hideCancelledEl.checked = params.get('hidecancelled') === '1';
 
       // View: absent → Month (default). 'list' toggles list mode.
       const view = params.get('view');
@@ -704,6 +714,8 @@
       const afterDate = afterEl ? afterEl.value : '';   // "YYYY-MM-DD" or ''
       const devEl = document.getElementById('devToggle');
       const showDev = devEl ? devEl.checked : false;
+      const hideCancelledEl = document.getElementById('hideCancelledToggle');
+      const hideCancelled = hideCancelledEl ? hideCancelledEl.checked : false;
 
       const normalizedNetwork = normalizeNetwork(event.network);
 
@@ -722,7 +734,9 @@
         // comparison works because both are ISO YYYY-MM-DD.
         (!afterDate || eventDatePart(event) >= afterDate) &&
         // Dev events are hidden unless the "Show dev events" toggle is on.
-        (showDev || !event.dev);
+        (showDev || !event.dev) &&
+        // Cancelled events are hidden when the "Hide cancelled" toggle is on.
+        (!hideCancelled || String(event.status || '').trim().toLowerCase() !== 'cancelled');
     }
 
     // All events on a given date key (filters applied).
@@ -2009,6 +2023,8 @@
       if (af) af.value = '';
       const dt = document.getElementById('devToggle');
       if (dt) dt.checked = false;   // dev events hidden again on reset
+      const hc = document.getElementById('hideCancelledToggle');
+      if (hc) hc.checked = false;   // show cancelled again on reset
       // Reset also returns to the default Month view (leaving List/Week/Day)
       // AND jumps back to today, so Reset always lands on the current month
       // rather than whatever month you'd navigated to.
@@ -2078,6 +2094,7 @@
     // Optional "on or after" date filter.
     document.getElementById('afterDate').addEventListener('change', renderWithHistory);
     document.getElementById('devToggle').addEventListener('change', renderWithHistory);
+    document.getElementById('hideCancelledToggle').addEventListener('change', renderWithHistory);
     document.getElementById('clearAfterDate').addEventListener('click', () => {
       document.getElementById('afterDate').value = '';
       renderWithHistory();
