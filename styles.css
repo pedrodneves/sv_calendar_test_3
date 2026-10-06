@@ -14,6 +14,44 @@
   --text: #f7f4ff;                     /* main text color */
   --muted: #cdb8ef;                    /* secondary/muted text */
   --border: rgba(124, 77, 255, 0.65);  /* standard panel border */
+
+  /* Network accent colors as variables so the light theme can override
+     them. Defaults are the existing dark-theme values. */
+  --net-devnet: #2563eb;
+  --net-testnet: #facc15;
+  --net-mainnet: #16a34a;
+  --net-devnet-text: #6ea8ff;          /* tooltip text variants */
+  --net-testnet-text: #e6c34a;
+  --net-mainnet-text: #4caf7d;
+}
+
+/* ---- Light theme -----------------------------------------------------------
+   Turned on by <html data-theme="light"> (set by the header sun/moon toggle
+   and remembered in localStorage). Palette matches wallets.canton.foundation
+   so the Canton sites stay visually consistent. Only these tokens change —
+   every rule reads the variables, so no rule needs a light-specific copy.
+   Text colours pass 4.5:1 on white.                                          */
+:root[data-theme="light"] {
+  --bg: #f6f6fa;                       /* off-white page (wallets --bg) */
+  --panel: #ffffff;                    /* white cards (wallets --bg-raised) */
+  --purple: #6a3cf0;                   /* darker accent that reads on white */
+  --purple-soft: #5329d6;              /* labels/headings (was glow-purple) */
+  --green: #157a3f;
+  --text: #12121c;                     /* near-black body text */
+  --muted: #5d5d73;                    /* secondary text, 4.5:1 on white */
+  --border: #d8ccff;                   /* soft purple-tinted border */
+
+  /* Network accents darkened for contrast on a white background. The
+     bright TestNet yellow is unreadable on white, so it goes to a deep
+     gold; the others deepen slightly. */
+  --net-devnet: #2f6fd0;
+  --net-testnet: #b8912a;
+  --net-mainnet: #157a3f;
+  --net-devnet-text: #2f6fd0;
+  --net-testnet-text: #8a6a12;
+  --net-mainnet-text: #157a3f;
+
+  color-scheme: light;
 }
 
 /* Universal box-sizing so padding never breaks layout widths */
@@ -273,6 +311,27 @@ select::-ms-expand { display: none; }
   white-space: nowrap;
 }
 .info-btn:hover { border-color: var(--purple-soft); color: var(--purple-soft); }
+
+/* Sun/moon theme toggle in the header. Round icon button; the icon shows
+   the theme you'd switch TO (sun while dark, moon while light). */
+.theme-toggle {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  transition: border-color 0.15s, background 0.15s;
+}
+.theme-toggle:hover { border-color: var(--purple); }
+.theme-toggle-icon { pointer-events: none; }
 
 /* Optional "on or after" date filter — matches the other filter controls.
    The ✕ clears it. Highlighted when a date is set is handled inline. */
@@ -689,9 +748,9 @@ select::-ms-expand { display: none; }
 }
 
 .splice-tooltip-net { font-weight: 700; }
-.splice-tooltip-net.devnet  { color: #6ea8ff; }
-.splice-tooltip-net.testnet { color: #e6c34a; }
-.splice-tooltip-net.mainnet { color: #4caf7d; }
+.splice-tooltip-net.devnet  { color: var(--net-devnet-text); }
+.splice-tooltip-net.testnet { color: var(--net-testnet-text); }
+.splice-tooltip-net.mainnet { color: var(--net-mainnet-text); }
 .splice-tooltip-ver { color: var(--text); }
 
 /* Release-notes footer link at the bottom of the tooltip. Separated from
@@ -821,20 +880,20 @@ select::-ms-expand { display: none; }
 
 .event.devnet {
   background: rgba(37, 99, 235, 0.28);
-  border-color: #2563eb;
-  border-left: 4px solid #2563eb;
+  border-color: var(--net-devnet);
+  border-left: 4px solid var(--net-devnet);
 }
 
 .event.testnet {
   background: rgba(250, 204, 21, 0.16);
-  border-color: #facc15;
-  border-left: 4px solid #facc15;
+  border-color: var(--net-testnet);
+  border-left: 4px solid var(--net-testnet);
 }
 
 .event.mainnet {
   background: rgba(22, 163, 74, 0.28);
-  border-color: #16a34a;
-  border-left: 4px solid #16a34a;
+  border-color: var(--net-mainnet);
+  border-left: 4px solid var(--net-mainnet);
 }
 
 /* "To Be Confirmed" events: subdued / muted so they read as tentative.

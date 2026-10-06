@@ -8,8 +8,20 @@
   <!-- Canton "C" favicon (browser tab icon). -->
   <link rel="icon" type="image/png" href="./favicon.png" />
 
+  <!-- Apply the saved theme BEFORE the stylesheet renders, so a light-mode
+       user never sees a flash of dark on load. Default is dark. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('sv-theme') === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) { /* localStorage blocked — stay on default dark */ }
+    })();
+  </script>
+
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=34" />
+  <link rel="stylesheet" href="./styles.css?v=35" />
 </head>
 
 <body>
@@ -37,6 +49,10 @@
           <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
           <span class="dev-toggle-label">Hide cancelled</span>
         </label>
+        <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()"
+                title="Switch between light and dark theme" aria-label="Toggle light/dark theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
         <button id="listToggle" class="view-toggle-pill" onclick="toggleListMode()">List view</button>
       </div>
     </header>
@@ -200,6 +216,7 @@
       document.getElementById('updated').textContent =
         '↻ Last loaded: ' + isoDateTime(new Date());
 
+      syncThemeIcon();   // set the sun/moon icon to match the current theme
       render();
     }
 
@@ -2045,6 +2062,31 @@
     function toggleListMode() {
       listMode = !listMode;
       renderWithHistory();
+    }
+
+    // Switch between light and dark theme. The choice is applied by setting
+    // data-theme="light" on <html> (the CSS variable overrides handle the
+    // rest) and remembered in localStorage so it persists across visits.
+    function toggleTheme() {
+      const root = document.documentElement;
+      const nowLight = root.getAttribute('data-theme') !== 'light';
+      if (nowLight) {
+        root.setAttribute('data-theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');   // back to default dark
+      }
+      try { localStorage.setItem('sv-theme', nowLight ? 'light' : 'dark'); }
+      catch (e) { /* storage blocked — theme still applies for this session */ }
+      syncThemeIcon();
+    }
+
+    // Show the icon for the theme you'd switch TO: moon while in light,
+    // sun while in dark (a common, intuitive convention).
+    function syncThemeIcon() {
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      btn.querySelector('.theme-toggle-icon').textContent = isLight ? '🌙' : '☀️';
     }
 
     // Jump to a specific date. By default this opens Day view;
