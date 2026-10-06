@@ -148,8 +148,8 @@
   {
     "id": "12559992496",
     "title": "MainNet LSU (0.8 Required) (October 2026)",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
+    "start": "2026-10-10 09:00",
+    "end": "2026-10-10 09:00",
     "description": "",
     "status": "Confirmed",
     "network": "MainNet",
@@ -349,8 +349,8 @@
   {
     "id": "12690805352",
     "title": "DevNet: LSU (0.9.x Required) (October 2026)",
-    "start": "2026-10-21",
-    "end": "2026-10-21",
+    "start": "2026-10-21 09:00",
+    "end": "2026-10-21 09:00",
     "description": "",
     "status": "Confirmed",
     "network": "DevNet",
@@ -13825,8 +13825,8 @@
   {
     "id": "12265782704",
     "title": "MainNet LSU pv34->pv35, validators must upgrade to >= 0.6.5 before the LSU",
-    "start": "2026-06-27 14:00",
-    "end": "2026-06-27 14:00",
+    "start": "2026-06-27",
+    "end": "2026-06-27",
     "description": "Topology freeze starts June 26th, 24 hours before LSU",
     "status": "Confirmed",
     "network": "MainNet",
@@ -16416,8 +16416,8 @@
   {
     "id": "12559975423",
     "title": "TestNet LSU (0.7.x Required) (August 2026)",
-    "start": "2026-08-26 14:00",
-    "end": "2026-08-26 14:00",
+    "start": "2026-08-26",
+    "end": "2026-08-26",
     "description": "",
     "status": "Cancelled",
     "network": "TestNet",
