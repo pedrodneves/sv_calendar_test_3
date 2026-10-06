@@ -23,6 +23,15 @@
   --net-devnet-text: #6ea8ff;          /* tooltip text variants */
   --net-testnet-text: #e6c34a;
   --net-mainnet-text: #4caf7d;
+
+  /* Surface backgrounds that were previously hardcoded dark. Pulled into
+     variables so the light theme can override them. */
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(124, 77, 255, 0.22), transparent 35%),
+    linear-gradient(180deg, #03030a 0%, #070711 100%);
+  --panel-gradient: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
+  --input-bg: #0c0a18;                 /* search box, dropdowns, date field */
+  --tooltip-bg: #0f1225;               /* splice tooltip / popovers */
 }
 
 /* ---- Light theme -----------------------------------------------------------
@@ -51,6 +60,15 @@
   --net-testnet-text: #8a6a12;
   --net-mainnet-text: #157a3f;
 
+  /* Light-mode surfaces: soft off-white page, white panels/cards, pale
+     inputs — matching wallets.canton.foundation. */
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(106, 60, 240, 0.08), transparent 40%),
+    linear-gradient(180deg, #f6f6fa 0%, #eeeef4 100%);
+  --panel-gradient: #ffffff;
+  --input-bg: #ffffff;
+  --tooltip-bg: #ffffff;
+
   color-scheme: light;
 }
 
@@ -62,9 +80,7 @@ body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
   /* Layered gradient: soft purple glow top-left + vertical fade */
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.22), transparent 35%),
-    linear-gradient(180deg, #03030a 0%, #070711 100%);
+  background: var(--page-gradient);
   color: var(--text);
   padding: 28px 20px;
 }
@@ -156,7 +172,7 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
   padding: 16px 18px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
+  background: var(--panel-gradient);
 }
 
 /* Each row is its own flex line. */
@@ -229,7 +245,7 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
 }
 
 button, input, select {
-  background: #0c0a18;
+  background: var(--input-bg);
   border: 1px solid rgba(201, 156, 255, 0.45);
   color: var(--text);
   border-radius: 12px;
@@ -340,7 +356,7 @@ select::-ms-expand { display: none; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0c0a18;
+  background: var(--input-bg);
   border: 1px solid rgba(201, 156, 255, 0.35);
   border-radius: 12px;
   padding: 0 10px;
@@ -429,7 +445,7 @@ select::-ms-expand { display: none; }
   padding: 26px 30px;
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.98), rgba(8, 8, 18, 0.98));
+  background: var(--panel-gradient);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   z-index: 50;
   font-size: 14px;
@@ -626,7 +642,7 @@ select::-ms-expand { display: none; }
   z-index: 9999;
   min-width: 150px;
   padding: 8px 11px;
-  background: #0f1225;
+  background: var(--tooltip-bg);
   border: 1px solid rgba(201, 156, 255, 0.4);
   border-radius: 8px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
@@ -951,7 +967,7 @@ select::-ms-expand { display: none; }
   width: 440px;
   max-width: calc(100vw - 16px);
   padding: 16px;
-  background: #0f1225;
+  background: var(--tooltip-bg);
   border: 1px solid rgba(201, 156, 255, 0.4);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
@@ -1010,7 +1026,7 @@ select::-ms-expand { display: none; }
   min-width: 0;
   padding: 6px 8px;
   font-size: 11px;
-  background: #0c0a18;
+  background: var(--input-bg);
   border: 1px solid rgba(201, 156, 255, 0.35);
   border-radius: 6px;
   color: var(--text);
@@ -1176,7 +1192,7 @@ select::-ms-expand { display: none; }
 .mini-cal {
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
+  background: var(--panel-gradient);
   padding: 18px;
   position: sticky;
   top: 20px;
