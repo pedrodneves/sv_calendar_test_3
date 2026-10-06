@@ -32,6 +32,14 @@
   --panel-gradient: linear-gradient(135deg, rgba(27, 16, 54, 0.95), rgba(8, 8, 18, 0.95));
   --input-bg: #0c0a18;                 /* search box, dropdowns, date field */
   --tooltip-bg: #0f1225;               /* splice tooltip / popovers */
+  --day-gradient:                      /* month/week day cells */
+    radial-gradient(circle at top left, rgba(124, 77, 255, 0.18), transparent 45%),
+    linear-gradient(135deg, #1a0f34, #070812);
+  --event-bg: rgba(124, 77, 255, 0.22);  /* default event card fill */
+  --event-bg-devnet: rgba(37, 99, 235, 0.28);
+  --event-bg-testnet: rgba(250, 204, 21, 0.16);
+  --event-bg-mainnet: rgba(22, 163, 74, 0.28);
+  --event-bg-cancelled: rgba(239, 68, 68, 0.22);
 }
 
 /* ---- Light theme -----------------------------------------------------------
@@ -68,6 +76,19 @@
   --panel-gradient: #ffffff;
   --input-bg: #ffffff;
   --tooltip-bg: #ffffff;
+  /* Light day cells: very pale lavender so the grid reads as light, with
+     a faint purple glow top-left to echo the dark theme. Event cards get a
+     soft purple tint on white. */
+  --day-gradient:
+    radial-gradient(circle at top left, rgba(106, 60, 240, 0.06), transparent 45%),
+    linear-gradient(135deg, #f4f2fb, #fbfaff);
+  --event-bg: #f2eeff;
+  /* Stronger, solid-ish tints so network cards read on a white background
+     (the dark theme's low-opacity fills wash out on light). */
+  --event-bg-devnet: #e4ecfb;
+  --event-bg-testnet: #faf3dc;
+  --event-bg-mainnet: #e2f4e9;
+  --event-bg-cancelled: #fde7e3;
 
   color-scheme: light;
 }
@@ -583,9 +604,7 @@ select::-ms-expand { display: none; }
   height: 300px;
   border: 1px solid rgba(124, 77, 255, 0.7);
   border-radius: 14px;
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.18), transparent 45%),
-    linear-gradient(135deg, #1a0f34, #070812);
+  background: var(--day-gradient);
   padding: 12px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -819,9 +838,7 @@ select::-ms-expand { display: none; }
 .day-view {
   border: 1px solid var(--border);
   border-radius: 18px;
-  background:
-    radial-gradient(circle at top left, rgba(124, 77, 255, 0.15), transparent 45%),
-    linear-gradient(135deg, #14092b, #070812);
+  background: var(--day-gradient);
   padding: 22px 24px;
 }
 
@@ -876,7 +893,7 @@ select::-ms-expand { display: none; }
   border: 1px solid rgba(201, 156, 255, 0.35);
   border-left: 4px solid rgba(201, 156, 255, 0.45);
   border-radius: 12px;
-  background: rgba(124, 77, 255, 0.22);
+  background: var(--event-bg);
   padding: 10px;
   margin-bottom: 10px;
   font-size: 13px;
@@ -895,19 +912,19 @@ select::-ms-expand { display: none; }
 }
 
 .event.devnet {
-  background: rgba(37, 99, 235, 0.28);
+  background: var(--event-bg-devnet);
   border-color: var(--net-devnet);
   border-left: 4px solid var(--net-devnet);
 }
 
 .event.testnet {
-  background: rgba(250, 204, 21, 0.16);
+  background: var(--event-bg-testnet);
   border-color: var(--net-testnet);
   border-left: 4px solid var(--net-testnet);
 }
 
 .event.mainnet {
-  background: rgba(22, 163, 74, 0.28);
+  background: var(--event-bg-mainnet);
   border-color: var(--net-mainnet);
   border-left: 4px solid var(--net-mainnet);
 }
@@ -931,7 +948,7 @@ select::-ms-expand { display: none; }
 .event.cancelled.devnet,
 .event.cancelled.testnet,
 .event.cancelled.mainnet {
-  background: rgba(239, 68, 68, 0.22);
+  background: var(--event-bg-cancelled);
   border-color: #ff5722;
   border-left: 4px solid #ff5722;
 }
