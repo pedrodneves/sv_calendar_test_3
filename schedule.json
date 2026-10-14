@@ -1,21 +1,5 @@
 [
   {
-    "id": "12690777905",
-    "title": "MainNet: breaking config change (Splice 0.8.x Required)",
-    "start": "2026-10-13",
-    "end": "2026-10-13",
-    "description": "",
-    "status": "Cancelled",
-    "network": "MainNet",
-    "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.8",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "12690805412",
     "title": "DevNet upgrades to Splice 0.9.2",
     "start": "2026-10-19",
@@ -17357,6 +17341,22 @@
         "version": "0.1.24"
       }
     ],
+    "dev": false
+  },
+  {
+    "id": "12690777905",
+    "title": "MainNet: breaking config change (Splice 0.8.x Required)",
+    "start": "2026-10-13",
+    "end": "2026-10-13",
+    "description": "",
+    "status": "Cancelled",
+    "network": "MainNet",
+    "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.8",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
     "dev": false
   }
 ]
