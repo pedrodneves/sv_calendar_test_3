@@ -778,16 +778,28 @@
     // The three networks tracked, in display order.
     const SPLICE_NETWORKS = ['DevNet', 'TestNet', 'MainNet'];
 
-    // Pull the version number out of an upgrade title.
-    // "DevNet upgrades to Splice 0.7.1" -> "0.7.1"; null if not a match.
+    // Resolve the minimum validator Splice version for an event.
+    //
+    // PRIMARY SOURCE: the dedicated `minValidatorSpliceVersion` column that
+    // the Monday publisher now sets on upgrade rows (e.g. "0.9.3"). This is
+    // the source of truth — reading it directly is what keeps the tooltip
+    // current as new upgrades are published.
+    //
+    // FALLBACK: older rows that predate the column don't have it, so we
+    // still scrape the title as before. Either way, currentSpliceVersions()
+    // carries the last known value forward to days that set nothing.
     function parseSpliceVersion(event) {
+      // 1) Dedicated column wins when present.
+      const col = event.minValidatorSpliceVersion;
+      if (col !== null && col !== undefined && String(col).trim() !== '') {
+        return String(col).trim();
+      }
+
+      // 2) Fallback: scrape the title (legacy behaviour for older rows).
       const title = String(event.title || '');
 
       // Format A: "<Network>: Validators must upgrade to 0.7.x" (and the
       // LSU variant "...validators must upgrade to >= 0.6.5 before the LSU").
-      // The version token allows an 'x' segment (e.g. 0.7.x), and an
-      // optional ">=" before the number is stripped. The (?<!not\s)
-      // lookbehind still guards against a negated "not Validators".
       let match = title.match(
         /(?<!not\s)validators\s+must\s+upgrade\s+to\s+>?=?\s*(\d+(?:\.[\dx]+)*)/i);
       if (match) return match[1];
@@ -879,10 +891,22 @@
       return m ? normalizeNetwork(m[1]) : null;
     }
 
+    // Real DAR component names (the Splice .dar packages). Used to keep the
+    // legacy title scraper from mistaking a Splice *release* line (e.g.
+    // "Splice 0.9.3") for a DAR component.
+    const DAR_COMPONENT_NAMES = new Set([
+      'amulet', 'amuletnameservice', 'dsogovernance',
+      'validatorlifecycle', 'wallet', 'walletpayments'
+    ]);
+
     // Recognise a bare "component 0.1.20" title → [comp, ver] or null.
+    // Only recognised DAR package names qualify, so "Splice 0.9.3" and
+    // similar non-DAR lines are ignored.
     function darComponentTitle(title) {
       const m = String(title || '').trim().match(/^([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)\s*$/);
-      return m ? [m[1], m[2]] : null;
+      if (!m) return null;
+      if (!DAR_COMPONENT_NAMES.has(m[1].toLowerCase())) return null;
+      return [m[1], m[2]];
     }
 
     // Extract per-network component lists from a single description (Format
@@ -898,6 +922,9 @@
       while ((m = netRe.exec(desc)) !== null) {
         labels.push({ net: normalizeNetwork(m[1]), start: m.index, end: netRe.lastIndex });
       }
+      // Only keep pairs whose name is a real DAR component — this stops
+      // stray lines like "Previously scheduled as Splice 0.9.3" from being
+      // mistaken for DAR data.
       if (labels.length) {
         for (let i = 0; i < labels.length; i++) {
           const segEnd = (i + 1 < labels.length) ? labels[i + 1].start : desc.length;
@@ -905,20 +932,59 @@
           const pairs = [];
           const re = new RegExp(compRe.source, 'g');
           let c;
-          while ((c = re.exec(seg)) !== null) pairs.push([c[1], c[2]]);
+          while ((c = re.exec(seg)) !== null) {
+            if (DAR_COMPONENT_NAMES.has(c[1].toLowerCase())) pairs.push([c[1], c[2]]);
+          }
           if (pairs.length) result[labels[i].net] = pairs;
         }
       } else if (event.network) {
         const pairs = [];
         let c;
-        while ((c = compRe.exec(desc)) !== null) pairs.push([c[1], c[2]]);
+        while ((c = compRe.exec(desc)) !== null) {
+          if (DAR_COMPONENT_NAMES.has(c[1].toLowerCase())) pairs.push([c[1], c[2]]);
+        }
         if (pairs.length) result[normalizeNetwork(event.network)] = pairs;
       }
       return result;
     }
 
+    // PRIMARY SOURCE: read the dedicated `minDarVersions` column.
+    // Normally an array of {package, version} objects. A few rows are
+    // malformed — all packages jammed into one `package` string like
+    // "amulet 0.1.24 amuletNameService 0.1.25 ..." — so we split those
+    // back into [component, version] pairs. Returns [[comp, ver], ...]
+    // or [] when the column is empty/unusable.
+    function darFromColumn(event) {
+      const col = event.minDarVersions;
+      if (!Array.isArray(col) || !col.length) return [];
+
+      const pairs = [];
+      col.forEach(entry => {
+        const name = String((entry && entry.package) || '').trim();
+        const ver = String((entry && entry.version) || '').trim();
+        if (!name) return;
+
+        if (name.includes(' ')) {
+          // Malformed: "amulet 0.1.24 amuletNameService 0.1.25 ..." plus a
+          // trailing version in `ver`. Rebuild the full string and pull out
+          // every known "component version" pair in order.
+          const blob = (name + ' ' + ver).trim();
+          const re = /([A-Za-z][A-Za-z]+)\s+(\d+\.\d+\.\d+)/g;
+          let m;
+          while ((m = re.exec(blob)) !== null) {
+            if (DAR_COMPONENT_NAMES.has(m[1].toLowerCase())) pairs.push([m[1], m[2]]);
+          }
+        } else if (/^\d+\.\d+\.\d+$/.test(ver) && DAR_COMPONENT_NAMES.has(name.toLowerCase())) {
+          pairs.push([name, ver]);
+        }
+      });
+      return pairs;
+    }
+
     // Build { dateKey: { DevNet:[[c,v]...], TestNet:[...], MainNet:[...] } }
-    // across the whole schedule, merging both formats. Cached after first
+    // across the whole schedule. The `minDarVersions` COLUMN is the source
+    // of truth; the legacy title/description scraping (Format A/B) is only
+    // used for older rows that have no column data. Cached after first
     // build since allEvents doesn't change within a render session.
     let _darIndex = null;
     function buildDarIndex() {
@@ -933,6 +999,18 @@
       allEvents.forEach(event => {
         const dayKey = eventDatePart(event);
         if (dayKey !== currentDay) { currentDay = dayKey; currentNet = null; }
+
+        // PRIMARY: the minDarVersions column, attributed to the event's
+        // network. This is what keeps DAR versions current and correct.
+        const fromCol = darFromColumn(event);
+        if (fromCol.length && event.network) {
+          const net = normalizeNetwork(event.network);
+          index[dayKey] = index[dayKey] || {};
+          index[dayKey][net] = (index[dayKey][net] || []).concat(fromCol);
+          return;
+        }
+
+        // ---- FALLBACK (legacy, for rows without the column) ----
 
         // Format A / Aug 10: description carries the whole thing.
         const fromDesc = darFromDescription(event);
