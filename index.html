@@ -28,8 +28,10 @@
   <div class="page">
     <header>
       <div class="header-brand">
-        <img class="header-logo" src="Canton-Foundation-Logo-Dark.svg"
-             alt="Canton Foundation" />
+        <a class="header-logo-link" href="./" title="Back to the schedule home">
+          <img class="header-logo" src="Canton-Foundation-Logo-Dark.svg"
+               alt="Canton Foundation" />
+        </a>
         <div class="header-divider"></div>
         <div class="header-titles">
           <h1>SV Operations Schedule</h1>
@@ -39,11 +41,25 @@
       <!-- Right side: source pill + dev toggle + the calendar/list mode toggle -->
       <div class="header-actions">
         <div class="source-pill">Official SV Operations Schedule</div>
-        <label class="dev-toggle" title="Show internal / developer events">
-          <input type="checkbox" id="devToggle" />
-          <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
-          <span class="dev-toggle-label">Show dev events</span>
-        </label>
+
+        <!-- Category multi-select: SV (normal events) and Dev (dev-flagged).
+             Default SV on / Dev off. The guard in toggleCategory() prevents
+             both being turned off at once. -->
+        <div class="category-filter" id="categoryFilter">
+          <button type="button" class="category-btn" id="categoryBtn"
+                  aria-haspopup="true" aria-expanded="false"
+                  onclick="toggleCategoryMenu()">Categories: SV ▾</button>
+          <div class="category-menu" id="categoryMenu" role="menu">
+            <label class="category-option">
+              <input type="checkbox" id="catSV" checked onchange="onCategoryChange('sv')" />
+              <span>SV</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" id="catDev" onchange="onCategoryChange('dev')" />
+              <span>Dev</span>
+            </label>
+          </div>
+        </div>
         <label class="dev-toggle" title="Hide cancelled events">
           <input type="checkbox" id="hideCancelledToggle" />
           <span class="dev-toggle-track"><span class="dev-toggle-thumb"></span></span>
@@ -384,8 +400,10 @@
       const version = versionEl ? versionEl.value : '';
       const afterEl = document.getElementById('afterDate');
       const after = afterEl ? afterEl.value : '';
-      const devEl = document.getElementById('devToggle');
-      const showDev = devEl ? devEl.checked : false;
+      const svEl = document.getElementById('catSV');
+      const devCatEl = document.getElementById('catDev');
+      const showSV = svEl ? svEl.checked : true;
+      const showDev = devCatEl ? devCatEl.checked : false;
       const hideCancelledEl = document.getElementById('hideCancelledToggle');
       const hideCancelled = hideCancelledEl ? hideCancelledEl.checked : false;
 
@@ -394,7 +412,10 @@
       if (type) params.set('type', type);
       if (version) params.set('version', version);
       if (after) params.set('after', after);
+      // Only record categories when they differ from the default (SV on,
+      // Dev off), to keep links short.
       if (showDev) params.set('dev', '1');
+      if (!showSV) params.set('sv', '0');
       if (hideCancelled) params.set('hidecancelled', '1');
 
       // View: 'list' takes precedence when list mode is on.
@@ -464,9 +485,15 @@
         afterEl.value = (after && /^\d{4}-\d{2}-\d{2}$/.test(after)) ? after : '';
       }
 
-      // Dev toggle: present (dev=1) → on, absent → off.
-      const devEl = document.getElementById('devToggle');
-      if (devEl) devEl.checked = params.get('dev') === '1';
+      // Categories: default SV on / Dev off. dev=1 enables Dev; sv=0 disables
+      // SV. The both-off guard still applies afterwards.
+      const svEl = document.getElementById('catSV');
+      const devCatEl = document.getElementById('catDev');
+      if (devCatEl) devCatEl.checked = params.get('dev') === '1';
+      if (svEl) svEl.checked = params.get('sv') !== '0';
+      // Safety: never allow both off when restoring from a link.
+      if (svEl && devCatEl && !svEl.checked && !devCatEl.checked) svEl.checked = true;
+      updateCategoryLabel();
       const hideCancelledEl = document.getElementById('hideCancelledToggle');
       if (hideCancelledEl) hideCancelledEl.checked = params.get('hidecancelled') === '1';
 
@@ -729,8 +756,13 @@
       const selectedVersion = versionEl ? versionEl.value : '';
       const afterEl = document.getElementById('afterDate');
       const afterDate = afterEl ? afterEl.value : '';   // "YYYY-MM-DD" or ''
-      const devEl = document.getElementById('devToggle');
-      const showDev = devEl ? devEl.checked : false;
+      // Category multi-select: SV = normal (non-dev) events, Dev = events
+      // with the dev flag. Default SV on / Dev off. Missing elements default
+      // to the SV-only behaviour that matched the old toggle.
+      const svEl = document.getElementById('catSV');
+      const devCatEl = document.getElementById('catDev');
+      const showSV = svEl ? svEl.checked : true;
+      const showDev = devCatEl ? devCatEl.checked : false;
       const hideCancelledEl = document.getElementById('hideCancelledToggle');
       const hideCancelled = hideCancelledEl ? hideCancelledEl.checked : false;
 
@@ -750,8 +782,9 @@
         // Optional "on or after" date filter — off when empty. String
         // comparison works because both are ISO YYYY-MM-DD.
         (!afterDate || eventDatePart(event) >= afterDate) &&
-        // Dev events are hidden unless the "Show dev events" toggle is on.
-        (showDev || !event.dev) &&
+        // Category filter: an event shows if its category is enabled.
+        // Dev-flagged events need Dev on; non-dev events need SV on.
+        ((event.dev && showDev) || (!event.dev && showSV)) &&
         // Cancelled events are hidden when the "Hide cancelled" toggle is on.
         (!hideCancelled || String(event.status || '').trim().toLowerCase() !== 'cancelled');
     }
@@ -2116,8 +2149,12 @@
       if (vf) vf.value = '';
       const af = document.getElementById('afterDate');
       if (af) af.value = '';
-      const dt = document.getElementById('devToggle');
-      if (dt) dt.checked = false;   // dev events hidden again on reset
+      // Categories back to default: SV on, Dev off.
+      const svReset = document.getElementById('catSV');
+      const devReset = document.getElementById('catDev');
+      if (svReset) svReset.checked = true;
+      if (devReset) devReset.checked = false;
+      updateCategoryLabel();
       const hc = document.getElementById('hideCancelledToggle');
       if (hc) hc.checked = false;   // show cancelled again on reset
       // Reset also returns to the default Month view (leaving List/Week/Day)
@@ -2141,6 +2178,60 @@
       listMode = !listMode;
       renderWithHistory();
     }
+
+    /* ---------------------------------------------------------
+       CATEGORY MULTI-SELECT (SV / Dev)
+       SV = normal events, Dev = dev-flagged events. Default SV on,
+       Dev off. Both can't be off at once. The button label reflects
+       the current selection.
+       --------------------------------------------------------- */
+
+    // Open/close the dropdown menu.
+    function toggleCategoryMenu() {
+      const menu = document.getElementById('categoryMenu');
+      const btn = document.getElementById('categoryBtn');
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    // Update the button label to list the enabled categories.
+    function updateCategoryLabel() {
+      const sv = document.getElementById('catSV');
+      const dev = document.getElementById('catDev');
+      const btn = document.getElementById('categoryBtn');
+      if (!btn) return;
+      const parts = [];
+      if (sv && sv.checked) parts.push('SV');
+      if (dev && dev.checked) parts.push('Dev');
+      btn.textContent = 'Categories: ' + (parts.join(', ') || 'none') + ' ▾';
+    }
+
+    // A checkbox changed. Enforce "at least one on", update the label,
+    // and re-render.
+    function onCategoryChange(justChanged) {
+      const sv = document.getElementById('catSV');
+      const dev = document.getElementById('catDev');
+      // Prevent both being off: if the user just turned one off and the
+      // other is already off, turn the OTHER one back on.
+      if (sv && dev && !sv.checked && !dev.checked) {
+        if (justChanged === 'sv') dev.checked = true;
+        else sv.checked = true;
+      }
+      updateCategoryLabel();
+      renderWithHistory();
+    }
+
+    // Close the menu when clicking outside it.
+    document.addEventListener('click', event => {
+      const wrap = document.getElementById('categoryFilter');
+      const menu = document.getElementById('categoryMenu');
+      if (!wrap || !menu) return;
+      if (!wrap.contains(event.target)) {
+        menu.classList.remove('open');
+        const btn = document.getElementById('categoryBtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     // Switch between light and dark theme. The choice is applied by setting
     // data-theme="light" on <html> (the CSS variable overrides handle the
@@ -2213,7 +2304,6 @@
     document.getElementById('versionFilter').addEventListener('change', renderWithHistory);
     // Optional "on or after" date filter.
     document.getElementById('afterDate').addEventListener('change', renderWithHistory);
-    document.getElementById('devToggle').addEventListener('change', renderWithHistory);
     document.getElementById('hideCancelledToggle').addEventListener('change', renderWithHistory);
     document.getElementById('clearAfterDate').addEventListener('click', () => {
       document.getElementById('afterDate').value = '';
