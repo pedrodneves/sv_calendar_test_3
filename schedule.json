@@ -1,84 +1,5 @@
 [
   {
-    "id": "13330048153",
-    "title": "DevNet upgrades to Splice 0.9.3",
-    "start": "2026-10-21",
-    "end": "2026-10-21",
-    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": "0.9.3",
-    "minDarVersions": [
-      {
-        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
-        "version": "0.1.24"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "13330114204",
-    "title": "TestNet upgrades to Splice 0.9.3",
-    "start": "2026-10-21",
-    "end": "2026-10-21",
-    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": "0.9.3",
-    "minDarVersions": [
-      {
-        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
-        "version": "0.1.24"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "13330127747",
-    "title": "MainNet upgrades to Splice 0.9.3",
-    "start": "2026-10-21",
-    "end": "2026-10-21",
-    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": "0.9.3",
-    "minDarVersions": [
-      {
-        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
-        "version": "0.1.24"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12690805352",
-    "title": "DevNet: LSU (0.9.x Required) (October 2026)",
-    "start": "2026-10-21 09:00",
-    "end": "2026-10-21 09:00",
-    "description": "Adopts protocol version 36",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "12690775440",
     "title": "DevNet upgrades to Splice 0.9.4",
     "start": "2026-10-26",
@@ -17570,6 +17491,85 @@
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "13330048153",
+    "title": "DevNet upgrades to Splice 0.9.3",
+    "start": "2026-10-21",
+    "end": "2026-10-21",
+    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": "0.9.3",
+    "minDarVersions": [
+      {
+        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
+        "version": "0.1.24"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "12690805352",
+    "title": "DevNet: LSU (0.9.x Required) (October 2026)",
+    "start": "2026-10-21 09:00",
+    "end": "2026-10-21 09:00",
+    "description": "Adopts protocol version 36",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "13330114204",
+    "title": "TestNet upgrades to Splice 0.9.3",
+    "start": "2026-10-21",
+    "end": "2026-10-21",
+    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": "0.9.3",
+    "minDarVersions": [
+      {
+        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
+        "version": "0.1.24"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "13330127747",
+    "title": "MainNet upgrades to Splice 0.9.3",
+    "start": "2026-10-21",
+    "end": "2026-10-21",
+    "description": "Out of cycle bugfix release, replacing Splice 0.9.0-0.9.2",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": "0.9.3",
+    "minDarVersions": [
+      {
+        "package": "amulet 0.1.24 amuletNameService 0.1.25 dsoGovernance 0.1.30 validatorLifecycle 0.1.9 wallet 0.1.25 walletPayments",
+        "version": "0.1.24"
+      }
+    ],
     "dev": false
   }
 ]
