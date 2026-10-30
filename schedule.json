@@ -1,21 +1,5 @@
 [
   {
-    "id": "13369223798",
-    "title": "Devnet: Topology Freeze (repeat October 2026)",
-    "start": "2026-10-29 09:00",
-    "end": "2026-10-29 09:00",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "13369271027",
     "title": "Devnet: Logical Synchronizer Upgrade (repeat October 2026)",
     "start": "2026-10-30 09:00",
@@ -17737,6 +17721,22 @@
         "version": "0.1.24"
       }
     ],
+    "dev": false
+  },
+  {
+    "id": "13369223798",
+    "title": "Devnet: Topology Freeze (repeat October 2026)",
+    "start": "2026-10-29 09:00",
+    "end": "2026-10-29 09:00",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
     "dev": false
   }
 ]
