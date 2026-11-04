@@ -1,53 +1,5 @@
 [
   {
-    "id": "12690805503",
-    "title": "DevNet: Breaking configuration changes introduced by Splice 0.9.x take effect",
-    "start": "2026-11-03 09:00",
-    "end": "2026-11-03 09:00",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Other Network Configuration Change",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
-    "id": "12690776372",
-    "title": "TestNet: Daml models introduced by Splice 0.9.x take effect",
-    "start": "2026-11-03 09:00",
-    "end": "2026-11-03 09:00",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Splice Daml Model Effectivity",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
-    "id": "12690806082",
-    "title": "TestNet: Topology Freeze (0.9.x Required) (November 2026)",
-    "start": "2026-11-03 09:00",
-    "end": "2026-11-03 09:00",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Protocol Upgrades (LSU)",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.9",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
-    "dev": false
-  },
-  {
     "id": "12690774841",
     "title": "TestNet: LSU (0.9.x Required) (November 2026)",
     "start": "2026-11-04 09:00",
@@ -17737,6 +17689,54 @@
         "version": "0.1.24"
       }
     ],
+    "dev": false
+  },
+  {
+    "id": "12690806082",
+    "title": "TestNet: Topology Freeze (0.9.x Required) (November 2026)",
+    "start": "2026-11-03 09:00",
+    "end": "2026-11-03 09:00",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Protocol Upgrades (LSU)",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "12690805503",
+    "title": "DevNet: Breaking configuration changes introduced by Splice 0.9.x take effect",
+    "start": "2026-11-03 09:00",
+    "end": "2026-11-03 09:00",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Other Network Configuration Change",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "12690776372",
+    "title": "TestNet: Daml models introduced by Splice 0.9.x take effect",
+    "start": "2026-11-03 09:00",
+    "end": "2026-11-03 09:00",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Splice Daml Model Effectivity",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.9",
+    "minValidatorSpliceVersion": null,
+    "minDarVersions": [],
     "dev": false
   }
 ]
