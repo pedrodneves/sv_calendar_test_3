@@ -11,8 +11,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.10",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.10.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
     "dev": false
   },
   {
@@ -214,8 +239,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.10",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.10.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
     "dev": false
   },
   {
@@ -367,8 +417,33 @@
     "category": "general",
     "dependsOn": [],
     "minorVersion": "0.10",
-    "minValidatorSpliceVersion": null,
-    "minDarVersions": [],
+    "minValidatorSpliceVersion": "0.10.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
     "dev": false
   },
   {
