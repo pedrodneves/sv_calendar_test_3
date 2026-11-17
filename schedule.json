@@ -1,128 +1,5 @@
 [
   {
-    "id": "12690820594",
-    "title": "DevNet upgrades to Splice 0.10.2",
-    "start": "2026-11-16",
-    "end": "2026-11-16",
-    "description": "",
-    "status": "Confirmed",
-    "network": "DevNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.10",
-    "minValidatorSpliceVersion": "0.10.1",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.25"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.26"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.31"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.10"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.26"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.25"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12690956494",
-    "title": "TestNet upgrades to Splice 0.10.1",
-    "start": "2026-11-16",
-    "end": "2026-11-16",
-    "description": "",
-    "status": "Confirmed",
-    "network": "TestNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.10",
-    "minValidatorSpliceVersion": "0.10.0",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.25"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.26"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.31"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.10"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.26"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.25"
-      }
-    ],
-    "dev": false
-  },
-  {
-    "id": "12690956723",
-    "title": "MainNet upgrades to Splice 0.10.0",
-    "start": "2026-11-16",
-    "end": "2026-11-16",
-    "description": "",
-    "status": "Confirmed",
-    "network": "MainNet",
-    "type": "Weekly Upgrades",
-    "category": "general",
-    "dependsOn": [],
-    "minorVersion": "0.10",
-    "minValidatorSpliceVersion": "0.9.4",
-    "minDarVersions": [
-      {
-        "package": "amulet",
-        "version": "0.1.25"
-      },
-      {
-        "package": "amuletNameService",
-        "version": "0.1.26"
-      },
-      {
-        "package": "dsoGovernance",
-        "version": "0.1.31"
-      },
-      {
-        "package": "validatorLifecycle",
-        "version": "0.1.10"
-      },
-      {
-        "package": "wallet",
-        "version": "0.1.26"
-      },
-      {
-        "package": "walletPayments",
-        "version": "0.1.25"
-      }
-    ],
-    "dev": false
-  },
-  {
     "id": "12690883723",
     "title": "MainNet: Breaking configurations introduced by Splice 0.9.x take effect",
     "start": "2026-11-17 09:00",
@@ -18643,6 +18520,129 @@
     "minorVersion": "0.9",
     "minValidatorSpliceVersion": null,
     "minDarVersions": [],
+    "dev": false
+  },
+  {
+    "id": "12690820594",
+    "title": "DevNet upgrades to Splice 0.10.2",
+    "start": "2026-11-16",
+    "end": "2026-11-16",
+    "description": "",
+    "status": "Confirmed",
+    "network": "DevNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.10",
+    "minValidatorSpliceVersion": "0.10.1",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "12690956723",
+    "title": "MainNet upgrades to Splice 0.10.0",
+    "start": "2026-11-16",
+    "end": "2026-11-16",
+    "description": "",
+    "status": "Confirmed",
+    "network": "MainNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.10",
+    "minValidatorSpliceVersion": "0.9.4",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
+    "dev": false
+  },
+  {
+    "id": "12690956494",
+    "title": "TestNet upgrades to Splice 0.10.1",
+    "start": "2026-11-16",
+    "end": "2026-11-16",
+    "description": "",
+    "status": "Confirmed",
+    "network": "TestNet",
+    "type": "Weekly Upgrades",
+    "category": "general",
+    "dependsOn": [],
+    "minorVersion": "0.10",
+    "minValidatorSpliceVersion": "0.10.0",
+    "minDarVersions": [
+      {
+        "package": "amulet",
+        "version": "0.1.25"
+      },
+      {
+        "package": "amuletNameService",
+        "version": "0.1.26"
+      },
+      {
+        "package": "dsoGovernance",
+        "version": "0.1.31"
+      },
+      {
+        "package": "validatorLifecycle",
+        "version": "0.1.10"
+      },
+      {
+        "package": "wallet",
+        "version": "0.1.26"
+      },
+      {
+        "package": "walletPayments",
+        "version": "0.1.25"
+      }
+    ],
     "dev": false
   }
 ]
