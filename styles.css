@@ -40,6 +40,11 @@
   --event-bg-testnet: rgba(250, 204, 21, 0.16);
   --event-bg-mainnet: rgba(22, 163, 74, 0.28);
   --event-bg-cancelled: rgba(239, 68, 68, 0.22);
+  /* "Today" cell highlight. Dark theme: bright purple border + glow. */
+  --today-border: #a06bff;
+  --today-glow: rgba(160, 107, 255, 0.5);
+  --today-tint: rgba(160, 107, 255, 0.1);
+  --today-badge-text: #0d0a18;
 }
 
 /* ---- Light theme -----------------------------------------------------------
@@ -89,6 +94,12 @@
   --event-bg-testnet: #faf3dc;
   --event-bg-mainnet: #e2f4e9;
   --event-bg-cancelled: #fde7e3;
+  /* Light theme: darker purple border + a readable tint (a glow alone is
+     invisible on white, so the tint and solid border carry it). */
+  --today-border: #6a3cf0;
+  --today-glow: rgba(106, 60, 240, 0.28);
+  --today-tint: rgba(106, 60, 240, 0.07);
+  --today-badge-text: #ffffff;
 
   color-scheme: light;
 }
@@ -870,9 +881,50 @@ select::-ms-expand { display: none; }
 
 .day.outside { opacity: 0.35; }
 
+/* "Today" — made prominent so it's easy to spot at a glance. A thick accent
+   border, a stronger glow, and a faint accent tint over the cell. The
+   `--today-*` variables let the light theme use darker, higher-contrast
+   values (a soft glow is invisible on white). */
 .day.today {
-  border-color: var(--purple-soft);
-  box-shadow: 0 0 18px rgba(201, 156, 255, 0.25);
+  border: 3px solid var(--today-border);
+  box-shadow: 0 0 0 2px var(--today-border), 0 0 34px var(--today-glow);
+  background-image:
+    linear-gradient(var(--today-tint), var(--today-tint)),
+    var(--day-gradient);
+}
+
+/* A solid accent bar across the top of today's cell — a strong, immediate
+   visual cue even before you read anything. */
+.day.today::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--today-border);
+  border-radius: 11px 11px 0 0;
+}
+
+/* Today's day number becomes a filled accent chip — the loudest cue. */
+.day.today .day-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--today-border);
+  color: var(--today-badge-text);
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
+/* "TODAY" label inside the chip, after the number. */
+.day.today .day-number::after {
+  content: "TODAY";
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
 }
 
 /* Clickable day cells (Month + Week views) open the Day view */
