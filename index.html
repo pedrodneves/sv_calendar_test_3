@@ -21,7 +21,7 @@
   </script>
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=37" />
+  <link rel="stylesheet" href="./styles.css?v=38" />
 </head>
 
 <body>
@@ -486,11 +486,29 @@
       }
 
       // Categories: default SV on / Dev off. dev=1 enables Dev; sv=0 disables
-      // SV. The both-off guard still applies afterwards.
+      // SV. A URL param wins when present (so shared/bookmarked links are
+      // honoured); otherwise we fall back to the choice saved in localStorage
+      // from last visit, so the selection persists across sessions.
       const svEl = document.getElementById('catSV');
       const devCatEl = document.getElementById('catDev');
-      if (devCatEl) devCatEl.checked = params.get('dev') === '1';
-      if (svEl) svEl.checked = params.get('sv') !== '0';
+
+      // Read saved values (null if never set or storage blocked).
+      let savedDev = null, savedSV = null;
+      try {
+        savedDev = localStorage.getItem('sv-cat-dev');  // '1' | '0' | null
+        savedSV = localStorage.getItem('sv-cat-sv');     // '1' | '0' | null
+      } catch (e) { /* storage blocked — fall through to defaults */ }
+
+      if (devCatEl) {
+        if (params.has('dev')) devCatEl.checked = params.get('dev') === '1';
+        else if (savedDev !== null) devCatEl.checked = savedDev === '1';
+        else devCatEl.checked = false;                   // default: Dev off
+      }
+      if (svEl) {
+        if (params.has('sv')) svEl.checked = params.get('sv') !== '0';
+        else if (savedSV !== null) svEl.checked = savedSV === '1';
+        else svEl.checked = true;                         // default: SV on
+      }
       // Safety: never allow both off when restoring from a link.
       if (svEl && devCatEl && !svEl.checked && !devCatEl.checked) svEl.checked = true;
       updateCategoryLabel();
@@ -2217,6 +2235,12 @@
         if (justChanged === 'sv') dev.checked = true;
         else sv.checked = true;
       }
+      // Remember the choice so it persists across visits (URL still wins on
+      // load when a dev=/sv= param is present).
+      try {
+        if (sv) localStorage.setItem('sv-cat-sv', sv.checked ? '1' : '0');
+        if (dev) localStorage.setItem('sv-cat-dev', dev.checked ? '1' : '0');
+      } catch (e) { /* storage blocked — session-only, no persistence */ }
       updateCategoryLabel();
       renderWithHistory();
     }
