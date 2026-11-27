@@ -258,7 +258,11 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
   font-size: 13px;
   white-space: nowrap;
   cursor: pointer;
-  max-width: 260px;
+  /* Consistent width so the three filters line up neatly instead of each
+     sizing to its own text. Long multi-selection labels clip with an
+     ellipsis rather than stretching the button. */
+  width: 190px;
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
 }
