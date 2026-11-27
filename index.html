@@ -21,7 +21,7 @@
   </script>
 
   <!-- CSS now lives in its own file (was previously inline). -->
-  <link rel="stylesheet" href="./styles.css?v=38" />
+  <link rel="stylesheet" href="./styles.css?v=39" />
 </head>
 
 <body>
@@ -93,17 +93,29 @@
       <div class="toolbar-row toolbar-row-filters">
         <input id="search" placeholder="Search events..." />
 
-        <select id="networkFilter">
-          <option value="">All Networks</option>
-        </select>
+        <!-- Multi-select checkbox filters (Network, Activity type, Version).
+             Each is a button + a checkbox menu, populated at runtime. Nothing
+             checked = "All". Mirrors the Categories control's pattern. -->
+        <div class="ms-filter" id="networkFilter">
+          <button type="button" class="ms-btn" id="networkFilterBtn"
+                  aria-haspopup="true" aria-expanded="false"
+                  onclick="toggleMsMenu('network')">All Networks ▾</button>
+          <div class="ms-menu" id="networkFilterMenu" role="menu"></div>
+        </div>
 
-        <select id="typeFilter">
-          <option value="">All activity types</option>
-        </select>
+        <div class="ms-filter" id="typeFilter">
+          <button type="button" class="ms-btn" id="typeFilterBtn"
+                  aria-haspopup="true" aria-expanded="false"
+                  onclick="toggleMsMenu('type')">All activity types ▾</button>
+          <div class="ms-menu" id="typeFilterMenu" role="menu"></div>
+        </div>
 
-        <select id="versionFilter">
-          <option value="">All versions</option>
-        </select>
+        <div class="ms-filter" id="versionFilter">
+          <button type="button" class="ms-btn" id="versionFilterBtn"
+                  aria-haspopup="true" aria-expanded="false"
+                  onclick="toggleMsMenu('version')">All versions ▾</button>
+          <div class="ms-menu" id="versionFilterMenu" role="menu"></div>
+        </div>
 
         <div class="date-filter-cell">
           <label for="afterDate" class="date-filter-label">On or after</label>
@@ -394,10 +406,10 @@
       const params = new URLSearchParams();
 
       const search = document.getElementById('search').value.trim();
-      const network = document.getElementById('networkFilter').value;
-      const type = document.getElementById('typeFilter').value;
-      const versionEl = document.getElementById('versionFilter');
-      const version = versionEl ? versionEl.value : '';
+      // Multi-select filters: comma-separated lists; omitted when empty.
+      const network = [...msSelected.network].join(',');
+      const type = [...msSelected.type].join(',');
+      const version = [...msSelected.version].join(',');
       const afterEl = document.getElementById('afterDate');
       const after = afterEl ? afterEl.value : '';
       const svEl = document.getElementById('catSV');
@@ -458,25 +470,17 @@
       // Search: absent → empty box.
       document.getElementById('search').value = params.get('search') || '';
 
-      // Network filter: absent or invalid → "all" (empty value).
-      const network = params.get('network');
-      const netSel = document.getElementById('networkFilter');
-      netSel.value =
-        (network && [...netSel.options].some(o => o.value === network)) ? network : '';
-
-      // Type filter: absent or invalid → "all".
-      const type = params.get('type');
-      const typeSel = document.getElementById('typeFilter');
-      typeSel.value =
-        (type && [...typeSel.options].some(o => o.value === type)) ? type : '';
-
-      // Version filter: absent or invalid → "all".
-      const version = params.get('version');
-      const verSel = document.getElementById('versionFilter');
-      if (verSel) {
-        verSel.value =
-          (version && [...verSel.options].some(o => o.value === version)) ? version : '';
-      }
+      // Multi-select filters: parse the comma-separated list, keep only
+      // values that actually exist in the current data, and rebuild the
+      // menus + button labels. Absent param → empty set ("All").
+      ['network', 'type', 'version'].forEach(filter => {
+        const raw = params.get(filter);
+        const valid = msOptionValues(filter);
+        msSelected[filter] = new Set(
+          (raw ? raw.split(',') : []).filter(v => valid.includes(v))
+        );
+        populateMsFilter(filter);   // re-render menu checkboxes + button
+      });
 
       // Optional "on or after" date filter: absent → cleared.
       const after = params.get('after');
@@ -671,31 +675,31 @@
     /* ---------------------------------------------------------
        FILTER POPULATION (unchanged behaviour)
        --------------------------------------------------------- */
-    function populateNetworkFilter() {
-      const select = document.getElementById('networkFilter');
-      const currentValue = select.value;
+    /* ---------------------------------------------------------
+       MULTI-SELECT FILTERS (Network, Activity type, Version)
+       Each is a checkbox menu. Selected values are held in Sets.
+       Nothing selected = "All" (no filtering on that field).
+       --------------------------------------------------------- */
 
-      const orderedNetworks = ['DevNet', 'TestNet', 'MainNet', 'Minimum Versions'];
+    // Current selections per filter. Empty set = "All".
+    const msSelected = {
+      network: new Set(),
+      type: new Set(),
+      version: new Set()
+    };
 
-      select.innerHTML = '<option value="">All Networks</option>';
-
-      orderedNetworks.forEach(network => {
-        const exists = allEvents.some(event => normalizeNetwork(event.network) === network);
-        if (!exists) return;
-
-        const option = document.createElement('option');
-        option.value = network;
-        option.textContent = network;
-        select.appendChild(option);
-      });
-
-      select.value = currentValue;
-    }
+    // Config per filter: the menu/button element ids, the "All" label,
+    // and how each option is labelled in the menu.
+    const MS_CONFIG = {
+      network: { menu: 'networkFilterMenu', btn: 'networkFilterBtn',
+                 allLabel: 'All Networks', optionLabel: v => v },
+      type:    { menu: 'typeFilterMenu', btn: 'typeFilterBtn',
+                 allLabel: 'All activity types', optionLabel: v => v },
+      version: { menu: 'versionFilterMenu', btn: 'versionFilterBtn',
+                 allLabel: 'All versions', optionLabel: v => 'Splice ' + v + '.x' }
+    };
 
     // Preferred activity types, in the same order as the info modal.
-    // These always appear first in the dropdown, in this fixed order,
-    // using the exact type strings the monday data uses so filtering
-    // matches correctly.
     const ACTIVITY_TYPES = [
       'Weekly Upgrades',
       'Minimum Splice Versions',
@@ -705,78 +709,129 @@
       'Other Network Configuration Change'
     ];
 
-    function populateTypeFilter() {
-      const select = document.getElementById('typeFilter');
-      const currentValue = select.value;
-
-      select.innerHTML = '<option value="">All activity types</option>';
-
-      // Start with the preferred list in its fixed order.
-      const ordered = [...ACTIVITY_TYPES];
-
-      // Then append any activity type present in the data that isn't
-      // already in the preferred list (title only), so nothing from
-      // monday ever goes missing from the filter. These extras are
-      // sorted alphabetically and added after the fixed entries.
-      const extras = [...new Set(
-        allEvents.map(event => event.type).filter(Boolean)
-      )]
-        .filter(type => !ACTIVITY_TYPES.includes(type))
-        .sort();
-
-      ordered.push(...extras);
-
-      ordered.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type;
-        option.textContent = type;
-        select.appendChild(option);
-      });
-
-      select.value = currentValue;
+    // Build the option VALUES for a given filter from the current data.
+    function msOptionValues(filter) {
+      if (filter === 'network') {
+        const ordered = ['DevNet', 'TestNet', 'MainNet', 'Minimum Versions'];
+        return ordered.filter(net =>
+          allEvents.some(e => normalizeNetwork(e.network) === net));
+      }
+      if (filter === 'type') {
+        const ordered = [...ACTIVITY_TYPES];
+        const extras = [...new Set(allEvents.map(e => e.type).filter(Boolean))]
+          .filter(t => !ACTIVITY_TYPES.includes(t)).sort();
+        return ordered.concat(extras)
+          .filter(t => allEvents.some(e => e.type === t));
+      }
+      if (filter === 'version') {
+        return [...new Set(allEvents.map(e => e.minorVersion).filter(Boolean))]
+          .sort((a, b) => {
+            const pa = String(a).split('.').map(Number);
+            const pb = String(b).split('.').map(Number);
+            return (pa[0] - pb[0]) || ((pa[1] || 0) - (pb[1] || 0));
+          });
+      }
+      return [];
     }
 
-    // Populate the minor-version filter from the structured `minorVersion`
-    // field published from monday's "Minor Versions" column. Values look
-    // like "0.7", "0.8", "0.10". Events with no version (null) are simply
-    // not represented as options. Sorted numerically so "0.10" comes after
-    // "0.9" (a plain string sort would misorder them).
-    function populateVersionFilter() {
-      const select = document.getElementById('versionFilter');
-      if (!select) return;
-      const currentValue = select.value;
+    // Render one filter's checkbox menu from its option values, preserving
+    // any current selections. Drops selections no longer present in data.
+    function populateMsFilter(filter) {
+      const cfg = MS_CONFIG[filter];
+      const menu = document.getElementById(cfg.menu);
+      if (!menu) return;
 
-      select.innerHTML = '<option value="">All versions</option>';
+      const values = msOptionValues(filter);
 
-      const versions = [...new Set(
-        allEvents.map(event => event.minorVersion).filter(Boolean)
-      )].sort((a, b) => {
-        // Compare as [major, minor] number pairs, not as strings.
-        const pa = String(a).split('.').map(Number);
-        const pb = String(b).split('.').map(Number);
-        return (pa[0] - pb[0]) || ((pa[1] || 0) - (pb[1] || 0));
+      // Keep only still-valid selections.
+      [...msSelected[filter]].forEach(v => {
+        if (!values.includes(v)) msSelected[filter].delete(v);
       });
 
-      versions.forEach(version => {
-        const option = document.createElement('option');
-        option.value = version;
-        option.textContent = 'Splice ' + version + '.x';
-        select.appendChild(option);
+      menu.innerHTML = '';
+      values.forEach(val => {
+        const label = document.createElement('label');
+        label.className = 'ms-option';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = val;
+        cb.checked = msSelected[filter].has(val);
+        cb.addEventListener('change', () => {
+          if (cb.checked) msSelected[filter].add(val);
+          else msSelected[filter].delete(val);
+          updateMsButton(filter);
+          renderWithHistory();
+        });
+        const span = document.createElement('span');
+        span.textContent = cfg.optionLabel(val);
+        label.appendChild(cb);
+        label.appendChild(span);
+        menu.appendChild(label);
       });
 
-      select.value = currentValue;
+      updateMsButton(filter);
     }
+
+    // Update a filter button's label + active styling from its selection.
+    function updateMsButton(filter) {
+      const cfg = MS_CONFIG[filter];
+      const btn = document.getElementById(cfg.btn);
+      if (!btn) return;
+      const sel = [...msSelected[filter]];
+      let text;
+      if (sel.length === 0) {
+        text = cfg.allLabel;
+        btn.classList.remove('ms-active');
+      } else {
+        // First selection + "+N" when there are more.
+        const first = cfg.optionLabel(sel[0]);
+        text = sel.length === 1 ? first : first + ' +' + (sel.length - 1);
+        btn.classList.add('ms-active');
+      }
+      btn.textContent = text + ' ▾';
+    }
+
+    // Open/close one filter's menu (closing the others).
+    function toggleMsMenu(filter) {
+      const cfg = MS_CONFIG[filter];
+      const menu = document.getElementById(cfg.menu);
+      const btn = document.getElementById(cfg.btn);
+      const isOpen = menu.classList.contains('open');
+      // Close all multi-select menus first.
+      Object.values(MS_CONFIG).forEach(c => {
+        document.getElementById(c.menu).classList.remove('open');
+        document.getElementById(c.btn).setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Close any open multi-select menu when clicking outside it.
+    document.addEventListener('click', event => {
+      Object.keys(MS_CONFIG).forEach(filter => {
+        const wrap = document.getElementById(filter + 'Filter');
+        if (wrap && !wrap.contains(event.target)) {
+          document.getElementById(MS_CONFIG[filter].menu).classList.remove('open');
+          document.getElementById(MS_CONFIG[filter].btn)
+            .setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Populate all three (called on load). Kept as named wrappers so the
+    // existing call sites don't need to change.
+    function populateNetworkFilter() { populateMsFilter('network'); }
+    function populateTypeFilter() { populateMsFilter('type'); }
+    function populateVersionFilter() { populateMsFilter('version'); }
+
     function matchesFilters(event) {
       const search = document.getElementById('search').value.toLowerCase();
-      const selectedNetwork = document.getElementById('networkFilter').value;
-      const selectedType = document.getElementById('typeFilter').value;
-      const versionEl = document.getElementById('versionFilter');
-      const selectedVersion = versionEl ? versionEl.value : '';
       const afterEl = document.getElementById('afterDate');
       const afterDate = afterEl ? afterEl.value : '';   // "YYYY-MM-DD" or ''
       // Category multi-select: SV = normal (non-dev) events, Dev = events
-      // with the dev flag. Default SV on / Dev off. Missing elements default
-      // to the SV-only behaviour that matched the old toggle.
+      // with the dev flag. Default SV on / Dev off.
       const svEl = document.getElementById('catSV');
       const devCatEl = document.getElementById('catDev');
       const showSV = svEl ? svEl.checked : true;
@@ -791,19 +846,23 @@
         event.type, event.category, event.status
       ].join(' ').toLowerCase();
 
+      // Multi-select: an empty set means "All" (no constraint); otherwise
+      // the event must match ANY selected value (OR).
+      const netSel = msSelected.network;
+      const typeSel = msSelected.type;
+      const verSel = msSelected.version;
+
       return searchable.includes(search) &&
-        (!selectedNetwork || normalizedNetwork === selectedNetwork) &&
-        (!selectedType || event.type === selectedType) &&
-        // When a version is selected, show ONLY events with that exact minor
-        // version; events without a version (null) are hidden.
-        (!selectedVersion || String(event.minorVersion) === selectedVersion) &&
-        // Optional "on or after" date filter — off when empty. String
-        // comparison works because both are ISO YYYY-MM-DD.
+        (netSel.size === 0 || netSel.has(normalizedNetwork)) &&
+        (typeSel.size === 0 || typeSel.has(event.type)) &&
+        // Version: when any version is selected, show ONLY events whose
+        // minorVersion is one of them (version-less events are hidden).
+        (verSel.size === 0 || verSel.has(String(event.minorVersion))) &&
+        // Optional "on or after" date filter — off when empty.
         (!afterDate || eventDatePart(event) >= afterDate) &&
-        // Category filter: an event shows if its category is enabled.
-        // Dev-flagged events need Dev on; non-dev events need SV on.
+        // Category filter: dev events need Dev on; non-dev need SV on.
         ((event.dev && showDev) || (!event.dev && showSV)) &&
-        // Cancelled events are hidden when the "Hide cancelled" toggle is on.
+        // Cancelled events hidden when the "Hide cancelled" toggle is on.
         (!hideCancelled || String(event.status || '').trim().toLowerCase() !== 'cancelled');
     }
 
@@ -2161,10 +2220,11 @@
     // the full unfiltered schedule is shown again.
     function clearFilters() {
       document.getElementById('search').value = '';
-      document.getElementById('networkFilter').value = '';
-      document.getElementById('typeFilter').value = '';
-      const vf = document.getElementById('versionFilter');
-      if (vf) vf.value = '';
+      // Clear all multi-select filters back to "All".
+      ['network', 'type', 'version'].forEach(filter => {
+        msSelected[filter].clear();
+        populateMsFilter(filter);   // re-render (unchecks all) + reset label
+      });
       const af = document.getElementById('afterDate');
       if (af) af.value = '';
       // Categories back to default: SV on, Dev off.
