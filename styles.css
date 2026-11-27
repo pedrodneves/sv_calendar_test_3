@@ -350,9 +350,12 @@ h1 { margin: 0; font-size: 38px; letter-spacing: -1px; }
 .nav-group { display: flex; gap: 8px; }
 
 /* Row 2: search grows, filters sit beside it. */
-.toolbar-row-filters #search { flex: 1 1 220px; min-width: 160px; }
-.toolbar-row-filters #networkFilter { flex: 0 1 auto; min-width: 150px; }
-.toolbar-row-filters .type-filter-cell { flex: 0 1 auto; }
+/* Filter row balance (Option A): the search box is capped at a sensible
+   width, and the three multi-select filters each grow to share the rest of
+   the row equally — so one big field no longer dwarfs three small ones. */
+.toolbar-row-filters #search { flex: 0 1 340px; min-width: 200px; }
+.toolbar-row-filters .ms-filter { flex: 1 1 0; min-width: 150px; }
+.toolbar-row-filters .ms-filter .ms-btn { width: 100%; }
 
 /* Row 3: utility actions, right-aligned, with a divider above. */
 .toolbar-row-actions {
